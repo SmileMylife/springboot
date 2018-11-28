@@ -1,0 +1,1 @@
+{"timestamp":"2018-11-20T07:45:08.626+0000","status":500,"error":"Internal Server Error","message":"Expected scheme-specific part at index 10: localhost:","path":"/greedingRestfulByCode"}

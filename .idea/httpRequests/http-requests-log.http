@@ -1,0 +1,72 @@
+GET http://localhost:8080/greedingRestfulByCode
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-11-20T034942.500.json
+
+###
+
+GET http://localhost:8080/greedingRestfulByCode
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-11-20T034709.500.json
+
+###
+
+GET http://localhost:8080/greedingRestfulByCode
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-11-20T034508.500.json
+
+###
+
+GET http://localhost:8080/greeting
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-11-20T114633.200.json
+
+###
+
+GET http://localhost:8080/greeting
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-11-20T114632.200.json
+
+###
+
+GET http://localhost:8080/greeting
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-11-20T113747.200.json
+
+###
+
+GET http://localhost:8080/springboot/greeting
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-11-20T113705.404.json
+
+###
+
+GET http://localhost:8080/springboot/greeting
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-11-20T113703.404.json
+
+###
+
+GET http://localhost:8080/springboot/greeting
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-11-20T113638.404.json
+
+###
+
