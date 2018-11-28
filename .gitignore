@@ -4,3 +4,4 @@
 /.test.project
 /.idea/
 *.iml
+/.mvn/
