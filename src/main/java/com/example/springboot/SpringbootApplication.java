@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-@MapperScan(value = "classpath: mapper/*.xml")
+@MapperScan(value = "com.example.springboot.dao")
 public class SpringbootApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootApplication.class, args);
