@@ -1,5 +1,7 @@
 package com.example.springboot.controller;
 
+import com.example.springboot.bean.InputObject;
+import com.example.springboot.bean.OutputObject;
 import com.example.springboot.service.ITestSpringBootService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,8 +31,15 @@ public class TestSpringBootController {
 
     @RequestMapping(value = "/testDaoOperation", method = RequestMethod.GET)
     @ResponseBody
-    public List<Map<String, Object>> testDaoOperation() {
-        List<Map<String, Object>> map = iTestSpringBootService.testDaoOperation();
+    public List<HashMap<String, Object>> testDaoOperation() {
+        List<HashMap<String, Object>> map = iTestSpringBootService.testDaoOperation();
         return map;
+    }
+
+    @RequestMapping(value = "/testParamsPackage", method = RequestMethod.GET)
+    @ResponseBody
+    public OutputObject testDaoOperation(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) {
+        iTestSpringBootService.testParamsPackage(inputObject, outputObject);
+        return outputObject;
     }
 }

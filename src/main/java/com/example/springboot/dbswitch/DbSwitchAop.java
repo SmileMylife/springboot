@@ -21,7 +21,7 @@ public class DbSwitchAop {
     @Value("${defaultDatasource}")
     private String defaultDatasource;
 
-    @Pointcut("execution(void com.example.springboot.service.*.*(..))")
+    @Pointcut("execution(* com.example.springboot.service.impl.*.*(..))")
     public void dbSwitchAop() {
 
     }
