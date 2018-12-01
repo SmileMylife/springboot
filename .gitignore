@@ -7,3 +7,5 @@
 /.mvn/
 mvnw
 mvnw.cmd
+.idea/
+.mvn/
