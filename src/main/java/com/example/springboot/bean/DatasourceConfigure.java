@@ -73,8 +73,8 @@ public class DatasourceConfigure {
     @Value("${spring.datasource.connectionProperties}")
     private String connectionProperties;
 
-    /*@Bean   //@bean注解是方法级注解，使用在方法上，将方法的返回对象最为spring的bean来进行管理，和component类似，但是@bean中可以对bean进行逻辑操作。
-    @Primary    //表示此处的bean将覆盖其他地方的bean*/
+//    @Bean   //@bean注解是方法级注解，使用在方法上，将方法的返回对象最为spring的bean来进行管理，和component类似，但是@bean中可以对bean进行逻辑操作。
+//    @Primary    //表示此处的bean将覆盖其他地方的bean*//*
     public DataSource dataSource() {
         DruidDataSource datasource = new DruidDataSource();
 
