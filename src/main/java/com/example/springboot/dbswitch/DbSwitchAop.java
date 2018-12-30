@@ -32,7 +32,7 @@ public class DbSwitchAop {
     @Before(value = "dbSwitchAop()")
     public void setDbKey(JoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
-        if (args != null && args[0] instanceof InputObject) {
+        if (args != null && args.length > 0 && args[0] instanceof InputObject) {    //需要注意参数为空的情况
             InputObject input = (InputObject) args[0];
             HashMap<String, Object> params = input.getParams();
             String dbKey = MapUtils.getString(params, "dbKey");
@@ -41,6 +41,8 @@ public class DbSwitchAop {
             } else {
                 DBHandleServiceImpl.setDbSource(dbKey);
             }
+        } else {
+            DBHandleServiceImpl.setDbSource(defaultDatasource);
         }
     }
 }
