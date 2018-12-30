@@ -1,7 +1,6 @@
 package com.example.springboot.servlet;
 
 import com.alibaba.druid.support.http.StatViewServlet;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
