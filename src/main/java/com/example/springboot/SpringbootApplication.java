@@ -45,4 +45,5 @@ public class SpringbootApplication extends WebMvcConfigurationSupport {
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         argumentResolvers.add(handlerMethodArgumentResolver);
     }
+
 }
