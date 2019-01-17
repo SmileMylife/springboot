@@ -11,12 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,7 +61,7 @@ public class TestSpringBootController {
      */
     @RequestMapping(value = "/directIndex", method = RequestMethod.POST)
     @ResponseBody
-    public String directIndex(InputObject inputObject, OutputObject outputObject) {
+    public String directIndex(InputObject inputObject, OutputObject outputObject) throws UnsupportedEncodingException {
         /*这种方法，发出去的参数在springmvc中接收不到
 
         RestTemplate restTemplate = new RestTemplate();
@@ -77,7 +79,7 @@ public class TestSpringBootController {
 
 
         //下面这种方法在springmvc中可以接收到
-        MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+        /*MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
         map.add("xmlhead", "请求头");
         map.add("xmlbody", "请求体");
         map.add("provCode", "省份编码");
@@ -85,10 +87,31 @@ public class TestSpringBootController {
         String url = "http://127.0.0.1:8080/testRestTemplate";
         String s = restTemplate.postForObject(url, map, String.class);
         System.out.println(s);
+        return s;*/
+
+        HashMap<String, Object> input = new HashMap<>();
+        input.put("provCode", "张佩");
+
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("params", input);
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        HttpEntity<Map<String, Object>> mapHttpEntity = new HttpEntity<>(map, httpHeaders);
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> stringResponseEntity = restTemplate.postForEntity("http://127.0.0.1:8080/testRestTemplate", mapHttpEntity, String.class);
+        String body = stringResponseEntity.getBody();
+
+        String s = new String(body.getBytes("ISO-8859-1"), "UTF-8");
+        System.out.println("响应json数据为：" + s);
         return s;
     }
 
-    @RequestMapping(value = "/testRestTemplate", method = RequestMethod.POST)
+    //如果向要返回的数据中文不乱码，则需要加produce="text/plain;charset=utf-8"
+    @RequestMapping(value = "/testRestTemplate", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     @ResponseBody
     public String testRestTemplate(String xmlhead, String xmlbody, String provCode, HttpServletRequest httpServletRequest) {
         Map<String, String[]> parameterMap = httpServletRequest.getParameterMap();

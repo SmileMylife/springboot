@@ -1,6 +1,9 @@
 package com.example.springboot;
 
+import org.apache.commons.collections.MapUtils;
+
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 
 /**
  * Created by ZhangPei on 2018/12/1.
@@ -28,5 +31,14 @@ public class TestClass {
                 "        }\n" +
                 "    ]\n" +
                 "}";
+        HashMap<String, Object> map = new HashMap<>();
+        boolean isInterface = MapUtils.getBooleanValue(map, "isInterface");
+        System.out.println(isInterface);
+
+        String s4 = new String("张佩".getBytes(), "ISO-8859-1");
+        System.out.println(s4);
+
+        String s5 = new String(s4.getBytes(), "utf-8");
+        System.out.println(s5);
     }
 }
