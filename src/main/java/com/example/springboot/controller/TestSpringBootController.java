@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +62,7 @@ public class TestSpringBootController {
      */
     @RequestMapping(value = "/directIndex", method = RequestMethod.POST)
     @ResponseBody
-    public String directIndex(InputObject inputObject, OutputObject outputObject) throws UnsupportedEncodingException {
+    public String directIndex(InputObject inputObject, OutputObject outputObject, String upload) throws UnsupportedEncodingException {
         /*这种方法，发出去的参数在springmvc中接收不到
 
         RestTemplate restTemplate = new RestTemplate();
@@ -120,5 +121,16 @@ public class TestSpringBootController {
         System.out.println("省份编码为：" + provCode);
         String responseBody = "<?xml version = '1.1.0'><library><book>三国演义</book></library>";
         return responseBody;
+    }
+
+    @RequestMapping(value = "/testBinary")
+    @ResponseBody
+    public String testBinary(String str, MultipartFile multipartFile) throws IOException {
+        byte[] bytes = str.getBytes();
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("./test.png"));
+        fileOutputStream.write(bytes);
+        fileOutputStream.flush();
+        fileOutputStream.close();
+        return null;
     }
 }
