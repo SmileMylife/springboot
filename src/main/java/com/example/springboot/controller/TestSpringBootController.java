@@ -112,7 +112,7 @@ public class TestSpringBootController {
     }
 
     //如果向要返回的数据中文不乱码，则需要加produce="text/plain;charset=utf-8"
-    @RequestMapping(value = "/testRestTemplate", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+    @RequestMapping(value = "/testRestTemplate", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
     @ResponseBody
     public String testRestTemplate(String xmlhead, String xmlbody, String provCode, HttpServletRequest httpServletRequest) {
         Map<String, String[]> parameterMap = httpServletRequest.getParameterMap();

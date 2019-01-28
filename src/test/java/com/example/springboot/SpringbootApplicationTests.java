@@ -1,6 +1,5 @@
 package com.example.springboot;
 
-import com.example.springboot.dao.ITestSpringBootDao;
 import com.example.springboot.service.ITestSpringBootService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
