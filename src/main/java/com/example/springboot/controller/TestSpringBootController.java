@@ -9,14 +9,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
@@ -76,11 +75,11 @@ public class TestSpringBootController {
         httpHeaders.add("Content-Type", MediaType.MULTIPART_FORM_DATA.toString());
         ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://127.0.0.1:8080/testRestTemplate", objectHttpEntity, String.class);
         String body = responseEntity.getBody();
-        System.out.println("响应消息内容：" + body);*/
+        System.out.println("响应消息内容：" + body);
 
 
         //下面这种方法在springmvc中可以接收到
-        /*MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+        MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
         map.add("xmlhead", "请求头");
         map.add("xmlbody", "请求体");
         map.add("provCode", "省份编码");
@@ -132,5 +131,27 @@ public class TestSpringBootController {
         fileOutputStream.flush();
         fileOutputStream.close();
         return null;
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public String login(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) {
+        System.out.println("用户点击登录");
+        return "{'username':'123'}";
+    }
+
+    /**
+     * 验证后台spirngmvc接收json对象的方式
+     * @param json
+     * @return
+     */
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public OutputObject register(@RequestBody String json) {
+        System.out.println(json);
+        Jedis jedis = new Jedis("localhost", 6357);
+        jedis.connect();
+        jedis.set("username", "zhangpei");
+        return new OutputObject();
     }
 }
