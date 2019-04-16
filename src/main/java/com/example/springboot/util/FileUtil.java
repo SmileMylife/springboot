@@ -14,7 +14,6 @@ public class FileUtil {
      */
     public static boolean fileCheck(InputStream inputStream) throws IOException {
         byte[] bytes = new byte[10];
-        int read = inputStream.read(bytes);
         String s = bytesToHexString(bytes);
         System.out.println(s);
         return true;
