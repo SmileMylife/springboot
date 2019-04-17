@@ -3,6 +3,7 @@ package com.example.springboot.controller;
 import com.example.springboot.bean.InputObject;
 import com.example.springboot.bean.OutputObject;
 import com.example.springboot.service.ITestSpringBootService;
+import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -48,7 +49,7 @@ public class TestSpringBootController {
 
     @RequestMapping(value = "/testParamsPackage", method = RequestMethod.GET)
     @ResponseBody
-    public OutputObject testDaoOperation(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) {
+    public OutputObject testDaoOperation(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
         iTestSpringBootService.testParamsPackage(inputObject, outputObject);
         return outputObject;
     }
@@ -153,5 +154,17 @@ public class TestSpringBootController {
         jedis.connect();
         jedis.set("username", "zhangpei");
         return new OutputObject();
+    }
+
+    @RequestMapping(value = "/queryEmployees", method = RequestMethod.POST)
+    @ResponseBody
+    public OutputObject queryEmployees(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
+        HashMap<String, Object> params = inputObject.getParams();
+        Integer start = MapUtils.getInteger(params, "start");
+        Integer limit = MapUtils.getInteger(params, "limit");
+        params.put("start", start);
+        params.put("limit", limit);
+        iTestSpringBootService.queryEmployees(inputObject, outputObject);
+        return outputObject;
     }
 }

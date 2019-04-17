@@ -33,5 +33,12 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
         outputObject.setBeans(maps);
     }
 
+    @Override
+    public void queryEmployees(InputObject inputObject, OutputObject outputObject) throws Exception {
+        inputObject.getParams().put("tableName", "employees");
+        List<HashMap<String, Object>> list = iTestSpringBootDao.selectEmployees(inputObject.getParams());
+        outputObject.setBeans(list);
+    }
+
 
 }

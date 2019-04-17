@@ -4,4 +4,12 @@
     <select id="selectUsers" resultType="java.util.HashMap">
         SELECT id, username, password FROM USER
     </select>
+
+    <!--查询员工信息，切记此处start和limit要传整数类型，而且判断的时候不能使用start != ''，使用$符时可将字符串转换成整数类型，而且可以加start != ''-->
+    <select id="selectEmployees" resultType="java.util.HashMap" parameterType="map">
+        SELECT * FROM ${tableName}
+        <if test="start != null and limit != null">
+            limit #{start}, #{limit}
+        </if>
+    </select>
 </mapper>

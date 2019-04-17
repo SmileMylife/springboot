@@ -13,5 +13,7 @@ import java.util.Map;
 public interface ITestSpringBootService {
     public List<HashMap<String, Object>> testDaoOperation();
 
-    public void testParamsPackage(InputObject inputObject, OutputObject outputObject);
+    public void testParamsPackage(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+    public void queryEmployees(InputObject inputObject, OutputObject outputObject) throws Exception;
 }
