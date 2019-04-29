@@ -12,4 +12,6 @@ public interface ITestSpringBootDao {
     public List<HashMap<String, Object>> selectUsers();
 
     public List<HashMap<String, Object>> selectEmployees(Map<String, Object> params);
+
+    public int selectEmplyeesCount(Map<String, Object> params);
 }

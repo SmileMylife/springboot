@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.springboot.dao.ITestSpringBootDao">
+
+
+    <!--员工信息表结果映射-->
+    <resultMap id="emplyeesResult" type="map">
+        <id property="empNo" jdbcType="BIGINT" column="emp_no" javaType="integer"></id>
+        <result property="birthDate" jdbcType="DATE" column="birth_date" javaType="string"></result>
+        <result property="firstName" jdbcType="VARCHAR" column="first_name" javaType="string"></result>
+        <result property="lastName" jdbcType="VARCHAR" column="last_name" javaType="string"></result>
+        <result property="gender" jdbcType="VARCHAR" column="gender" javaType="string"></result>
+        <result property="hireDate" jdbcType="DATE" column="hire_date" javaType="string"></result>
+    </resultMap>
+
+    <sql id="employeesColumn">
+          emp_no, birth_date, first_name, last_name, gender, hire_date
+    </sql>
+
+    <!--查询用户表所有用户-->
     <select id="selectUsers" resultType="java.util.HashMap">
         SELECT id, username, password FROM USER
     </select>
 
     <!--查询员工信息，切记此处start和limit要传整数类型，而且判断的时候不能使用start != ''，使用$符时可将字符串转换成整数类型，而且可以加start != ''-->
-    <select id="selectEmployees" resultType="java.util.HashMap" parameterType="map">
-        SELECT * FROM ${tableName}
+    <select id="selectEmployees" parameterType="map" resultMap="emplyeesResult">
+        SELECT
+        <include refid="employeesColumn"/>
+        FROM ${tableName}
         <if test="start != null and limit != null">
             limit #{start}, #{limit}
         </if>
+    </select>
+
+    <!--查询员工表员工数量-->
+    <select id="selectEmplyeesCount" resultType="int" parameterType="map">
+        SELECT COUNT(1) FROM ${tableName}
     </select>
 </mapper>

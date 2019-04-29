@@ -37,6 +37,9 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
     public void queryEmployees(InputObject inputObject, OutputObject outputObject) throws Exception {
         inputObject.getParams().put("tableName", "employees");
         List<HashMap<String, Object>> list = iTestSpringBootDao.selectEmployees(inputObject.getParams());
+        int i = iTestSpringBootDao.selectEmplyeesCount(inputObject.getParams());
+
+        outputObject.getBean().put("total", i);
         outputObject.setBeans(list);
     }
 

@@ -56,6 +56,7 @@ public class TestSpringBootController {
 
     /**
      * 测试使用spring自带的类似HttpClient的工具调用http接口。
+     *
      * @param inputObject
      * @param outputObject
      * @return
@@ -136,13 +137,15 @@ public class TestSpringBootController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String login(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) {
-        System.out.println("用户点击登录");
-        return "{'username':'123'}";
+    public OutputObject login(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) {
+        outputObject.setRtnCode("0");
+        outputObject.setRtnMsg("登录成功");
+        return outputObject;
     }
 
     /**
      * 验证后台spirngmvc接收json对象的方式
+     *
      * @param json
      * @return
      */
@@ -156,6 +159,13 @@ public class TestSpringBootController {
         return new OutputObject();
     }
 
+    /**
+     * 查询员工信息，测试table组件使用
+     * @param inputObject
+     * @param outputObject
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/queryEmployees", method = RequestMethod.POST)
     @ResponseBody
     public OutputObject queryEmployees(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
