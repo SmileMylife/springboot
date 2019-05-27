@@ -33,7 +33,103 @@
     </select>
 
     <!--查询员工表员工数量-->
-    <select id="selectEmplyeesCount" resultType="int" parameterType="map">
+    <select id="selectEmplyeesCount" resultType="java.lang.Integer" parameterType="map">
         SELECT COUNT(1) FROM ${tableName}
+    </select>
+
+    <!--*************************************以下数据库信息相关内容*************************************-->
+    <sql id="baseColumn">
+        ID, IP, PORT, DB_NM, USER, PROV_NM, PROV_CODE
+    </sql>
+    <resultMap id="dbInfoResultMap" type="map">
+        <id javaType="string" jdbcType="BIGINT" column="ID" property="id"></id>
+        <result property="ip" jdbcType="VARCHAR" column="IP" javaType="string"></result>
+        <result property="port" jdbcType="VARCHAR" column="PORT" javaType="string"></result>
+        <result property="dbNm" jdbcType="VARCHAR" column="DB_NM" javaType="string"></result>
+        <result property="user" jdbcType="VARCHAR" column="USER" javaType="string"></result>
+        <result property="provNm" jdbcType="VARCHAR" column="PROV_NM" javaType="string"></result>
+        <result property="provCode" jdbcType="VARCHAR" column="PROV_CODE" javaType="string"></result>
+    </resultMap>
+    <!--将数据库信息插入数据库-->
+    <insert id="insertDbInfo" parameterType="map">
+        INSERT INTO database_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="ip != null">
+                IP,
+            </if>
+            <if test="port != null">
+                PORT,
+            </if>
+            <if test="dbNm != null">
+                DB_NM,
+            </if>
+            <if test="user != null">
+                USER,
+            </if>
+            <if test="provNm != null">
+                PROV_NM,
+            </if>
+            <if test="provCode != null">
+                PROV_CODE,
+            </if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="ip != null">
+                #{ip},
+            </if>
+            <if test="port != null">
+                #{port},
+            </if>
+            <if test="dbNm != null">
+                #{dbNm},
+            </if>
+            <if test="user != null">
+                #{user},
+            </if>
+            <if test="provNm != null">
+                #{provNm},
+            </if>
+            <if test="provCode != null">
+                #{provCode},
+            </if>
+        </trim>
+    </insert>
+
+    <!--查询数据库信息-->
+    <select id="selectDbInfos" parameterType="map" resultMap="dbInfoResultMap" resultType="list">
+        SELECT
+        <include refid="baseColumn"></include>
+        FROM database_info
+        <where>
+            <trim suffix=")" prefix="(" suffixOverrides=",">
+                <if test="id != null">
+                    ID = #{id},
+                </if>
+                <if test="ip != null">
+                    IP = #{ip},
+                </if>
+                <if test="port != null">
+                    PORT = #{port},
+                </if>
+                <if test="dbNm != null">
+                    DB_NM = #{dbNm},
+                </if>
+                <if test="user != null">
+                    USER = #{user},
+                </if>
+                <if test="provNm != null">
+                    PROV_NM = #{provNm},
+                </if>
+                <if test="provCode != null">
+                    PROV_CODE = #{provCode},
+                </if>
+            </trim>
+        </where>
     </select>
 </mapper>

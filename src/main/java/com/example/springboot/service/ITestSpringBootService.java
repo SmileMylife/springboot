@@ -16,4 +16,8 @@ public interface ITestSpringBootService {
     public void testParamsPackage(InputObject inputObject, OutputObject outputObject) throws Exception;
 
     public void queryEmployees(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+    public void insertDbInfo(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+    public void productSqlFile(InputObject inputObject, OutputObject outputObject) throws Exception;
 }

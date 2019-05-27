@@ -1,5 +1,8 @@
 package com.example.springboot;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by ZhangPei on 2019/1/29.
  */
@@ -17,6 +20,15 @@ public class TestMy {
         person.add();
 
         System.out.println(person1.getNum());
+
+        String s = null;
+        System.out.println(s + "测试");
+
+        String[] split = "".split(",");
+        List<String> strings = Arrays.asList(split);
+        System.out.println(strings);
+
+        System.out.println("".charAt(16));
     }
 }
 

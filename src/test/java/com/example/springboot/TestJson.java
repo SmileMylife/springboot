@@ -1,6 +1,7 @@
 package com.example.springboot;
 
 import com.example.springboot.bean.OutputObject;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
@@ -73,7 +74,28 @@ public class TestJson {
         System.out.println(s1);*/
 
 
-        String s = "<IndictSeq><IndictSeq></IndictSeq></IndictSeq>";
+        /*String s = "<IndictSeq><IndictSeq></IndictSeq></IndictSeq>";
+
+        System.out.println((System.currentTimeMillis() + "").substring(7));
+        System.out.println(System.currentTimeMillis());
+
+
+        String str = "00030016";
+
+        System.out.println(Arrays.toString(str.split(",")));
+
+        boolean contains = Arrays.asList(str.split(",")).contains("00030016");
+
+        System.out.println(contains);
+
+        String substring = "20190102csVc8719129891".substring(16, 17);
+        System.out.println(substring);*/
+
+        Boolean a = MapUtils.getBoolean(null, "a");
+
+        if (!a) {
+            System.out.println("haha");
+        }
 
 
     }

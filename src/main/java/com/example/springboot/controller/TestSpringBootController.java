@@ -3,7 +3,9 @@ package com.example.springboot.controller;
 import com.example.springboot.bean.InputObject;
 import com.example.springboot.bean.OutputObject;
 import com.example.springboot.service.ITestSpringBootService;
+import com.example.springboot.util.ExcelUtil;
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
+import sun.misc.Request;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
@@ -176,5 +179,24 @@ public class TestSpringBootController {
         params.put("limit", limit);
         iTestSpringBootService.queryEmployees(inputObject, outputObject);
         return outputObject;
+    }
+
+    @RequestMapping(value = "/insertDbInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public void insertDbInfo(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
+        inputObject.getParams().put("dbKey", "ngwf");
+        iTestSpringBootService.insertDbInfo(inputObject, outputObject);
+    }
+
+    /**
+     * 脚本文件生成
+     * @param inputObject
+     * @param outputObject
+     * @throws Exception
+     */
+    @RequestMapping(value = "/productSqlFile", method = RequestMethod.POST)
+    @ResponseBody
+    public void productSqlFile(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
+        iTestSpringBootService.productSqlFile(inputObject, outputObject);
     }
 }
