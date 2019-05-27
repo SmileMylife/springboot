@@ -76,7 +76,8 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
 
     @Override
     public void productSqlFile(InputObject inputObject, OutputObject outputObject) throws Exception {
-
+        
+        System.out.println("测试jrebel");
         HashMap<String, Object> params = inputObject.getParams();
         String provNm = MapUtils.getString(params, "provNm");
         String connUsername = MapUtils.getString(params, "connUsername");
@@ -101,9 +102,24 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
         if (!"全省".equals(provNm)) {
             map.put("provNm", MapUtils.getString(params, "provNm"));
         }
-        List<Map<String, Object>> results = iTestSpringBootDao.selectDbInfos(map);
+        List<Map<String, Object>> results = iTestSpringBootDao.selectDbInfos(map);  //查询数据库信息
 
-        //TODO 尝试从文件中获取
+
+        //*******************从文件中取模板*******************
+        /*String resource = this.getClass().getClassLoader().getResource("//").getPath() + "files/template.txt";
+        URL resource = this.getClass().getResource("/files/template.txt");
+        File templateFile = new File(resource.getPath());   //一定要用getpath获取路径，直接使用tostring前缀会有file
+
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(templateFile));
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream("/Users/smile_mylife/Desktop/test/test.txt"));
+
+        byte[] bytes = new byte[new Long(templateFile.length()).intValue()];
+
+        bufferedInputStream.read(bytes);
+        bufferedOutputStream.write(bytes);
+
+        bufferedInputStream.close();
+        bufferedOutputStream.close();*/
 
         for (int i = 0; i < results.size(); i++) {
             
@@ -116,7 +132,8 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
             String sql3 = "INSERT INTO t_sr_cfg_code(TENANT_ID, PROV_CODE, CODE_ID, CODE_TYPE_CD, CODE_NM, CODE_FULL_NM, ARGE_SEQNO, LEAF_NODE_FLAG, VALID_FLAG, RMK, ORG_BRNCH_ID, OP_STAFF_ID, CRT_TIME, MODF_TIME, BIZ_CODE, SUPR_BIZ_CODE, CODE_TYPE_NM, cmos_modify_time) VALUES('100000', '" + MapUtils.getString(result, "provCode") + "', '1905271703330146003', 'COMMON_CODE@CUSTOMER_IS_APPROVE', '未知', '未知', '1', '1', '1', '未知', '001016', 'YX1000', now(), now(), '0', '0', '未知', now());\n\n";
 
 
-            String sql4 = "DELETE FROM t_sr_cfg_code WHERE CODE_ID = '1905271703330146001';\n\nDELETE FROM t_sr_cfg_code WHERE CODE_ID = '1905271703330146002';\n\nDELETE FROM t_sr_cfg_code WHERE CODE_ID = '1905271703330146003';";
+            String rollback = "DELETE FROM t_sr_cfg_code WHERE CODE_ID = '1905271703330146001';\n\nDELETE FROM " +
+                    "t_sr_cfg_code WHERE CODE_ID = '1905271703330146002';\n\nDELETE FROM t_sr_cfg_code WHERE CODE_ID = '1905271703330146003';";
 
             //sql脚本文件名
             String fileName = String.format(Constants.SQL_TEMPLATE, result.get("user"), time, jira, username,
@@ -130,7 +147,7 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
 
             //回滚脚本
             FileWriter rollBackFileWriter = new FileWriter(new File("/Users/smile_mylife/Desktop/jiaoben/" + rollBackFileName));
-            rollBackFileWriter.write(format + sql4);
+            rollBackFileWriter.write(format + rollback);
             rollBackFileWriter.close();
 
             //脚本
