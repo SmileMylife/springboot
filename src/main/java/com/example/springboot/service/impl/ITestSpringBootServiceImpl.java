@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
 import java.net.URL;
@@ -102,7 +103,7 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
         if (!"全省".equals(provNm)) {
             map.put("provNm", MapUtils.getString(params, "provNm"));
         }
-        List<Map<String, Object>> results = iTestSpringBootDao.selectDbInfos(map);  //查询数据库信息
+        List<HashMap<String, Object>> results = iTestSpringBootDao.selectDbInfos(map);  //查询数据库信息
 
 
         //*******************从文件中取模板*******************
@@ -125,11 +126,11 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
             
             Map<String, Object> result = results.get(i);
 
-            String sql1 = "INSERT INTO t_sr_cfg_code(TENANT_ID, PROV_CODE, CODE_ID, CODE_TYPE_CD, CODE_NM, CODE_FULL_NM, ARGE_SEQNO, LEAF_NODE_FLAG, VALID_FLAG, RMK, ORG_BRNCH_ID, OP_STAFF_ID, CRT_TIME, MODF_TIME, BIZ_CODE, SUPR_BIZ_CODE, CODE_TYPE_NM, cmos_modify_time) VALUES('100000', '" + MapUtils.getString(result, "provCode") + "', '1905271703330146001', 'COMMON_CODE@CUSTOMER_IS_APPROVE', '是', '是', '1', '1', '1', '是', '001016', 'YX1000', now(), now(), '0', '0', '是', now());\n\n";
+            String sql1 = "INSERT INTO t_sr_cfg_code(TENANT_ID, PROV_CODE, CODE_ID, CODE_TYPE_CD, CODE_NM, CODE_FULL_NM, ARGE_SEQNO, LEAF_NODE_FLAG, VALID_FLAG, RMK, ORG_BRNCH_ID, OP_STAFF_ID, CRT_TIME, MODF_TIME, BIZ_CODE, SUPR_BIZ_CODE, CODE_TYPE_NM, cmos_modify_time) VALUES('100000', '" + MapUtils.getString(result, "provCode") + "', '1905271703330146001', 'COMMON_CODE@CUSTOMER_IS_APPROVE', '是', '是', '1', '1', '1', '是', '001016', 'YX1000', now(), now(), '1', '0', '是', now());\n\n";
 
             String sql2 = "INSERT INTO t_sr_cfg_code(TENANT_ID, PROV_CODE, CODE_ID, CODE_TYPE_CD, CODE_NM, CODE_FULL_NM, ARGE_SEQNO, LEAF_NODE_FLAG, VALID_FLAG, RMK, ORG_BRNCH_ID, OP_STAFF_ID, CRT_TIME, MODF_TIME, BIZ_CODE, SUPR_BIZ_CODE, CODE_TYPE_NM, cmos_modify_time) VALUES('100000', '" + MapUtils.getString(result, "provCode") + "', '1905271703330146002', 'COMMON_CODE@CUSTOMER_IS_APPROVE', '否', '否', '1', '1', '1', '否', '001016', 'YX1000', now(), now(), '0', '0', '否', now());\n\n";
 
-            String sql3 = "INSERT INTO t_sr_cfg_code(TENANT_ID, PROV_CODE, CODE_ID, CODE_TYPE_CD, CODE_NM, CODE_FULL_NM, ARGE_SEQNO, LEAF_NODE_FLAG, VALID_FLAG, RMK, ORG_BRNCH_ID, OP_STAFF_ID, CRT_TIME, MODF_TIME, BIZ_CODE, SUPR_BIZ_CODE, CODE_TYPE_NM, cmos_modify_time) VALUES('100000', '" + MapUtils.getString(result, "provCode") + "', '1905271703330146003', 'COMMON_CODE@CUSTOMER_IS_APPROVE', '未知', '未知', '1', '1', '1', '未知', '001016', 'YX1000', now(), now(), '0', '0', '未知', now());\n\n";
+            String sql3 = "INSERT INTO t_sr_cfg_code(TENANT_ID, PROV_CODE, CODE_ID, CODE_TYPE_CD, CODE_NM, CODE_FULL_NM, ARGE_SEQNO, LEAF_NODE_FLAG, VALID_FLAG, RMK, ORG_BRNCH_ID, OP_STAFF_ID, CRT_TIME, MODF_TIME, BIZ_CODE, SUPR_BIZ_CODE, CODE_TYPE_NM, cmos_modify_time) VALUES('100000', '" + MapUtils.getString(result, "provCode") + "', '1905271703330146003', 'COMMON_CODE@CUSTOMER_IS_APPROVE', '未知', '未知', '1', '1', '1', '未知', '001016', 'YX1000', now(), now(), '2', '0', '未知', now());\n\n";
 
 
             String rollback = "DELETE FROM t_sr_cfg_code WHERE CODE_ID = '1905271703330146001';\n\nDELETE FROM " +
@@ -156,6 +157,15 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
             fileWriter.write(format);
             fileWriter.close();
         }
+    }
+
+    @Override
+    @Transactional
+    public void testTransaction(InputObject inputObject, OutputObject outputObject) throws Exception {
+        inputObject.getParams().put("username", "zhangsan");
+        inputObject.getParams().put("password", "456");
+        System.out.println("热部署生效了");
+        iTestSpringBootDao.insertUser(inputObject.getParams());
     }
 
 

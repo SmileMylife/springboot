@@ -17,5 +17,7 @@ public interface ITestSpringBootDao {
 
     public void insertDbInfo(Map<String, Object> params);
 
-    public List<Map<String, Object>> selectDbInfos(Map<String, Object> params);
+    public List<HashMap<String, Object>> selectDbInfos(Map<String, Object> params);
+
+    public void insertUser(Map<String, Object> params);
 }

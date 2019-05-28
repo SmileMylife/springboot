@@ -20,4 +20,6 @@ public interface ITestSpringBootService {
     public void insertDbInfo(InputObject inputObject, OutputObject outputObject) throws Exception;
 
     public void productSqlFile(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+    public void testTransaction(InputObject inputObject, OutputObject outputObject) throws Exception;
 }

@@ -3,9 +3,7 @@ package com.example.springboot.controller;
 import com.example.springboot.bean.InputObject;
 import com.example.springboot.bean.OutputObject;
 import com.example.springboot.service.ITestSpringBootService;
-import com.example.springboot.util.ExcelUtil;
 import org.apache.commons.collections.MapUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -198,5 +196,11 @@ public class TestSpringBootController {
     @ResponseBody
     public void productSqlFile(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
         iTestSpringBootService.productSqlFile(inputObject, outputObject);
+    }
+
+    @RequestMapping(value = "/testTransaction", method = RequestMethod.POST)
+    @ResponseBody
+    public void testTransaction(InputObject inputObject, OutputObject outputObject) throws Exception {
+        iTestSpringBootService.testTransaction(inputObject, outputObject);
     }
 }

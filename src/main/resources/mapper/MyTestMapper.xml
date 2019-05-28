@@ -21,6 +21,26 @@
     <select id="selectUsers" resultType="java.util.HashMap">
         SELECT id, username, password FROM USER
     </select>
+    
+    <insert id="insertUser" parameterType="map">
+        INSERT INTO USER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                USERNAME,
+            </if>
+            <if test="password != null">
+                PASSWORD
+            </if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                #{username},
+            </if>
+            <if test="password != null">
+                #{password},
+            </if>
+        </trim>
+    </insert>
 
     <!--查询员工信息，切记此处start和limit要传整数类型，而且判断的时候不能使用start != ''，使用$符时可将字符串转换成整数类型，而且可以加start != ''-->
     <select id="selectEmployees" parameterType="map" resultMap="emplyeesResult">
