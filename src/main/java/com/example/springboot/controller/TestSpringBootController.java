@@ -186,18 +186,6 @@ public class TestSpringBootController {
         iTestSpringBootService.insertDbInfo(inputObject, outputObject);
     }
 
-    /**
-     * 脚本文件生成
-     * @param inputObject
-     * @param outputObject
-     * @throws Exception
-     */
-    @RequestMapping(value = "/productSqlFile", method = RequestMethod.POST)
-    @ResponseBody
-    public void productSqlFile(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
-        iTestSpringBootService.productSqlFile(inputObject, outputObject);
-    }
-
     @RequestMapping(value = "/testTransaction", method = RequestMethod.POST)
     @ResponseBody
     public void testTransaction(InputObject inputObject, OutputObject outputObject) throws Exception {
