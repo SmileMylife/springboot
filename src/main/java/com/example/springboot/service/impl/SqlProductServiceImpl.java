@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.HashMap;
@@ -46,6 +47,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
         String jira = MapUtils.getString(params, "jira");
         String operation = MapUtils.getString(params, "operation");
         String username = MapUtils.getString(params, "username");      //英文名称
+        String sql = MapUtils.getString(params, "sql");
 
         if (StringUtils.isBlank(provNm)
                 || StringUtils.isBlank(connPhone)
@@ -53,7 +55,8 @@ public class SqlProductServiceImpl implements ISqlProductService {
                 || StringUtils.isBlank(time)
                 || StringUtils.isBlank(jira)
                 || StringUtils.isBlank(operation)
-                || StringUtils.isBlank(username)) {
+                || StringUtils.isBlank(username)
+                || StringUtils.isBlank(sql)) {
             throw new Exception("参数校验失败！");
         }
 
@@ -63,6 +66,27 @@ public class SqlProductServiceImpl implements ISqlProductService {
             map.put("provNm", MapUtils.getString(params, "provNm"));
         }
         List<HashMap<String, Object>> results = iTestSpringBootDao.selectDbInfos(map);  //查询数据库信息
+
+
+        for (int i = 0; i < results.size(); i++) {
+            HashMap<String, Object> result = results.get(i);
+
+            //脚本文件名
+            String fileName = String.format(Constants.SQL_TEMPLATE, result.get("user"), time, jira, username,
+                    operation);
+
+            String content = String.format(Constants.SQL_FILE_CONTENT, result.get("ip"), result.get("port"),
+                    result.get("dbNm"), result.get("user"),
+                    MapUtils.getString(params, "connUsername"), MapUtils.getString(params, "connPhone"));
+
+            if (StringUtils.isNotBlank(sql) && sql.indexOf("%s") != -1) {
+                sql = sql.replace("%s", "'" + result.get("provCode") + "'");
+            }
+
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(this.getClass().getResource("/sqlfiles").getPath() + "/" + connUsername + "/" + fileName)));
+            bufferedWriter.write(content + sql);
+            bufferedWriter.close();
+        }
 
 
         //*******************从文件中取模板*******************
@@ -81,7 +105,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
         bufferedInputStream.close();
         bufferedOutputStream.close();*/
 
-        for (int i = 0; i < results.size(); i++) {
+        /*for (int i = 0; i < results.size(); i++) {
 
             Map<String, Object> result = results.get(i);
 
@@ -115,6 +139,11 @@ public class SqlProductServiceImpl implements ISqlProductService {
             FileWriter fileWriter = new FileWriter(new File("/Users/smile_mylife/Desktop/jiaoben/" + fileName));
             fileWriter.write(format);
             fileWriter.close();
-        }
+        }*/
+    }
+
+    @Override
+    public void showDownloadList(InputObject inputObject, OutputObject outputObject) throws Exception {
+
     }
 }

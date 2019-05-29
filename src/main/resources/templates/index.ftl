@@ -63,8 +63,7 @@
         }
 
     </style>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         var url = "/queryAllProv";
         $(document).ready(function () {
@@ -104,8 +103,7 @@
                 }
 
                 $.ajax({
-                    url: "/",
-                    dataType: "json",
+                    url: "/productSqlFile",
                     type: "post",
                     data: data,
                     error: function (data, status) {
@@ -122,7 +120,7 @@
 <body>
 <h3>脚本生成工具</h3>
 <div class="form_wrap">
-    <form id="productSql" enctype="multipart/form-data">
+    <form id="productSql">
         <div>
             <div class="form_ele_wrap">
                 <label for="operation">操作类型</label>

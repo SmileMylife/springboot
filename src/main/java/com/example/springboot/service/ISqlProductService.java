@@ -16,4 +16,6 @@ public interface ISqlProductService {
     public void queryAllProv(InputObject inputObject, OutputObject outputObject) throws Exception;
 
     public void productSqlFile(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+    public void showDownloadList(InputObject inputObject, OutputObject outputObject) throws Exception;
 }

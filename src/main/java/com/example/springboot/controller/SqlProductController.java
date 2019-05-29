@@ -27,13 +27,21 @@ public class SqlProductController {
 
     /**
      * 脚本文件生成
-     * @param inputObject
      * @param outputObject
      * @throws Exception
      */
     @RequestMapping(value = "/productSqlFile", method = RequestMethod.POST)
-    @ResponseBody
-    public void productSqlFile(@com.example.springboot.annotations.InputObject com.example.springboot.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
+    public String productSqlFile(@InputObject com.example.springboot.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
+        inputObject.getParams().put("dbKey", "ngwf");
         iSqlProductService.productSqlFile(inputObject, outputObject);
+        return "downloadList";
+    }
+
+    @RequestMapping(value = "/showDownloadList", method = RequestMethod.POST)
+    @ResponseBody
+    public OutputObject showDownloadList(@InputObject com.example.springboot.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
+        inputObject.getParams().put("dbKey", "ngwf");
+        iSqlProductService.showDownloadList(inputObject, outputObject);
+        return outputObject;
     }
 }
