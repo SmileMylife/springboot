@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.FileInputStream;
 
 /**
@@ -39,20 +38,16 @@ public class SqlProductController {
     public void productSqlFile(HttpServletResponse response, @InputObject com.example.springboot.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
         inputObject.getParams().put("dbKey", "ngwf");
         FileInputStream is = null;
-        try {
-            iSqlProductService.productSqlFile(inputObject, outputObject);
-            Object obj = outputObject.getObject();
-            if (obj instanceof FileInputStream) {
-                is = (FileInputStream) obj;
-            }
-        } catch (Exception e) {
-            System.out.println(e.toString());
-            outputObject.setRtnCode("-9999");
+        iSqlProductService.productSqlFile(inputObject, outputObject);
+        Object obj = outputObject.getObject();
+        if (obj instanceof FileInputStream) {
+            is = (FileInputStream) obj;
         }
 
         ServletOutputStream outputStream = response.getOutputStream();
         response.setContentType("application/octet-stream");
         response.addHeader("Content-Disposition", "attachment; filename=" + "test.zip");
+        response.setCharacterEncoding("utf-8");
 
         if (is != null) {
             int lenth;
@@ -62,21 +57,6 @@ public class SqlProductController {
             }
             outputStream.close();
         }
-
-        /*FileInputStream fileInputStream = new FileInputStream(new File(this.getClass().getResource("/").getPath() + "/" + "files/" + "template.txt"));
-
-        ServletOutputStream outputStream = response.getOutputStream();
-        response.setContentType("application/octet-stream");
-        response.addHeader("Content-Disposition", "attachment; filename=" + "test.zip");
-
-        if (fileInputStream != null) {
-            int lenth;
-            while ((lenth = fileInputStream.read()) > -1) {
-                outputStream.write(lenth);
-                outputStream.flush();
-            }
-            outputStream.close();
-        }*/
     }
 
     @RequestMapping(value = "/showDownloadList", method = RequestMethod.POST)

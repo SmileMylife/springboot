@@ -70,10 +70,12 @@ public class SqlProductServiceImpl implements ISqlProductService {
         }
         List<HashMap<String, Object>> results = iTestSpringBootDao.selectDbInfos(map);  //查询数据库信息
 
+        //创建临时文件夹
         String dirPath = this.getClass().getResource("/sqlfiles").getPath() + "/" + connUsername + System.currentTimeMillis();
         File fileDir = new File(dirPath);
         fileDir.mkdir();
 
+        //将脚本内容输入至相应文件夹
         for (int i = 0; i < results.size(); i++) {
             HashMap<String, Object> result = results.get(i);
 

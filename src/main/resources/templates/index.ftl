@@ -65,26 +65,25 @@
     </style>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
+        //查询省份下拉列表
         var url = "/queryAllProv";
         $(document).ready(function () {
+            console.log("是否错误页面，", $("#isError").val());
             $.ajax({
                 url: url,
                 type: "post",
-                data: {
-                    "username": "zhangpei"
-                },
                 dataType: "json",
                 success: function (data, status) {
                     var innerContent = "";
                     for (var i = 0; i < data.beans.length; i++) {
                         innerContent += "<option value=" + data.beans[i].provNm + ">" + data.beans[i].provNm + "</option>";
                     }
-                    $("#provNm").html(innerContent);
+                    $("#provNm").html("<option value=''>请选择</option>" + innerContent);
                 },
                 error: function () {
-                    alert("请求发送失败！");
+                    alert("查询省份下拉值失败！");
                 }
-            })
+            });
 
             //点击提交表单
             $("#submit").click(function () {
@@ -97,19 +96,41 @@
 
                 for(var j = 0; j < data.length; j++) {
                     getStr += (data[j].name + "=" + data[j].value + "&");
-                    if(data[j].value == null || data[j].value == undefined || data[j].value == "") {
+                    /*if(data[j].value == null || data[j].value == undefined || data[j].value == "") {
                         alert("请完整填写表单!");
                         return;
+                    }*/
+                }
+
+                //保存数据至localstorage
+                localStorage.setItem("currentPeople", $("input[name='connUsername']").val());
+                localStorage.setItem($("input[name='connUsername']").val(), JSON.stringify(data));
+
+                getStr = getStr.substring(0, getStr.length - 1);
+                location.href = "http://localhost:8080/productSqlFile?" + getStr;
+            });
+
+            //加载完毕，如果是错误页面跳转过来，需要回填数据
+            if($("#isError").val() == "true") {
+                debugger;
+                var currentPeople = localStorage.getItem("currentPeople");
+                if(currentPeople) {
+                    //回填页面数据
+                    var jsonData = localStorage.getItem(currentPeople);
+                    var arr = JSON.parse(jsonData);
+                    console.log("页面回填数据：", jsonData);
+                    if(arr instanceof Array) {
+                        for(var k = 0; k < arr.length; k++) {
+                            $("[name=" + arr[k].name + "]").val(arr[k].value);
+                        }
                     }
                 }
-                getStr = getStr.substring(0, getStr.length - 1);
-
-                location.href = "http://localhost:8080/productSqlFile?" + getStr;
-            })
+            }
         })
     </script>
 </head>
 <body>
+<input type="hidden" id="isError" value=${isError} />
 <h3>脚本生成工具</h3>
 <div class="form_wrap">
     <form id="productSql">
@@ -117,6 +138,7 @@
             <div class="form_ele_wrap">
                 <label for="operation">操作类型</label>
                 <select name="operation">
+                    <option value="">请选择</option>
                     <option value="INSERT">INSERT</option>
                     <option value="UPDATE">UPDATE</option>
                     <option value="DELETE">DELETE</option>

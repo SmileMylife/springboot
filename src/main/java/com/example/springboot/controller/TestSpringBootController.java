@@ -236,4 +236,13 @@ public class TestSpringBootController {
         byte[] bytes = FileUtils.readFileToByteArray(new File("a.jpg"));
         return new ResponseEntity<byte[]>(bytes, httpHeaders, HttpStatus.OK);*/
     }
+
+    /**
+     * 测试springboot自定义异常页面
+     * @throws Exception
+     */
+    @RequestMapping(value = "/testWhitePage", method = RequestMethod.GET)
+    public void testWhitePage() throws Exception {
+        throw new Exception();
+    }
 }
