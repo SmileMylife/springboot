@@ -47,7 +47,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
         String connUsername = MapUtils.getString(params, "connUsername");
         String connPhone = MapUtils.getString(params, "connPhone");
         String time = MapUtils.getString(params, "time");
-        params.put("time", time.replace("-", ""));
+        time = time.replace("-", "");
         String jira = MapUtils.getString(params, "jira");
         String operation = MapUtils.getString(params, "operation");
         String username = MapUtils.getString(params, "username");      //英文名称
@@ -59,9 +59,13 @@ public class SqlProductServiceImpl implements ISqlProductService {
                 || StringUtils.isBlank(time)
                 || StringUtils.isBlank(jira)
                 || StringUtils.isBlank(operation)
-                || StringUtils.isBlank(username)
-                || StringUtils.isBlank(sql)) {
+                || StringUtils.isBlank(username)) {
             throw new Exception("参数校验失败！");
+        }
+
+        //校验sql和操作类型是否一致
+        if (sql.indexOf(operation) != -1) {
+            throw new Exception("脚本内容和操作类型不一致！");
         }
 
         //查询数据库数据，生成文件
@@ -87,13 +91,13 @@ public class SqlProductServiceImpl implements ISqlProductService {
             String content = String.format(Constants.SQL_FILE_CONTENT, result.get("ip"), result.get("port"),
                     result.get("dbNm"), result.get("user"),
                     MapUtils.getString(params, "connUsername"), MapUtils.getString(params, "connPhone"));
-
+            String resultSql = sql;
             if (StringUtils.isNotBlank(sql) && sql.indexOf("%s") != -1) {
-                sql = sql.replace("%s", "'" + result.get("provCode") + "'");
+                resultSql = resultSql.replace("%s", "'" + result.get("provCode") + "'");
             }
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(dirPath + "/" + fileName)));
-            bufferedWriter.write(content + sql);
+            bufferedWriter.write(content + resultSql);
             bufferedWriter.close();
         }
 
@@ -104,6 +108,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
         FileUtil.delDirectory(new File(dirPath));
 
         outputObject.setObject(new FileInputStream(new File(dirPath + ".zip")));
+        outputObject.getBean().put("fileName", dirPath.substring(dirPath.lastIndexOf(File.separator) + 1));
 
         //*******************从文件中取模板*******************
 

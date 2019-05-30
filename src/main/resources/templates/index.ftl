@@ -72,6 +72,14 @@
             cursor: pointer;
         }
 
+        #isRollback {
+            display: none;
+        }
+
+        select[name="isRollback"] {
+            margin-right: 4px;
+        }
+
     </style>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -88,7 +96,7 @@
                     for (var i = 0; i < data.beans.length; i++) {
                         innerContent += "<option value=" + data.beans[i].provNm + ">" + data.beans[i].provNm + "</option>";
                     }
-                    $("#provNm").html("<option value=''>请选择</option>" + innerContent);
+                    $("#provNm").html("<option value=''>请选择</option><option value='全省'>全省</option>" + innerContent);
                 },
                 error: function () {
                     alert("查询省份下拉值失败！");
@@ -136,6 +144,15 @@
                     }
                 }
             }
+
+            //是否生成回滚脚本
+            $("select[name='operation']").change(function() {
+                if($("select[name='operation']").val() == "INSERT") {
+                    $("#isRollback").css("display", "block");
+                } else {
+                    $("#isRollback").css("display", "none");
+                }
+            })
         })
     </script>
 </head>
@@ -154,6 +171,16 @@
                     <option value="DELETE">DELETE</option>
                 </select>
             </div>
+
+            <div class="form_ele_wrap" id="isRollback">
+                <input type="text" name="primaryKey" placeholder="主键名" />
+                <label for="isRollback">是否生成回滚脚本</label>
+                <select name="isRollback">
+                    <option value="UPDATE">否</option>
+                    <option value="INSERT">是</option>
+                </select>
+            </div>
+
             <div class="form_ele_wrap">
                 <label for="provNm">省份名称</label>
                 <select name="provNm" id="provNm"></select>
@@ -179,7 +206,7 @@
                 <input class="form_input" type="text" name="connPhone" placeholder="请输入联系电话"/>
             </div>
             <div class="button_wrap">
-                <button class="form_input" id="submit">提交</button>
+                <input class="form_input" id="submit" type="button" value="提交" />
             </div>
         </div>
     </form>

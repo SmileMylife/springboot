@@ -3,6 +3,7 @@ package com.example.springboot.controller;
 import com.example.springboot.annotations.InputObject;
 import com.example.springboot.bean.OutputObject;
 import com.example.springboot.service.ISqlProductService;
+import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,9 +46,10 @@ public class SqlProductController {
         }
 
         ServletOutputStream outputStream = response.getOutputStream();
-        response.setContentType("application/octet-stream");
-        response.addHeader("Content-Disposition", "attachment; filename=" + "test.zip");
         response.setCharacterEncoding("utf-8");
+        response.setContentType("application/octet-stream");
+        //解决下载文件名显示下划线的问题
+        response.addHeader("Content-Disposition", "attachment; filename=" + new String(MapUtils.getString(outputObject.getBean(), "fileName").getBytes("utf-8"), "iso-8859-1") + ".zip");
 
         if (is != null) {
             int lenth;
