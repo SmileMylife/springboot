@@ -47,6 +47,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
         String connUsername = MapUtils.getString(params, "connUsername");
         String connPhone = MapUtils.getString(params, "connPhone");
         String time = MapUtils.getString(params, "time");
+        params.put("time", time.replace("-", ""));
         String jira = MapUtils.getString(params, "jira");
         String operation = MapUtils.getString(params, "operation");
         String username = MapUtils.getString(params, "username");      //英文名称

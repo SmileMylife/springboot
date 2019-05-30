@@ -62,6 +62,16 @@
             resize: none;
         }
 
+        #submit {
+            border-radius: 3px;
+            height: 30px;
+        }
+
+        #submit:hover {
+            background-color: rgb(238, 240, 244);
+            cursor: pointer;
+        }
+
     </style>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -96,10 +106,10 @@
 
                 for(var j = 0; j < data.length; j++) {
                     getStr += (data[j].name + "=" + data[j].value + "&");
-                    /*if(data[j].value == null || data[j].value == undefined || data[j].value == "") {
+                    if(data[j].value == null || data[j].value == undefined || data[j].value == "") {
                         alert("请完整填写表单!");
                         return;
-                    }*/
+                    }
                 }
 
                 //保存数据至localstorage
@@ -169,7 +179,7 @@
                 <input class="form_input" type="text" name="connPhone" placeholder="请输入联系电话"/>
             </div>
             <div class="button_wrap">
-                <input class="form_input" id="submit" value="提交" type="button"/>
+                <button class="form_input" id="submit">提交</button>
             </div>
         </div>
     </form>

@@ -12,7 +12,7 @@
     </script>
 </head>
 <body>
-    服务器发生了错误，请重新尝试，3秒后自动跳转至首页。
-    <a href="http://localhost:8080?isError=true">点击这里直接跳转</a>
+    <h4 style="text-align: center">服务器发生了错误，请重新尝试，3秒后自动跳转至首页。</h4>
+    <a style="text-align: center;display: block" href="http://localhost:8080?isError=true">点击这里直接跳转</a>
 </body>
 </html>
