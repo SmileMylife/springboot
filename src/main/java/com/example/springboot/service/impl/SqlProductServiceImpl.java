@@ -5,6 +5,8 @@ import com.example.springboot.bean.OutputObject;
 import com.example.springboot.dao.ITestSpringBootDao;
 import com.example.springboot.service.ISqlProductService;
 import com.example.springboot.util.Constants;
+import com.example.springboot.util.FileUtil;
+import com.example.springboot.util.ZipUtil;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.List;
@@ -67,6 +70,9 @@ public class SqlProductServiceImpl implements ISqlProductService {
         }
         List<HashMap<String, Object>> results = iTestSpringBootDao.selectDbInfos(map);  //查询数据库信息
 
+        String dirPath = this.getClass().getResource("/sqlfiles").getPath() + "/" + connUsername + System.currentTimeMillis();
+        File fileDir = new File(dirPath);
+        fileDir.mkdir();
 
         for (int i = 0; i < results.size(); i++) {
             HashMap<String, Object> result = results.get(i);
@@ -83,13 +89,21 @@ public class SqlProductServiceImpl implements ISqlProductService {
                 sql = sql.replace("%s", "'" + result.get("provCode") + "'");
             }
 
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(this.getClass().getResource("/sqlfiles").getPath() + "/" + connUsername + "/" + fileName)));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(dirPath + "/" + fileName)));
             bufferedWriter.write(content + sql);
             bufferedWriter.close();
         }
 
+        //读取生成文件，压缩后回传给用户
+        ZipUtil.compress(dirPath, dirPath + ".zip");
+
+        //压缩文件生成后删除原来文件夹
+        FileUtil.delDirectory(new File(dirPath));
+
+        outputObject.setObject(new FileInputStream(new File(dirPath + ".zip")));
 
         //*******************从文件中取模板*******************
+
         /*String resource = this.getClass().getClassLoader().getResource("//").getPath() + "files/template.txt";
         URL resource = this.getClass().getResource("/files/template.txt");
         File templateFile = new File(resource.getPath());   //一定要用getpath获取路径，直接使用tostring前缀会有file
@@ -146,4 +160,5 @@ public class SqlProductServiceImpl implements ISqlProductService {
     public void showDownloadList(InputObject inputObject, OutputObject outputObject) throws Exception {
 
     }
+
 }

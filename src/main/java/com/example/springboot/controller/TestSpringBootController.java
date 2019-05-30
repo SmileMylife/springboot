@@ -4,12 +4,11 @@ import com.example.springboot.bean.InputObject;
 import com.example.springboot.bean.OutputObject;
 import com.example.springboot.service.ITestSpringBootService;
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,9 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
-import sun.misc.Request;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.HashMap;
 import java.util.List;
@@ -190,5 +190,50 @@ public class TestSpringBootController {
     @ResponseBody
     public void testTransaction(InputObject inputObject, OutputObject outputObject) throws Exception {
         iTestSpringBootService.testTransaction(inputObject, outputObject);
+    }
+
+    @RequestMapping(value = "/fileDownload", method = RequestMethod.GET)
+    public void fileDownload(HttpServletResponse response, String fileName) throws Exception {
+        //方法一
+        if (StringUtils.isBlank(fileName)) {
+            throw new Exception("文件下载失败，文件名为空");
+        }
+        FileInputStream fileInputStream = new FileInputStream(new File(this.getClass().getResource("/").getPath() + "/" + "files/" + fileName));
+        ServletOutputStream outputStream = response.getOutputStream();
+        response.setContentType(MediaType.APPLICATION_OCTET_STREAM.toString());
+        response.addHeader("Content-Disposition", "attachment; filename=" + "template.txt");
+
+        int lenth;
+        while ((lenth = fileInputStream.read()) > -1) {
+            outputStream.write(lenth);
+            outputStream.flush();
+        }
+        outputStream.close();
+
+
+
+        //方法二
+
+        /*File file = new File(this.getClass().getResource("/").getPath() + "/" + "files/" + fileName);
+        String filename = file.getName();
+
+        HttpHeaders headers = new HttpHeaders();//http头信息
+
+        String downloadFileName = new String(filename.getBytes("UTF-8"),"iso-8859-1");//设置编码
+
+        headers.setContentDispositionFormData("attachment", downloadFileName);
+
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+
+        //MediaType:互联网媒介类型  contentType：具体请求中的媒体类型信息
+
+        return new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file),headers, HttpStatus.CREATED);*/
+
+        /*//方法三
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        httpHeaders.setContentDispositionFormData("attachment", "filename.jpg");
+        byte[] bytes = FileUtils.readFileToByteArray(new File("a.jpg"));
+        return new ResponseEntity<byte[]>(bytes, httpHeaders, HttpStatus.OK);*/
     }
 }

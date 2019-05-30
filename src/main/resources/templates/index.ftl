@@ -91,28 +91,20 @@
                 var data = $("#productSql").serializeArray();
                 data.push({
                     name: "sql",
-                    value: $("#sql").val()
+                    value: encodeURI($("#sql").val())
                 });
-                console.log("提交表单时数据", data);
+                var getStr = "";
 
                 for(var j = 0; j < data.length; j++) {
+                    getStr += (data[j].name + "=" + data[j].value + "&");
                     if(data[j].value == null || data[j].value == undefined || data[j].value == "") {
                         alert("请完整填写表单!");
                         return;
                     }
                 }
+                getStr = getStr.substring(0, getStr.length - 1);
 
-                $.ajax({
-                    url: "/productSqlFile",
-                    type: "post",
-                    data: data,
-                    error: function (data, status) {
-                        alert("提交后台失败！");
-                    },
-                    success: function (data, status) {
-                        console.log("提交后台成功，返回数据及状态：", data, status);
-                    }
-                })
+                location.href = "http://localhost:8080/productSqlFile?" + getStr;
             })
         })
     </script>
