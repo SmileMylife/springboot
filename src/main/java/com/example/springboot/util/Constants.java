@@ -24,6 +24,43 @@ public class Constants {
     //回滚sql文件名
     public static final String SQL_ROLLBACK_TEMPLATE = "洛阳-服务请求-生产-%s-%s-(%s-%s)-%s-rollback-sql.txt";
 
+    //获取系统换行符
+    public static final String LINE_BREAK = System.getProperty("line.separator");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder();
 
@@ -40,4 +77,5 @@ public class Constants {
 
         System.out.println("123".substring(0, 2));
     }
+
 }

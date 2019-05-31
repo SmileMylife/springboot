@@ -1,8 +1,11 @@
 package com.example.springboot.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.example.springboot.annotations.InputObject;
 import com.example.springboot.bean.OutputObject;
 import com.example.springboot.service.ISqlProductService;
+import com.example.springboot.util.Constants;
 import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
+import java.util.List;
 
 /**
  * Created by ZhangPei on 2019/5/28.
@@ -67,5 +71,30 @@ public class SqlProductController {
         inputObject.getParams().put("dbKey", "ngwf");
         iSqlProductService.showDownloadList(inputObject, outputObject);
         return outputObject;
+    }
+
+    @RequestMapping(value = "/sqlReplaceByTemplate", method = RequestMethod.POST)
+    @ResponseBody
+    public String sqlReplaceByTemplate(@InputObject com.example.springboot.bean.InputObject inputObject, OutputObject outputObject) {
+        String vars = MapUtils.getString(inputObject.getParams(), "vars");
+        String varVals = MapUtils.getString(inputObject.getParams(), "varVals");
+        String sql = MapUtils.getString(inputObject.getParams(), "sql");
+
+        Object varsParse = JSON.parse(vars);    //解析传入的数据
+        Object varValsParse = JSON.parse(varVals);    //解析传入的数据
+
+        StringBuilder sb = new StringBuilder();
+        if (varsParse instanceof JSONArray && varValsParse instanceof JSONArray) {
+            JSONArray varsArr = (JSONArray) varsParse;
+            JSONArray varValsParseArr = (JSONArray) varValsParse;
+            if (varsArr.size() == varValsParseArr.size()) {
+                for (int i = 0; i < varsArr.size(); i++) {
+                    String result = sql.replaceAll("\\$\\{" + varsArr.get(i) + "\\}", varValsParseArr.getString(i));
+                    sb.append(result + System.getProperty("line.separator") + Constants.LINE_BREAK);
+                }
+            }
+        }
+
+        return sb.toString();
     }
 }

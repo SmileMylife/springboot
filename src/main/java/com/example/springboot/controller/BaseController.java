@@ -18,7 +18,7 @@ public class BaseController {
      */
     @ExceptionHandler(value = Exception.class)
     public ModelAndView handleException(Exception e) {
-        System.out.println("测试异常处理机制是否生效");
+        System.out.println("程序发生异常，异常原因：" + e.toString());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("error");
         return modelAndView;

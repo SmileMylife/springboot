@@ -9,7 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by ZhangPei on 2019/5/28.
  */
 @Controller
-public class ToIndexController {
+public class PageBreakController {
+
+    //跳转至首页
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView toIndex(String isError) {
         ModelAndView modelAndView = new ModelAndView();
@@ -20,6 +22,14 @@ public class ToIndexController {
         } else {
             modelAndView.addObject("isError", "");
         }
+        return modelAndView;
+    }
+
+    //跳转至sql转换页面
+    @RequestMapping(value = "/transposition", method = RequestMethod.GET)
+    public ModelAndView toTransposition() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("transposition");
         return modelAndView;
     }
 }
