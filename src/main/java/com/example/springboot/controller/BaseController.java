@@ -2,6 +2,8 @@ package com.example.springboot.controller;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -16,14 +18,15 @@ public class BaseController {
      * @param e
      * @return
      */
+    @RequestMapping(value = "/error/{code}")
     @ExceptionHandler(value = Exception.class)
-    public ModelAndView handleException(Exception e) {
+    public ModelAndView handleException(Exception e, @PathVariable("code") String code) {
         System.out.println("程序发生异常，异常原因：" + e.toString());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("error");
+        modelAndView.addObject("errorDesc", e.toString());
         return modelAndView;
     }
-
 
     //TODO 测试能否针对特定的异常进行处理
 }

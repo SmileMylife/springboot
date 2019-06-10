@@ -91,6 +91,7 @@
                 url: url,
                 type: "post",
                 dataType: "json",
+                async: false,
                 success: function (data, status) {
                     var innerContent = "";
                     for (var i = 0; i < data.beans.length; i++) {
@@ -139,7 +140,7 @@
                     console.log("页面回填数据：", jsonData);
                     if(arr instanceof Array) {
                         for(var k = 0; k < arr.length; k++) {
-                            $("[name=" + arr[k].name + "]").val(arr[k].value);
+                            $("[name=" + arr[k].name + "]").val(decodeURI(arr[k].value));
                         }
                     }
                 }
@@ -172,14 +173,14 @@
                 </select>
             </div>
 
-            <div class="form_ele_wrap" id="isRollback">
+            <#--<div class="form_ele_wrap" id="isRollback">
                 <input type="text" name="primaryKey" placeholder="主键名" />
                 <label for="isRollback">是否生成回滚脚本</label>
                 <select name="isRollback">
                     <option value="UPDATE">否</option>
                     <option value="INSERT">是</option>
                 </select>
-            </div>
+            </div>-->
 
             <div class="form_ele_wrap">
                 <label for="provNm">省份名称</label>

@@ -72,15 +72,21 @@
             background-color: rgb(238, 240, 244);
             cursor: pointer;
         }
+
+        #sqlProduct {
+            display: none;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function() {
             //变更使用方式
             $("#useStyle").change(function() {
                 if($("#useStyle").val() == "行列转置工具") {
-
+                    $("#sqlProduct").css("display", "none");
+                    $("#reverse").css("display", "block");
                 } else if($("#useStyle").val() == "sql模板置换工具") {
-
+                    $("#sqlProduct").css("display", "block");
+                    $("#reverse").css("display", "none");
                 }
             });
 
@@ -139,7 +145,7 @@
             <option value="行列转置工具">行列转置工具</option>
             <option value="sql模板置换工具">sql模板置换工具</option>
         </select>
-        <#--<div id="sqlProduct">
+        <div id="sqlProduct">
             <div class="wrap_left">
                 <div>
                     <h3>sql模板</h3>
@@ -160,7 +166,7 @@
                     <textarea></textarea>
                 </div>
             </div>
-        </div>-->
+        </div>
         <div id="reverse">
             <textarea></textarea>
             <textarea></textarea>

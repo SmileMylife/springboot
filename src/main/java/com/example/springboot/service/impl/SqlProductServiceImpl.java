@@ -64,7 +64,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
         }
 
         //校验sql和操作类型是否一致
-        if (sql.indexOf(operation) != -1) {
+        if (!sql.contains(operation.toLowerCase()) && !sql.contains(operation)) {
             throw new Exception("脚本内容和操作类型不一致！");
         }
 
