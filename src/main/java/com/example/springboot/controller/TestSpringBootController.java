@@ -21,9 +21,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Created by ZhangPei on 2018/11/15.
@@ -97,7 +96,13 @@ public class TestSpringBootController {
 
 
         HashMap<String, Object> map = new HashMap<>();
+        ArrayList<Integer> integers = new ArrayList<>();
+        integers.add(1);
+        integers.add(2);
+        integers.add(3);
         map.put("params", input);
+        map.put("list", integers);
+
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -116,7 +121,8 @@ public class TestSpringBootController {
     //如果向要返回的数据中文不乱码，则需要加produce="text/plain;charset=utf-8"
     @RequestMapping(value = "/testRestTemplate", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
     @ResponseBody
-    public String testRestTemplate(String xmlhead, String xmlbody, String provCode, HttpServletRequest httpServletRequest) {
+    public String testRestTemplate(@RequestBody String json, String xmlhead, String xmlbody, String provCode, HttpServletRequest httpServletRequest) {
+        System.out.println(json);
         Map<String, String[]> parameterMap = httpServletRequest.getParameterMap();
         System.out.println("报文头为：" + xmlhead);
         System.out.println("报文体为：" + xmlbody);
@@ -244,5 +250,37 @@ public class TestSpringBootController {
     @RequestMapping(value = "/testWhitePage", method = RequestMethod.GET)
     public void testWhitePage() throws Exception {
         throw new Exception();
+    }
+
+    /**
+     * 测试文件在服务器间的传输
+     * @throws IOException
+     */
+    @RequestMapping("/tesPicDownload")
+    @ResponseBody
+    public void testFileDownload() throws IOException {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        HttpEntity<Map<String, Object>> mapHttpEntity = new HttpEntity<>(new HashMap<>(), httpHeaders);
+
+        RestTemplate restTemplate = new RestTemplate();
+        byte[] stringResponseEntity = restTemplate.getForObject("http://127.0.0.1:8080/testForGong", byte[].class);
+        FileCopyUtils.copy(stringResponseEntity, new FileOutputStream(new File("/Users/smile_mylife/Desktop/test.jpeg")));
+        System.out.println(stringResponseEntity);
+    }
+
+
+    /**
+     * 测试图片下载
+     */
+    @RequestMapping(value = "/testForGong", method = RequestMethod.GET)
+    public void tesPicDownload(HttpServletResponse response) throws IOException {
+        response.setHeader("content-type", MediaType.APPLICATION_OCTET_STREAM_VALUE);
+        ServletOutputStream outputStream = response.getOutputStream();
+
+        byte[] bytes = FileCopyUtils.copyToByteArray(new File("/Users/smile_mylife/Desktop/WechatIMG58.jpeg"));
+        outputStream.write(bytes);
+        outputStream.flush();
     }
 }

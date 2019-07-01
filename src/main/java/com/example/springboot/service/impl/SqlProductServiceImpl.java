@@ -52,14 +52,15 @@ public class SqlProductServiceImpl implements ISqlProductService {
         String operation = MapUtils.getString(params, "operation");
         String username = MapUtils.getString(params, "username");      //英文名称
         String sql = MapUtils.getString(params, "sql");
+        String opCount = MapUtils.getString(params, "opCount");
 
         if (StringUtils.isBlank(provNm)
                 || StringUtils.isBlank(connPhone)
                 || StringUtils.isBlank(connUsername)
+                || StringUtils.isBlank(opCount)
                 || StringUtils.isBlank(time)
                 || StringUtils.isBlank(jira)
-                || StringUtils.isBlank(operation)
-                || StringUtils.isBlank(username)) {
+                || StringUtils.isBlank(operation)) {
             throw new Exception("参数校验失败！");
         }
 
@@ -83,13 +84,16 @@ public class SqlProductServiceImpl implements ISqlProductService {
         //将脚本内容输入至相应文件夹
         for (int i = 0; i < results.size(); i++) {
             HashMap<String, Object> result = results.get(i);
+            if ("ngwf接口机".equals(MapUtils.getString(result, "provNm"))) {
+                continue;
+            }
 
             //脚本文件名
-            String fileName = String.format(Constants.SQL_TEMPLATE, result.get("user"), time, jira, username,
+            String fileName = String.format(Constants.SQL_ROLLBACK_TEMPLATE, result.get("user"), time, jira,
                     operation);
 
             String content = String.format(Constants.SQL_FILE_CONTENT, result.get("ip"), result.get("port"),
-                    result.get("dbNm"), result.get("user"),
+                    result.get("dbNm"), result.get("user"), MapUtils.getString(params, "opCount"),
                     MapUtils.getString(params, "connUsername"), MapUtils.getString(params, "connPhone"));
             String resultSql = sql;
             if (StringUtils.isNotBlank(sql) && sql.indexOf("%s") != -1) {

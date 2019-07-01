@@ -173,23 +173,23 @@
                 </select>
             </div>
 
-            <#--<div class="form_ele_wrap" id="isRollback">
-                <input type="text" name="primaryKey" placeholder="主键名" />
+            <div class="form_ele_wrap" id="isRollback">
+                <#--<input type="text" name="primaryKey" placeholder="主键名" />-->
                 <label for="isRollback">是否生成回滚脚本</label>
                 <select name="isRollback">
                     <option value="UPDATE">否</option>
                     <option value="INSERT">是</option>
                 </select>
-            </div>-->
+            </div>
 
             <div class="form_ele_wrap">
                 <label for="provNm">省份名称</label>
                 <select name="provNm" id="provNm"></select>
             </div>
-            <div class="form_ele_wrap">
+            <#--<div class="form_ele_wrap">
                 <label for="username">姓名拼音</label>
                 <input class="form_input" type="text" name="username" placeholder="请输入姓名拼音"/>
-            </div>
+            </div>-->
             <div class="form_ele_wrap">
                 <label for="jira">任务编号</label>
                 <input class="form_input" type="text" name="jira" placeholder="请输入任务编号"/>
@@ -201,6 +201,10 @@
             <div class="form_ele_wrap">
                 <label for="connUsername">中文姓名</label>
                 <input class="form_input" type="text" name="connUsername" placeholder="请输入中文姓名"/>
+            </div>
+            <div class="form_ele_wrap">
+                <label for="connUsername">操作数量</label>
+                <input class="form_input" type="text" name="opCount" placeholder="请输入操作数量"/>
             </div>
             <div class="form_ele_wrap">
                 <label for="connPhone">联系电话</label>
