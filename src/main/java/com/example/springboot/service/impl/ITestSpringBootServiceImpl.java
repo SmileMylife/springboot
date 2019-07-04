@@ -10,6 +10,8 @@ import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -84,6 +86,4 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
         System.out.println("热部署生效了");
         iTestSpringBootDao.insertUser(inputObject.getParams());
     }
-
-
 }

@@ -3,6 +3,7 @@ package com.example.springboot.controller;
 import com.example.springboot.bean.InputObject;
 import com.example.springboot.bean.OutputObject;
 import com.example.springboot.service.ITestSpringBootService;
+import com.example.springboot.util.AsyncTaskServiceImpl;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -282,5 +282,15 @@ public class TestSpringBootController {
         byte[] bytes = FileCopyUtils.copyToByteArray(new File("/Users/smile_mylife/Desktop/WechatIMG58.jpeg"));
         outputStream.write(bytes);
         outputStream.flush();
+    }
+
+    @Autowired
+    AsyncTaskServiceImpl asyncTaskService;
+
+    @RequestMapping(value = "testAsync", method = RequestMethod.POST)
+    @ResponseBody
+    public void testAsync() throws Exception {
+        asyncTaskService.testAsync();
+        System.out.println("测试异步调用");
     }
 }
