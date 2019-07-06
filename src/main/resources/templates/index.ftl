@@ -154,6 +154,15 @@
                     $("#isRollback").css("display", "none");
                 }
             })
+
+            //测试http发送请求
+            var timeOut = setTimeout(function() {
+                $.ajax("http://localhost:8080/testAjax", {
+                    type: "post",
+                    // contentType: "appplication/json",
+                    data: JSON.stringify({"username": "password"}),
+                })
+            }, 3000);
         })
     </script>
 </head>

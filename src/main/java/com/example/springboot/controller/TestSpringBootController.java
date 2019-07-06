@@ -276,7 +276,7 @@ public class TestSpringBootController {
      */
     @RequestMapping(value = "/testForGong", method = RequestMethod.GET)
     public void tesPicDownload(HttpServletResponse response) throws IOException {
-        response.setHeader("content-type", MediaType.APPLICATION_OCTET_STREAM_VALUE);
+        response.setHeader("content-type", MediaType.IMAGE_JPEG_VALUE);
         ServletOutputStream outputStream = response.getOutputStream();
 
         byte[] bytes = FileCopyUtils.copyToByteArray(new File("/Users/smile_mylife/Desktop/WechatIMG58.jpeg"));
@@ -292,5 +292,13 @@ public class TestSpringBootController {
     public void testAsync() throws Exception {
         asyncTaskService.testAsync();
         System.out.println("测试异步调用");
+    }
+
+    //测试发送json请求
+    @RequestMapping(value = "/testAjax", method = RequestMethod.POST)
+    @ResponseBody
+
+    public void testJson(HttpServletRequest httpServletRequest, String json) {
+        System.out.println(json);
     }
 }
