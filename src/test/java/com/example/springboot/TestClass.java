@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 public class TestClass {
     public static void main(String[] args) throws IOException {
-        String s = "éå®c ççÊ";
+        /*String s = "éå®c ççÊ";
         String s1 = new String(s.getBytes(), "ISO-8859-1");
         String s2 = new String(s.getBytes(), "UTF-8");
         System.out.println(s2);
@@ -47,6 +47,11 @@ public class TestClass {
         byte[] bytes = s6.getBytes();
         System.out.println(Arrays.toString(bytes));
         OutputStream outputStream = new FileOutputStream(new File("./test.png"));
-        outputStream.write(bytes, 0, bytes.length);
+        outputStream.write(bytes, 0, bytes.length);*/
+
+        String[] split = "".split(",");
+
+
+        System.out.println(split[0]);
     }
 }

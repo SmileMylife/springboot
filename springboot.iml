@@ -129,5 +129,10 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-devtools:2.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.1.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.axis:axis:1.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-discovery:commons-discovery:0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.axis:axis-jaxrpc:1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.axis:axis-saaj:1.4" level="project" />
+    <orderEntry type="library" name="Maven: wsdl4j:wsdl4j:1.4" level="project" />
   </component>
 </module>

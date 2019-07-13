@@ -3,6 +3,7 @@ package com.example.springboot.controller;
 import com.example.springboot.bean.InputObject;
 import com.example.springboot.bean.OutputObject;
 import com.example.springboot.service.ITestSpringBootService;
+import com.example.springboot.util.AsyncTaskService;
 import com.example.springboot.util.AsyncTaskServiceImpl;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -265,7 +266,7 @@ public class TestSpringBootController {
         HttpEntity<Map<String, Object>> mapHttpEntity = new HttpEntity<>(new HashMap<>(), httpHeaders);
 
         RestTemplate restTemplate = new RestTemplate();
-        byte[] stringResponseEntity = restTemplate.getForObject("http://127.0.0.1:8080/testForGong", byte[].class);
+        byte[] stringResponseEntity = restTemplate.getForObject("http://124.0.0.1:8080/testForGong", byte[].class);
         FileCopyUtils.copy(stringResponseEntity, new FileOutputStream(new File("/Users/smile_mylife/Desktop/test.jpeg")));
         System.out.println(stringResponseEntity);
     }
@@ -285,7 +286,7 @@ public class TestSpringBootController {
     }
 
     @Autowired
-    AsyncTaskServiceImpl asyncTaskService;
+    AsyncTaskService asyncTaskService;
 
     @RequestMapping(value = "testAsync", method = RequestMethod.POST)
     @ResponseBody
