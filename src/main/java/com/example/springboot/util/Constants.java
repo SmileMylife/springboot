@@ -20,10 +20,10 @@ public class Constants {
             "\n";
 
     //sql文件名，参数依次为：库名、时间、jira号、联系人拼音、操作类型
-    public static final String SQL_TEMPLATE = "洛阳-服务请求-生产-%s-%s-%s-%s-sql.txt";
+    public static final String SQL_TEMPLATE = "洛阳-服务请求-生产-%s-%s-(%s-%s)-%s-sql.txt";
 
     //回滚sql文件名
-    public static final String SQL_ROLLBACK_TEMPLATE = "洛阳-服务请求-生产-%s-%s-%s-%s-rollback-sql.txt";
+    public static final String SQL_ROLLBACK_TEMPLATE = "洛阳-服务请求-生产-%s-%s-(%s-%s)-%s-rollback-sql.txt";
 
     //获取系统换行符
     public static final String LINE_BREAK = System.getProperty("line.separator");

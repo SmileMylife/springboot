@@ -64,10 +64,10 @@ public class SqlProductServiceImpl implements ISqlProductService {
             throw new Exception("参数校验失败！");
         }
 
-        //校验sql和操作类型是否一致
+        /*//校验sql和操作类型是否一致
         if (!sql.contains(operation.toLowerCase()) && !sql.contains(operation)) {
             throw new Exception("脚本内容和操作类型不一致！");
-        }
+        }*/
 
         //查询数据库数据，生成文件
         Map<String, Object> map = new HashMap();
@@ -89,7 +89,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
             }
 
             //脚本文件名
-            String fileName = String.format(Constants.SQL_ROLLBACK_TEMPLATE, result.get("user"), time, jira,
+            String fileName = String.format(Constants.SQL_TEMPLATE, result.get("user"), time, jira, username,
                     operation);
 
             String content = String.format(Constants.SQL_FILE_CONTENT, result.get("ip"), result.get("port"),

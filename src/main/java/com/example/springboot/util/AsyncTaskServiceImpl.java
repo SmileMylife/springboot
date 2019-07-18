@@ -13,10 +13,13 @@ import org.springframework.stereotype.Component;
 public class AsyncTaskServiceImpl implements AsyncTaskService {
 
     @Async
-    public void testAsync() {
+    public void testAsync() throws Exception {
         int sum = 0;
         for (int i = 0; i < 100000; i++) {
             sum += i;
+            if (i == 100) {
+                throw new Exception("抛出异常");
+            }
         }
 
         System.out.println(sum);

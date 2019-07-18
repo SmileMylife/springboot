@@ -195,10 +195,10 @@
                 <label for="provNm">省份名称</label>
                 <select name="provNm" id="provNm"></select>
             </div>
-            <#--<div class="form_ele_wrap">
+            <div class="form_ele_wrap">
                 <label for="username">姓名拼音</label>
                 <input class="form_input" type="text" name="username" placeholder="请输入姓名拼音"/>
-            </div>-->
+            </div>
             <div class="form_ele_wrap">
                 <label for="jira">任务编号</label>
                 <input class="form_input" type="text" name="jira" placeholder="请输入任务编号"/>

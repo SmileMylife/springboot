@@ -3,12 +3,13 @@ package com.example.springboot.controller;
 import com.example.springboot.bean.InputObject;
 import com.example.springboot.bean.OutputObject;
 import com.example.springboot.service.ITestSpringBootService;
+import com.example.springboot.thread.ThreadPoolTestServiceImpl;
 import com.example.springboot.util.AsyncTaskService;
-import com.example.springboot.util.AsyncTaskServiceImpl;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -288,10 +289,18 @@ public class TestSpringBootController {
     @Autowired
     AsyncTaskService asyncTaskService;
 
+    /**
+     * 测试异步方法抛异常是否会影响正常方法，答案是不会
+     * @throws Exception
+     */
     @RequestMapping(value = "testAsync", method = RequestMethod.POST)
     @ResponseBody
     public void testAsync() throws Exception {
         asyncTaskService.testAsync();
+
+        for (int i = 0; i < 100000; i++) {
+            i++;
+        }
         System.out.println("测试异步调用");
     }
 
@@ -301,5 +310,37 @@ public class TestSpringBootController {
 
     public void testJson(HttpServletRequest httpServletRequest, String json) {
         System.out.println(json);
+    }
+
+
+    /**
+     * 经过测试线程池的最大线程数量不超过maxpoolsize，流程是一开始线城市会初始化corePoolSize个线程
+     * 但是线程处于等待接收任务状态，当有任务执行时，会启动线程去执行，当任务数量大于corePoolSize的时候，任务会先进任务队列中，
+     * 如果任务队列存满了，则会扩充线程池的数量直到最大数量，然后如果还有任务未执行，则会根据拒绝策略进行处理，所以线程中所能处理的最大任务数量应该是
+     * 最大线程数和任务队列任务的总和
+     * 线程池测试方法
+     */
+    @Autowired
+    private ThreadPoolTaskExecutor taskExecutor;
+    @RequestMapping(value = "/testThread", method = RequestMethod.POST)
+    @ResponseBody
+    public void testThread() throws InterruptedException {
+        for (int i = 0; i < 20; i++) {
+            taskExecutor.execute(new Thread(new ThreadPoolTestServiceImpl()));
+            int corePoolSize = taskExecutor.getCorePoolSize();
+            int maxPoolSize = taskExecutor.getMaxPoolSize();
+            int poolSize = taskExecutor.getPoolSize();
+            int activeCount = taskExecutor.getActiveCount();
+
+            System.out.println("核心线程池数量" + corePoolSize + "，最大线程池数量" + maxPoolSize + "，当前线程池大小：" + poolSize + "，已激活线程数量：" + activeCount);
+        }
+
+        Thread.sleep(20000);
+
+        int poolSize = taskExecutor.getPoolSize();
+        int corePoolSize = taskExecutor.getCorePoolSize();
+        int maxPoolSize = taskExecutor.getMaxPoolSize();
+        int activeCount = taskExecutor.getActiveCount();
+        System.out.println("核心线程池数量" + corePoolSize + "，最大线程池数量" + maxPoolSize + "，当前线程池大小：" + poolSize + "，已激活线程数量：" + activeCount);
     }
 }
