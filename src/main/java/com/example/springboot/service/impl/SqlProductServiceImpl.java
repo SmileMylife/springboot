@@ -53,6 +53,8 @@ public class SqlProductServiceImpl implements ISqlProductService {
         String username = MapUtils.getString(params, "username");      //英文名称
         String sql = MapUtils.getString(params, "sql");
         String opCount = MapUtils.getString(params, "opCount");
+        String isRollback = MapUtils.getString(params, "isRollback");
+        String rollbackSql = MapUtils.getString(params, "rollbackSql");
 
         if (StringUtils.isBlank(provNm)
                 || StringUtils.isBlank(connPhone)
@@ -91,14 +93,26 @@ public class SqlProductServiceImpl implements ISqlProductService {
             //脚本文件名
             String fileName = String.format(Constants.SQL_TEMPLATE, result.get("user"), time, jira, username,
                     operation);
+            //回滚脚本文件名
+            String rollbackFileName = String.format(Constants.SQL_ROLLBACK_TEMPLATE, result.get("user"), time, jira, username,
+                    operation);
 
             String content = String.format(Constants.SQL_FILE_CONTENT, result.get("ip"), result.get("port"),
                     result.get("dbNm"), result.get("user"), MapUtils.getString(params, "opCount"),
                     MapUtils.getString(params, "connUsername"), MapUtils.getString(params, "connPhone"));
             String resultSql = sql;
+
+            //正式sql语句
             if (StringUtils.isNotBlank(sql) && sql.indexOf("%s") != -1) {
                 resultSql = resultSql.replace("%s", "'" + result.get("provCode") + "'");
             }
+
+            /*//回滚sql
+            if (StringUtils.isNotBlank(isRollback)) {
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(dirPath + "/" + rollbackFileName)));
+                bufferedWriter.write(content + rollbackSql);
+                bufferedWriter.close();
+            }*/
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(dirPath + "/" + fileName)));
             bufferedWriter.write(content + resultSql);

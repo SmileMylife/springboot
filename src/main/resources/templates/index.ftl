@@ -15,7 +15,6 @@
             padding: 20px;
             border: 1px solid black;
             border-radius: 5px;
-            overflow: hidden;
             background-color: rgb(238, 240, 244);
         }
 
@@ -80,6 +79,9 @@
             margin-right: 4px;
         }
 
+        .sql_wrap_rollback {
+            display: none;
+        }
     </style>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -111,6 +113,15 @@
                     name: "sql",
                     value: encodeURI($("#sql").val())
                 });
+
+                //回滚sql加入进去
+                if($("select[name = 'isRollback']").val() == 1) {
+                    data.push({
+                        name: "rollbackSql",
+                                value: encodeURI($("#rollbackSql").val())
+                    })
+                }
+
                 var getStr = "";
 
                 for(var j = 0; j < data.length; j++) {
@@ -130,7 +141,7 @@
             });
 
             //加载完毕，如果是错误页面跳转过来，需要回填数据
-            if($("#isError").val() == "true") {
+            if($("#isError").val() === "true") {
                 debugger;
                 var currentPeople = localStorage.getItem("currentPeople");
                 if(currentPeople) {
@@ -146,14 +157,25 @@
                 }
             }
 
-            //是否生成回滚脚本
+            /*//是否生成回滚脚本
             $("select[name='operation']").change(function() {
-                if($("select[name='operation']").val() == "INSERT") {
+                /!*if($("select[name='operation']").val() == "INSERT") {
                     $("#isRollback").css("display", "block");
                 } else {
                     $("#isRollback").css("display", "none");
+                }*!/
+                $("#isRollback").css("display", "block");
+            });*/
+
+            /*//是否回滚改变时控制回滚脚本内容的显示
+            $("select[name='isRollback']").change(function() {
+                debugger;
+                if($("select[name='isRollback']").val() == 1) {
+                    $(".sql_wrap_rollback").css("display", "block");
+                } else {
+                    $(".sql_wrap_rollback").css("display", "none");
                 }
-            })
+            });*/
 
             //测试http发送请求
             var timeOut = setTimeout(function() {
@@ -182,14 +204,13 @@
                 </select>
             </div>
 
-            <div class="form_ele_wrap" id="isRollback">
-                <#--<input type="text" name="primaryKey" placeholder="主键名" />-->
+            <#--<div class="form_ele_wrap" id="isRollback">
                 <label for="isRollback">是否生成回滚脚本</label>
                 <select name="isRollback">
-                    <option value="UPDATE">否</option>
-                    <option value="INSERT">是</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
                 </select>
-            </div>
+            </div>-->
 
             <div class="form_ele_wrap">
                 <label for="provNm">省份名称</label>
@@ -229,6 +250,11 @@
     <h4 style="text-align: center">请输入sql语句</h4>
     <textarea id="sql" name="sql"></textarea>
 </div>
+
+<#--<div class="sql_wrap sql_wrap_rollback">
+    <h4 style="text-align: center">请输入回滚sql语句</h4>
+    <textarea id="rollbackSql" name="rollbackSql"></textarea>
+</div>-->
 
 </body>
 </html>
