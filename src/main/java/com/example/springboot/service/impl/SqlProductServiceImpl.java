@@ -1,7 +1,7 @@
 package com.example.springboot.service.impl;
 
-import com.example.springboot.bean.InputObject;
-import com.example.springboot.bean.OutputObject;
+import com.example.springboot.common.bean.InputObject;
+import com.example.springboot.common.bean.OutputObject;
 import com.example.springboot.dao.ITestSpringBootDao;
 import com.example.springboot.service.ISqlProductService;
 import com.example.springboot.util.Constants;

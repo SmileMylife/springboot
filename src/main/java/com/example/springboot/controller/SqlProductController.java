@@ -2,8 +2,8 @@ package com.example.springboot.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.example.springboot.annotations.InputObject;
-import com.example.springboot.bean.OutputObject;
+import com.example.springboot.common.annotations.InputObject;
+import com.example.springboot.common.bean.OutputObject;
 import com.example.springboot.service.ISqlProductService;
 import com.example.springboot.util.Constants;
 import org.apache.commons.collections.MapUtils;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
-import java.util.List;
 
 /**
  * Created by ZhangPei on 2019/5/28.
@@ -28,19 +27,19 @@ public class SqlProductController {
 
     @RequestMapping(value = "/queryAllProv", method = RequestMethod.POST)
     @ResponseBody
-    public OutputObject queryAllProv(@InputObject com.example.springboot.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
+    public OutputObject queryAllProv(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
         inputObject.getParams().put("dbKey", "ngwf");
         iSqlProductService.queryAllProv(inputObject, outputObject);
         return outputObject;
     }
 
     /**
-     * 脚本文件生成
+     * 脚本文件生成t
      * @param outputObject
      * @throws Exception
      */
     @RequestMapping(value = "/productSqlFile", method = RequestMethod.GET)
-    public void productSqlFile(HttpServletResponse response, @InputObject com.example.springboot.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
+    public void productSqlFile(HttpServletResponse response, @InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
         inputObject.getParams().put("dbKey", "ngwf");
         FileInputStream is = null;
         iSqlProductService.productSqlFile(inputObject, outputObject);
@@ -67,7 +66,7 @@ public class SqlProductController {
 
     @RequestMapping(value = "/showDownloadList", method = RequestMethod.POST)
     @ResponseBody
-    public OutputObject showDownloadList(@InputObject com.example.springboot.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
+    public OutputObject showDownloadList(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
         inputObject.getParams().put("dbKey", "ngwf");
         iSqlProductService.showDownloadList(inputObject, outputObject);
         return outputObject;
@@ -75,7 +74,7 @@ public class SqlProductController {
 
     @RequestMapping(value = "/sqlReplaceByTemplate", method = RequestMethod.POST)
     @ResponseBody
-    public String sqlReplaceByTemplate(@InputObject com.example.springboot.bean.InputObject inputObject, OutputObject outputObject) {
+    public String sqlReplaceByTemplate(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject) {
         String vars = MapUtils.getString(inputObject.getParams(), "vars");
         String varVals = MapUtils.getString(inputObject.getParams(), "varVals");
         String sql = MapUtils.getString(inputObject.getParams(), "sql");

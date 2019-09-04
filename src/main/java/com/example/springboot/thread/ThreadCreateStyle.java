@@ -7,7 +7,7 @@ package com.example.springboot.thread;
  */
 public class ThreadCreateStyle {
     public static void main(String[] args) {
-//        Thread1 thread1 = new Thread1();
+//        Thread1 thread11 = new Thread11();
 //        thread1.run();
 //        thread1.start();
         Thread thread2 = new Thread(new thread2());
@@ -18,7 +18,7 @@ public class ThreadCreateStyle {
 
 
 //线程创建方式
-class Thread1 extends Thread {
+class Thread11 extends Thread {
 
     @Override
     public void run() {

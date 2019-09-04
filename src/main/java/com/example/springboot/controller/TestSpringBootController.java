@@ -1,10 +1,10 @@
 package com.example.springboot.controller;
 
-import com.example.springboot.bean.InputObject;
-import com.example.springboot.bean.OutputObject;
+import com.example.springboot.common.bean.InputObject;
+import com.example.springboot.common.bean.OutputObject;
+import com.example.springboot.other.AsyncTaskService;
 import com.example.springboot.service.ITestSpringBootService;
 import com.example.springboot.thread.ThreadPoolTestServiceImpl;
-import com.example.springboot.util.AsyncTaskService;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
 
+import javax.servlet.ServletInputStream;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +37,16 @@ public class TestSpringBootController {
 
     @RequestMapping(value = "/testRequest", method = RequestMethod.GET)
     @ResponseBody
-    public String testRequest() {
+    public String testRequest(HttpServletRequest httpServletRequest) throws IOException {
+        int contentLength = httpServletRequest.getContentLength();
+        ServletInputStream inputStream = httpServletRequest.getInputStream();
+
+        byte[] bytes = new byte[contentLength];
+        inputStream.read(bytes);
+
+        String s = new String(bytes);
+        System.out.println(s);
+
         //application主函数要放在目录结构最外层
         System.out.println("测试springboot是否正常运行");
         return "";
@@ -51,7 +61,7 @@ public class TestSpringBootController {
 
     @RequestMapping(value = "/testParamsPackage", method = RequestMethod.GET)
     @ResponseBody
-    public OutputObject testDaoOperation(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
+    public OutputObject testDaoOperation(@com.example.springboot.common.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
         iTestSpringBootService.testParamsPackage(inputObject, outputObject);
         return outputObject;
     }
@@ -146,7 +156,7 @@ public class TestSpringBootController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public OutputObject login(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) {
+    public OutputObject login(@com.example.springboot.common.annotations.InputObject InputObject inputObject, OutputObject outputObject) {
         outputObject.setRtnCode("0");
         outputObject.setRtnMsg("登录成功");
         return outputObject;
@@ -177,7 +187,7 @@ public class TestSpringBootController {
      */
     @RequestMapping(value = "/queryEmployees", method = RequestMethod.POST)
     @ResponseBody
-    public OutputObject queryEmployees(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
+    public OutputObject queryEmployees(@com.example.springboot.common.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
         HashMap<String, Object> params = inputObject.getParams();
         Integer start = MapUtils.getInteger(params, "start");
         Integer limit = MapUtils.getInteger(params, "limit");
@@ -189,7 +199,7 @@ public class TestSpringBootController {
 
     @RequestMapping(value = "/insertDbInfo", method = RequestMethod.POST)
     @ResponseBody
-    public void insertDbInfo(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
+    public void insertDbInfo(@com.example.springboot.common.annotations.InputObject InputObject inputObject, OutputObject outputObject) throws Exception {
         inputObject.getParams().put("dbKey", "ngwf");
         iTestSpringBootService.insertDbInfo(inputObject, outputObject);
     }
@@ -342,5 +352,11 @@ public class TestSpringBootController {
         int maxPoolSize = taskExecutor.getMaxPoolSize();
         int activeCount = taskExecutor.getActiveCount();
         System.out.println("核心线程池数量" + corePoolSize + "，最大线程池数量" + maxPoolSize + "，当前线程池大小：" + poolSize + "，已激活线程数量：" + activeCount);
+    }
+
+    @RequestMapping(value = "/testThreadpoolDi")
+    @ResponseBody
+    public void testThreadpoolDi() {
+        iTestSpringBootService.testTheadpoolDi();
     }
 }

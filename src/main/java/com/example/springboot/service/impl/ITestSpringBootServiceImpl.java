@@ -1,22 +1,15 @@
 package com.example.springboot.service.impl;
 
-import com.example.springboot.bean.InputObject;
-import com.example.springboot.bean.OutputObject;
+import com.example.springboot.common.bean.InputObject;
+import com.example.springboot.common.bean.OutputObject;
 import com.example.springboot.dao.ITestSpringBootDao;
 import com.example.springboot.service.ITestSpringBootService;
-import com.example.springboot.util.Constants;
 import com.example.springboot.util.ExcelUtil;
-import org.apache.commons.collections.MapUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.*;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +32,7 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
     }
 
     @Override
-    public void testParamsPackage(@com.example.springboot.annotations.InputObject InputObject inputObject, OutputObject outputObject) {
+    public void testParamsPackage(@com.example.springboot.common.annotations.InputObject InputObject inputObject, OutputObject outputObject) {
         List<HashMap<String, Object>> maps = iTestSpringBootDao.selectUsers();
         outputObject.setBeans(maps);
     }
@@ -85,5 +78,21 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
         inputObject.getParams().put("password", "456");
         System.out.println("热部署生效了");
         iTestSpringBootDao.insertUser(inputObject.getParams());
+    }
+
+    @Autowired
+    ThreadPoolTaskExecutor threadPoolTaskExecutor;
+    @Override
+    public void testTheadpoolDi() {
+        //测试线程池依赖注入
+        threadPoolTaskExecutor.execute(new ThreadTest());
+    }
+
+    class ThreadTest implements Runnable {
+
+        @Override
+        public void run() {
+            System.out.println("测试线程");
+        }
     }
 }

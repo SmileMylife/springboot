@@ -1,9 +1,7 @@
 package com.example.springboot.service;
 
-import com.example.springboot.bean.InputObject;
-import com.example.springboot.bean.OutputObject;
-
-import javax.servlet.http.HttpServletResponse;
+import com.example.springboot.common.bean.InputObject;
+import com.example.springboot.common.bean.OutputObject;
 
 /**
  * Created by ZhangPei on 2019/5/28.
