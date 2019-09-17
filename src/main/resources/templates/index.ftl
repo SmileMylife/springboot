@@ -71,7 +71,7 @@
             cursor: pointer;
         }
 
-        #isRollback {
+        #isBackup {
             display: none;
         }
 
@@ -79,9 +79,6 @@
             margin-right: 4px;
         }
 
-        .sql_wrap_rollback {
-            display: none;
-        }
     </style>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -113,14 +110,16 @@
                     name: "sql",
                     value: encodeURI($("#sql").val())
                 });
+                debugger;
+                console.log("用户填写的数据内容：" + data);
 
                 //回滚sql加入进去
-                if($("select[name = 'isRollback']").val() == 1) {
+                /*if($("select[name = 'isRollback']").val() == 1) {
                     data.push({
                         name: "rollbackSql",
                                 value: encodeURI($("#rollbackSql").val())
                     })
-                }
+                }*/
 
                 var getStr = "";
 
@@ -157,15 +156,14 @@
                 }
             }
 
-            /*//是否生成回滚脚本
+            //是否生成回滚脚本
             $("select[name='operation']").change(function() {
-                /!*if($("select[name='operation']").val() == "INSERT") {
-                    $("#isRollback").css("display", "block");
+                if($("select[name='operation']").val() == "UPDATE") {
+                    $("#isBackup").css("display", "block");
                 } else {
-                    $("#isRollback").css("display", "none");
-                }*!/
-                $("#isRollback").css("display", "block");
-            });*/
+                    $("#isBackup").css("display", "none");
+                }
+            });
 
             /*//是否回滚改变时控制回滚脚本内容的显示
             $("select[name='isRollback']").change(function() {
@@ -204,13 +202,21 @@
                 </select>
             </div>
 
-            <#--<div class="form_ele_wrap" id="isRollback">
-                <label for="isRollback">是否生成回滚脚本</label>
+            <div class="form_ele_wrap" id="isRollback">
+                <label for="isRollback">是否回滚脚本</label>
                 <select name="isRollback">
                     <option value="0">否</option>
                     <option value="1">是</option>
                 </select>
-            </div>-->
+            </div>
+
+            <div class="form_ele_wrap" id="isBackup">
+                <label for="isBackup">是否备份脚本</label>
+                <select name="isBackup">
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+            </div>
 
             <div class="form_ele_wrap">
                 <label for="provNm">省份名称</label>

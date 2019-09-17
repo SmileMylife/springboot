@@ -55,6 +55,11 @@ public class SqlProductServiceImpl implements ISqlProductService {
         String opCount = MapUtils.getString(params, "opCount");
         String isRollback = MapUtils.getString(params, "isRollback");
         String rollbackSql = MapUtils.getString(params, "rollbackSql");
+        String isBackup = MapUtils.getString(params, "isBackup");
+
+        if (Constants.YES.equals(isBackup) && Constants.YES.equals(isRollback)) {
+            throw new Exception("update脚本不能同时既为备份脚本又为回滚脚本！");
+        }
 
         if (StringUtils.isBlank(provNm)
                 || StringUtils.isBlank(connPhone)
@@ -91,7 +96,9 @@ public class SqlProductServiceImpl implements ISqlProductService {
             }
 
             //脚本文件名
-            String fileName = String.format(Constants.SQL_TEMPLATE, result.get("user"), time, jira, username,
+            String sqlFileName = Constants.YES.equals(isRollback) ? Constants.SQL_ROLLBACK_TEMPLATE : Constants.YES.equals(isBackup) ? Constants.SQL_BACKUP_TEMPLATE : Constants.SQL_TEMPLATE;
+
+            String fileName = String.format(sqlFileName, result.get("user"), time, jira, username,
                     operation);
             //回滚脚本文件名
             String rollbackFileName = String.format(Constants.SQL_ROLLBACK_TEMPLATE, result.get("user"), time, jira, username,

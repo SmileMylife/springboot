@@ -23,10 +23,17 @@ public class Constants {
     public static final String SQL_TEMPLATE = "洛阳-服务请求-生产-%s-%s-(%s-%s)-%s-sql.txt";
 
     //回滚sql文件名
-    public static final String SQL_ROLLBACK_TEMPLATE = "洛阳-服务请求-生产-%s-%s-(%s-%s)-%s-rollback-sql.txt";
+    public static final String SQL_ROLLBACK_TEMPLATE = "洛阳-服务请求-生产-%s-%s-(%s-%s)-%s-ROLLBACK-sql.txt";
+
+    //备份脚本
+    public static final String SQL_BACKUP_TEMPLATE = "洛阳-服务请求-生产-%s-%s-(%s-%s)-%s-BACKUP-sql.txt";
 
     //获取系统换行符
     public static final String LINE_BREAK = System.getProperty("line.separator");
+
+    public static final String YES = "1";
+
+    public static final String NO = "0";
 
 
 
