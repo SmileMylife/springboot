@@ -364,5 +364,4 @@ public class TestSpringBootController {
     public void testException() throws Exception {
         throw new Exception("模拟异常抛出！");
     }
-
 }
