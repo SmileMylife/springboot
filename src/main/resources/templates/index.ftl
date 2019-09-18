@@ -149,8 +149,19 @@
                     var arr = JSON.parse(jsonData);
                     console.log("页面回填数据：", jsonData);
                     if(arr instanceof Array) {
+                        var isBackup = "";
+                        var operation = "";
                         for(var k = 0; k < arr.length; k++) {
                             $("[name=" + arr[k].name + "]").val(decodeURI(arr[k].value));
+                            if(arr[k].name === "isBackup") {
+                                isBackup = arr[k].value;
+                            }else if(arr[k].name === "operation") {
+                                operation = arr[k].value;
+                            }
+                        }
+                        if(operation === "UPDATE") {
+                            $("#isBackup").css("display", "block");
+                            $("#isBackup").val(isBackup);
                         }
                     }
                 }
@@ -163,6 +174,7 @@
                 } else {
                     $("#isBackup").css("display", "none");
                 }
+                $("#isBackup").val("0");
             });
 
             /*//是否回滚改变时控制回滚脚本内容的显示
