@@ -18,7 +18,7 @@
     </script>
 </head>
 <body>
-    <#--<h4 style="text-align: center">服务器发生了错误，错误描述：<b style="color: red">${errorDesc}</b>请重新尝试，3秒后自动跳转至首页。</h4>-->
+    <h4 style="text-align: center">服务器发生了错误，错误描述：<b style="color: red">${message}</b>请重新尝试，3秒后自动跳转至首页。</h4>
     <a id="breakToIndex" style="text-align: center;display: block" href="http://localhost:8080?isError=true">点击这里直接跳转</a>
 </body>
 </html>

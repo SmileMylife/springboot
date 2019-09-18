@@ -5,12 +5,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
  * Created by ZhangPei on 2018/12/11.
  */
-@ControllerAdvice
-public class BaseController {
+@ControllerAdvice(basePackages = "com.example.springboot.controller")
+public class ExceptionHandleController {
 
 
     /**
