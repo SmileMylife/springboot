@@ -20,4 +20,6 @@ public interface ITestSpringBootDao {
     public List<HashMap<String, Object>> selectDbInfos(Map<String, Object> params);
 
     public void insertUser(Map<String, Object> params);
+
+    public int inserWorksheet(List<String> wrkfmIds);
 }

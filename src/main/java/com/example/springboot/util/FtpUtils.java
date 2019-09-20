@@ -1,26 +1,29 @@
 package com.example.springboot.util;
 
-import org.apache.commons.net.ftp.FTP;
-import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPFile;
-import org.apache.commons.net.ftp.FTPReply;
+import org.apache.commons.net.ftp.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
 
 import java.io.*;
 import java.net.MalformedURLException;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * Created by ZhangPei on 2019/8/15.
  */
 public class FtpUtils {
+    private static final Logger logger = LoggerFactory.getLogger(FtpUtils.class);
+
+
     // ftp服务器地址
-    public String hostname = "10.10.10.26";
+    public String hostname = "172.18.255.78";
     // ftp服务器端口号默认为21
     public Integer port = 21;
     // ftp登录账号
-    public String username = "xxxx";
+    public String username = "maxt";
     // ftp登录密码
-    public String password = "xxxx";
+    public String password = "mtyj@246536";
 
     public FTPClient ftpClient = null;
 
@@ -31,17 +34,19 @@ public class FtpUtils {
         ftpClient = new FTPClient();
         ftpClient.setControlEncoding("utf-8");
         try {
-            System.out.println("connecting...ftp服务器:" + this.hostname + ":" + this.port);
+            logger.error("正在连接ftp服务器:" + this.hostname + ":" + this.port);
             ftpClient.connect(hostname, port); // 连接ftp服务器
             ftpClient.login(username, password); // 登录ftp服务器
             int replyCode = ftpClient.getReplyCode(); // 是否成功登录服务器
             if (!FTPReply.isPositiveCompletion(replyCode)) {
-                System.out.println("connect failed...ftp服务器:" + this.hostname + ":" + this.port);
+                logger.error("连接ftp服务器失败:" + this.hostname + ":" + this.port);
             }
-            System.out.println("connect successfu...ftp服务器:" + this.hostname + ":" + this.port);
+            logger.error("连接ftp服务器成功:" + this.hostname + ":" + this.port);
         } catch (MalformedURLException e) {
+            logger.error("连接ftp服务器发生异常:" + e.getMessage());
             e.printStackTrace();
         } catch (IOException e) {
+            logger.error("连接ftp服务器发生IO异常:" + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -301,7 +306,7 @@ public class FtpUtils {
     public boolean deleteFile(String pathname, String filename) {
         boolean flag = false;
         try {
-            System.out.println("开始删除文件");
+            logger.error("开始删除文件");
             initFtpClient();
             // 切换FTP目录
             ftpClient.changeWorkingDirectory(pathname);
@@ -324,41 +329,56 @@ public class FtpUtils {
         return flag;
     }
 
+    /**
+     * 批量下载ftp服务器上的文件
+     * @param serverPath
+     * @return
+     */
     public boolean batchDownloadFileFromFtpServer(String serverPath) {
         boolean flag = false;
-        OutputStream os = null;
+        OutputStream os;
         try {
             initFtpClient();    //初始化ftp连接
             boolean changeFlag = ftpClient.changeWorkingDirectory(serverPath);    //切换到ftp服务器根地址
             if (changeFlag) {
                 //切换成功，罗列出该文件夹下所有文件
                 ftpClient.enterLocalPassiveMode();      //启用被动模式
+                ftpClient.configure(new FTPClientConfig("org.apache.commons.net.ftp.parser.UnixFTPEntryParser"));
                 ftpClient.setRemoteVerificationEnabled(false);
 
                 FTPFile[] ftpFiles = ftpClient.listFiles();     //罗列文件夹下所有的文件
                 for (FTPFile file : ftpFiles) {
                     InputStream inputStream = ftpClient.retrieveFileStream(file.getName());     //下载文件为输入流
-                    //将文件拷贝到相应文件夹下
-                    FileOutputStream fileOutputStream = new FileOutputStream(new File("/User/smile_mylife/Desktop/ftp_test/" + file.getName()));
-                    FileCopyUtils.copy(inputStream, fileOutputStream);
 
+                    //将文件拷贝到相应文件夹下
+                    File newFile = new File("/Users/smile_mylife/Desktop/ftp_test/" + file.getName());
+                    os = new FileOutputStream(newFile);
+                    FileCopyUtils.copy(inputStream, os);
+
+                    //拷贝成功，删除ftp服务器上文件
+                    ftpClient.dele(file.getName());
+
+                    //关闭流
                     inputStream.close();
-                    fileOutputStream.close();
+                    os.close();
                 }
                 ftpClient.logout();
                 flag = true;
-                System.out.println("下载文件成功");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return false;
+        return flag;
     }
 
-    public static void main(String[] args) {
-        FtpUtils ftp = new FtpUtils();
-        ftp.batchDownloadFileFromFtpServer("/test");
-        System.out.println("ok");
+    public static void main(String[] args) throws IOException {
+        /*FtpUtils ftp = new FtpUtils();
+        ftp.initFtpClient();
+        FTPFile[] ftpFiles = ftp.ftpClient.listFiles("");
+        ftp.batchDownloadFileFromFtpServer("/test/");
+//        File file = new File("/User/smile_mylife/Desktop/test.txt");
+        System.out.println("ok");*/
+
     }
 }

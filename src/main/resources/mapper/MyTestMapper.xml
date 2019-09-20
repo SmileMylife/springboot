@@ -21,7 +21,7 @@
     <select id="selectUsers" resultType="java.util.HashMap">
         SELECT id, username, password FROM USER
     </select>
-    
+
     <insert id="insertUser" parameterType="map">
         INSERT INTO USER
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -152,4 +152,12 @@
             </trim>
         </where>
     </select>
+
+    <!--测试数据库性能-->
+    <insert id="inserWorksheet" parameterType="java.util.List">
+        INSERT INTO t_sr_problem_proces ('BIZ_CNTT') VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item, jdbcType = VARCHAR})
+        </foreach>
+    </insert>
 </mapper>

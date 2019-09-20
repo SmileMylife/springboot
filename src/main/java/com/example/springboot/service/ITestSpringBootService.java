@@ -22,4 +22,5 @@ public interface ITestSpringBootService {
 
     public void testTheadpoolDi();
 
+    void testDatabase(InputObject inputObject, OutputObject outputObject);
 }

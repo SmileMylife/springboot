@@ -10,6 +10,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,6 +87,25 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
     public void testTheadpoolDi() {
         //测试线程池依赖注入
         threadPoolTaskExecutor.execute(new ThreadTest());
+    }
+
+    @Override
+    public void testDatabase(InputObject inputObject, OutputObject outputObject) {
+
+        long start = System.currentTimeMillis();
+        List<String> wrkfmIds = new ArrayList<>();
+        for (int i = 1; i < 100000; i++) {
+            if (i % 1000 == 0) {
+                iTestSpringBootDao.inserWorksheet(wrkfmIds);
+                wrkfmIds = new ArrayList<>();
+            }
+            wrkfmIds.add(String.valueOf(i + 850000));
+        }
+        long end = System.currentTimeMillis();
+        
+        
+        System.out.println("执行完毕话费时间" + (end - start) / 1000);
+
     }
 
     class ThreadTest implements Runnable {

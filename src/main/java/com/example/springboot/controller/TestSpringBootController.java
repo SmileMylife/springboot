@@ -364,4 +364,13 @@ public class TestSpringBootController {
     public void testException() throws Exception {
         throw new Exception("模拟异常抛出！");
     }
+
+    @RequestMapping(value = "/testDatabase")
+    public void testDatabase() {
+        InputObject inputObject = new InputObject();
+        OutputObject outputObject = new OutputObject();
+        HashMap<String, Object> params = inputObject.getParams();
+        params.put("dbKey", "ngwf_tj_sit");
+        iTestSpringBootService.testDatabase(inputObject, outputObject);
+    }
 }

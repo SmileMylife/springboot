@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
+ * 页面跳转控制器
  * Created by ZhangPei on 2019/5/28.
  */
 @Controller
