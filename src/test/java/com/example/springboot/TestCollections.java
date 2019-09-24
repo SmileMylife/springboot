@@ -1,6 +1,11 @@
 package com.example.springboot;
 
+import com.example.springboot.util.SQlReplaceUtil;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 import org.springframework.util.FileCopyUtils;
 
@@ -22,5 +27,12 @@ public class TestCollections {
 
         FTPClient ftpClient = new FTPClient();
         ftpClient.disconnect();
+    }
+
+    @Test
+    public void testMybatis() throws IOException {
+        String sql = "insert into t_sr_proc_ele_data values(1, 2, 3, ? , ? , ? ,6)";
+        String params = "zhangpei(String), lisi(String), 1(String),";
+        SQlReplaceUtil.replaceSqlByParams(sql, params);
     }
 }
