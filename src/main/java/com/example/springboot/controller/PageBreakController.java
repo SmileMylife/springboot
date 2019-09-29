@@ -12,6 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageBreakController {
 
+    /**
+     * 去首页
+     * @param isError
+     * @return
+     */
     //跳转至首页
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView toIndex(String isError) {
@@ -34,8 +39,12 @@ public class PageBreakController {
         return modelAndView;
     }
 
+    /**
+     * 前往登录页面
+     * @return
+     */
     @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
-    public ModelAndView login() {
+    public ModelAndView tologinPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
