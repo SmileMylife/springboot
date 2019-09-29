@@ -1,6 +1,7 @@
 package com.example.springboot;
 
 import com.alibaba.druid.support.http.StatViewServlet;
+import com.example.springboot.common.interceptor.LoginInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +10,8 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.util.List;
@@ -48,4 +51,21 @@ public class SpringbootApplication extends WebMvcConfigurationSupport {
         argumentResolvers.add(handlerMethodArgumentResolver);
     }
 
+    /**
+     * 静态资源映射器
+     * @param registry
+     */
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+    }
+
+    /**
+     * 服务请求拦截器，通过excludePathPatterns过滤掉不需要拦截的请求，或者通过addPathPatterns添加需要拦截的请求
+     * @param registry
+     */
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginInterceptor()).excludePathPatterns("/loginPage");     //请求登录页面不做拦截
+    }
 }

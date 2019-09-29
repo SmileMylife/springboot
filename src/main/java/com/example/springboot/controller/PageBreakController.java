@@ -33,4 +33,11 @@ public class PageBreakController {
         modelAndView.setViewName("transposition");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
+    public ModelAndView login() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }
 }

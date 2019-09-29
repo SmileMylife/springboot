@@ -79,6 +79,20 @@
             margin-right: 4px;
         }
 
+        /*以下是旋转样式*/
+        .wrap { width: 120px; height: 200px; position: fixed; top: 15px; right: 15px; display: table-cell; vertical-align: middle; text-align: center; z-index: 22; }
+        .cube { width: 120px; height: 120px; margin: 0 auto; transform-style: preserve-3d; transform: rotateX(-30deg) rotateY(-80deg); animation: rotate linear 20s infinite; }
+        .cube .out_front { transform: rotateY(0deg) translateZ(60px); }
+        .cube div { position: absolute; width: 120px; height: 120px; ;opacity: 0.8; transition: all .4s; }
+        .cube .out_back { transform: translateZ(-60px) rotateY(180deg); }
+        .cube .out_left { transform: rotateY(-90deg) translateZ(60px); }
+        .cube .out_right { transform: rotateY(90deg) translateZ(60px); }
+        .cube .out_top { transform: rotateX(90deg) translateZ(60px); }
+        .cube .out_bottom { transform: rotateX(-90deg) translateZ(60px); }
+        .cube img{width: 120px; height: 120px;}
+        @keyframes rotate{
+            0% { transform: rotateX(0deg) rotateY(0deg); } 100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
     </style>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -202,6 +216,17 @@
 <input type="hidden" id="isError" value=${isError} />
 <h3>脚本生成工具</h3>
 <div class="form_wrap">
+    <div class="wrap">
+        <div class="cube">
+            <div class="out_front"><img src="../static/wangxiaochen.jpg" class="pic"></div>
+            <div class="out_back"><img src="../static/wangxiaochen.jpg" class="pic"></div>
+            <div class="out_left"><img src="../static/wangxiaochen.jpg" class="pic"></div>
+            <div class="out_right"><img src="../static/wangxiaochen.jpg" class="pic"></div>
+            <div class="out_top"><img src="../static/wangxiaochen.jpg" class="pic"></div>
+            <div class="out_bottom"><img src="../static/wangxiaochen.jpg" class="pic">
+            </div>
+        </div>
+    </div>
     <form id="productSql">
         <div>
             <div class="form_ele_wrap">
