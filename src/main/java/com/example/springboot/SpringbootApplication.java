@@ -62,10 +62,11 @@ public class SpringbootApplication extends WebMvcConfigurationSupport {
 
     /**
      * 服务请求拦截器，通过excludePathPatterns过滤掉不需要拦截的请求，或者通过addPathPatterns添加需要拦截的请求
+     * 设置为/*则拦截所有请求，如果只配置/则是精确匹配
      * @param registry
      */
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor()).excludePathPatterns("/loginPage");     //请求登录页面不做拦截
+        registry.addInterceptor(new LoginInterceptor()).excludePathPatterns("/loginPage").addPathPatterns("/");     //请求登录页面不做拦截
     }
 }
