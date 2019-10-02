@@ -5,6 +5,7 @@
     <title>脚本生成工具</title>
 </head>
 <body>
-    <h1>登录页面</h1>
+    <h3>登录页面</h3>
+    <a href="/loginSqlProduct">快捷登录</a>
 </body>
 </html>

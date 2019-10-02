@@ -24,6 +24,9 @@ public class SpringbootApplication extends WebMvcConfigurationSupport {
     @Autowired
     HandlerMethodArgumentResolver handlerMethodArgumentResolver;
 
+    @Autowired
+    LoginInterceptor loginInterceptor;
+
     public static void main(String[] args) {
         SpringApplication.run(SpringbootApplication.class, args);
     }
@@ -67,6 +70,6 @@ public class SpringbootApplication extends WebMvcConfigurationSupport {
      */
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor()).excludePathPatterns("/loginPage").addPathPatterns("/");     //请求登录页面不做拦截
+        registry.addInterceptor(loginInterceptor).excludePathPatterns("/loginPage").excludePathPatterns("/loginSqlProduct").addPathPatterns("/*");     //请求登录页面不做拦截
     }
 }

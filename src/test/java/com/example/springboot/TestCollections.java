@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.util.FileCopyUtils;
+import redis.clients.jedis.Jedis;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,5 +36,12 @@ public class TestCollections {
         String sql = "insert into t_sr_proc_ele_data values(1, 2, 3, ? , ? , ? ,6)";
         String params = "zhangpei(String), lisi(String), 1(String),";
         SQlReplaceUtil.replaceSqlByParams(sql, params);
+    }
+
+    @Test
+    public void testRedis() {
+        Jedis jedis = new Jedis("127.0.0.1", 6379);
+        String username = jedis.get("username");
+        System.out.println(username);
     }
 }

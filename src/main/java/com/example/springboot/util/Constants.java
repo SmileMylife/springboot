@@ -35,6 +35,10 @@ public class Constants {
 
     public static final String NO = "0";
 
+    public static final String TRUE = "true";
+
+    public static final String FALSE = "false";
+
 
 
 

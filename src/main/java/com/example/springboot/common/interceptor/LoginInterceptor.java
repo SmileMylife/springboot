@@ -1,7 +1,12 @@
 package com.example.springboot.common.interceptor;
 
+import com.example.springboot.util.Constants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +17,13 @@ import java.io.IOException;
 /**
  * Created by ZhangPei on 2019/9/29.
  */
+@Component
 public class LoginInterceptor implements HandlerInterceptor {
+    @Value("${filter_all_request}")
+    boolean filterAllRequest;
+
+    @Autowired
+    Jedis jedis;
     /**
      * 在请求被处理之前做的事情
      * @param request
@@ -25,18 +36,21 @@ public class LoginInterceptor implements HandlerInterceptor {
         StringBuffer requestURL = request.getRequestURL();
         System.out.println("本次请求url为：" + requestURL);
 
-        HttpSession session = request.getSession();
         boolean isLogin = false;
-        if (session != null) {
-            //如果用户登录成功，则会把用户的sessionID和塞进session中
-            Object loginFlag = session.getAttribute(session.getId());
-            if (loginFlag instanceof Boolean) {
-                isLogin = (boolean) loginFlag;
+        if (filterAllRequest || Constants.TRUE.equals(jedis.get("filter_all_request"))) {
+            HttpSession session = request.getSession();
+            if (session != null) {
+                //如果用户登录成功，则会把用户的sessionID和塞进session中
+                Object loginFlag = session.getAttribute(session.getId());
+                if (loginFlag instanceof Boolean) {
+                    isLogin = (boolean) loginFlag;
+                }
+            }
+            if (!isLogin) {
+                response.sendRedirect("/loginPage");
             }
         }
-        if (!isLogin) {
-            response.sendRedirect("/loginPage");
-        }
+
         return isLogin;
     }
 

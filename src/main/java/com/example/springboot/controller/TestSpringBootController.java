@@ -373,4 +373,13 @@ public class TestSpringBootController {
         params.put("dbKey", "ngwf_tj_sit");
         iTestSpringBootService.testDatabase(inputObject, outputObject);
     }
+
+    @Autowired
+    Jedis jedis;
+    @RequestMapping(value = "/testRedis", method = RequestMethod.POST)
+    @ResponseBody
+    public void testRedis() {
+        jedis.set("springboot", "通过springboot添加");
+        System.out.println(jedis.get("username"));      //通过springboot获取
+    }
 }
