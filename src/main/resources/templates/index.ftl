@@ -285,6 +285,7 @@
             </div>
             <div class="button_wrap">
                 <input class="form_input" id="submit" type="button" value="提交" />
+                <a href="/logout">注销</a>
             </div>
         </div>
     </form>

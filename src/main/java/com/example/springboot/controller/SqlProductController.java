@@ -24,7 +24,7 @@ import java.io.FileInputStream;
 /**
  * Created by ZhangPei on 2019/5/28.
  */
-@Controller
+@Controller("/sqlProduct")
 public class SqlProductController {
     @Autowired
     private ISqlProductService iSqlProductService;
@@ -109,11 +109,23 @@ public class SqlProductController {
      * @return
      */
     @RequestMapping(value = "/loginSqlProduct", method = RequestMethod.GET)
-    public ModelAndView login(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject, HttpServletRequest request, HttpSession session) {
+    public ModelAndView login(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject, HttpServletRequest request) {
         ModelAndView loginModelAndView = new ModelAndView();
         loginModelAndView.setViewName("index");
         loginModelAndView.addObject("isError", "false");
-        request.getSession().setAttribute(request.getSession().getId(), true);
+        HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(60*3);     //60秒过期
+        session.setAttribute(request.getSession().getId(), true);
+
         return loginModelAndView;
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView distroySession(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
     }
 }
