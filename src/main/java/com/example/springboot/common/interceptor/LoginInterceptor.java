@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     boolean filterAllRequest;
 
     @Autowired
-    Jedis jedis;
+    JedisPool jedisPool;    //要想使用spring管理的redis配置，该类必须也被spring所管理
     /**
      * 在请求被处理之前做的事情
      * @param request
@@ -37,7 +37,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("本次请求url为：" + requestURL);
 
         boolean isLogin = false;
-        if (filterAllRequest || Constants.TRUE.equals(jedis.get("filter_all_request"))) {
+        if (filterAllRequest || Constants.TRUE.equals(jedisPool.getResource().get("filter_all_request"))) {
             HttpSession session = request.getSession();
             if (session != null) {
                 //如果用户登录成功，则会把用户的sessionID和塞进session中
@@ -49,6 +49,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             if (!isLogin) {
                 response.sendRedirect("/loginPage");
             }
+        } else {
+            isLogin = true;
         }
 
         return isLogin;
@@ -63,7 +65,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws ServletException, IOException {
-        System.out.println(modelAndView);
+
     }
 
     /**

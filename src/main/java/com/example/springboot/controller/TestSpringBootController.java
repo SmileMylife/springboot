@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletOutputStream;
@@ -375,11 +376,11 @@ public class TestSpringBootController {
     }
 
     @Autowired
-    Jedis jedis;
+    JedisPool jedisPool;
     @RequestMapping(value = "/testRedis", method = RequestMethod.POST)
     @ResponseBody
     public void testRedis() {
-        jedis.set("springboot", "通过springboot添加");
-        System.out.println(jedis.get("username"));      //通过springboot获取
+        jedisPool.getResource().set("springboot", "通过springboot添加");
+        System.out.println(jedisPool.getResource().get("username"));      //通过springboot获取
     }
 }
