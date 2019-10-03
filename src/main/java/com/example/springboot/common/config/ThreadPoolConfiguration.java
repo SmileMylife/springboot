@@ -26,7 +26,7 @@ public class ThreadPoolConfiguration {
     private int keepAliveSeconds;
 
 
-    @Bean
+    @Bean("myTaskExecutor")
     public ThreadPoolTaskExecutor threadPoolCreater() {
         System.out.println("被bean注解打上的方法是不是会自动执行？必须打上@configuration才会自动执行");
         ThreadPoolTaskExecutor threadPoolExecutor = new ThreadPoolTaskExecutor();

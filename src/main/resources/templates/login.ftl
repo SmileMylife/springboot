@@ -6,6 +6,6 @@
 </head>
 <body>
     <h3>登录页面</h3>
-    <a href="/loginSqlProduct">快捷登录</a>
+    <a href="/loginSqlProduct">一键快捷登录</a>
 </body>
 </html>

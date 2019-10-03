@@ -8,6 +8,7 @@ import com.example.springboot.thread.ThreadPoolTestServiceImpl;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.*;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
@@ -320,7 +321,7 @@ public class TestSpringBootController {
     @ResponseBody
 
     public void testJson(HttpServletRequest httpServletRequest, String json) {
-        System.out.println(json);
+        System.out.println("testJson请求" + json);
     }
 
 
@@ -332,6 +333,7 @@ public class TestSpringBootController {
      * 线程池测试方法
      */
     @Autowired
+    @Qualifier("myTaskExecutor")
     private ThreadPoolTaskExecutor taskExecutor;
     @RequestMapping(value = "/testThread", method = RequestMethod.POST)
     @ResponseBody
