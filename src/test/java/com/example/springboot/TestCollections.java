@@ -14,6 +14,7 @@ import redis.clients.jedis.Jedis;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 
 /**
  * Created by ZhangPei on 2019/9/4.
@@ -43,5 +44,13 @@ public class TestCollections {
         Jedis jedis = new Jedis("127.0.0.1", 6379);
         String username = jedis.get("username");
         System.out.println(username);
+    }
+
+    @Test
+    public void test() {
+        String s = ",1,2,3,1";
+        String[] split = s.split(",");
+        System.out.println(Arrays.toString(split));
+        System.out.println(split.length);
     }
 }
