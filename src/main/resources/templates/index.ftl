@@ -79,8 +79,14 @@
             margin-right: 4px;
         }
 
+        #logout {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+        }
+
         /*以下是旋转样式*/
-        .wrap { width: 120px; height: 200px; position: fixed; top: 15px; right: 15px; display: table-cell; vertical-align: middle; text-align: center; z-index: 22; }
+        .wrap { width: 120px; height: 200px; position: fixed; top: 30px; left: 30px; display: table-cell; vertical-align: middle; text-align: center; z-index: 22; }
         .cube { width: 120px; height: 120px; margin: 0 auto; transform-style: preserve-3d; transform: rotateX(-30deg) rotateY(-80deg); animation: rotate linear 20s infinite; }
         .cube .out_front { transform: rotateY(0deg) translateZ(60px); }
         .cube div { position: absolute; width: 120px; height: 120px; ;opacity: 0.8; transition: all .4s; }
@@ -213,6 +219,7 @@
     </script>
 </head>
 <body>
+<a href="/logout" id="logout">注销</a>
 <input type="hidden" id="isError" value=${isError} />
 <h3>脚本生成工具</h3>
 <div class="form_wrap">
@@ -285,7 +292,6 @@
             </div>
             <div class="button_wrap">
                 <input class="form_input" id="submit" type="button" value="提交" />
-                <a href="/logout">注销</a>
             </div>
         </div>
     </form>

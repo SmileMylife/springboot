@@ -1,20 +1,13 @@
 package com.example.springboot;
 
 import com.example.springboot.util.SQlReplaceUtil;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
-import org.springframework.util.FileCopyUtils;
 import redis.clients.jedis.Jedis;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * Created by ZhangPei on 2019/9/4.
@@ -52,5 +45,27 @@ public class TestCollections {
         String[] split = s.split(",");
         System.out.println(Arrays.toString(split));
         System.out.println(split.length);
+    }
+
+    @Test
+    public void testCollection() {
+        Set<String> set = new HashSet<>();
+        String s = null;
+        set.add(s);
+
+        boolean empty = CollectionUtils.isEmpty(set);
+
+        System.out.println(empty);
+    }
+
+    @Test
+    public void testArraylist() {
+        List<String> list = new ArrayList<>();
+        String s = null;
+        list.add(s);
+
+        boolean empty = CollectionUtils.isEmpty(list);
+
+        System.out.println(empty);
     }
 }

@@ -2,6 +2,7 @@ package com.example.springboot.interview;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by ZhangPei on 2019/10/10.
@@ -39,5 +40,57 @@ public class TestForInterview {
         });
 
         System.out.println(list.toString());
+
+        //对象排序
+        Person person1 = new Person(23, "zhangpei1");
+        Person person2 = new Person(21, "zhangpei2");
+        Person person3 = new Person(25, "zhangpei3");
+        Person person4 = new Person(57, "zhangpei4");
+        Person person5 = new Person(23, "zhangpei5");
+        Person person6 = new Person(30, "zhangpei6");
+        Person person7 = new Person(23, "zhangpei7");
+
+        List<Person> arrayList = new ArrayList<>();
+
+        arrayList.add(person1);
+        arrayList.add(person2);
+        arrayList.add(person3);
+        arrayList.add(person4);
+        arrayList.add(person5);
+        arrayList.add(person6);
+        arrayList.add(person7);
+
+        arrayList.sort((o1, o2) -> {
+            if (o1.getAge() > o2.getAge()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        });
+        
+        System.out.println(arrayList.toString());
+    }
+}
+
+class Person {
+    private int age;
+    private String username;
+
+    public Person(int age, String username) {
+        this.age = age;
+        this.username = username;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public String toString() {
+        return this.getUsername();
     }
 }
