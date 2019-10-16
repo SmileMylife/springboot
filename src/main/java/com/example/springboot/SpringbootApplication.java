@@ -60,7 +60,7 @@ public class SpringbootApplication extends WebMvcConfigurationSupport {
      */
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/");
     }
 
     /**
