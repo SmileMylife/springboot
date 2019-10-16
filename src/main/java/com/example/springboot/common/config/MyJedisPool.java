@@ -1,10 +1,10 @@
 package com.example.springboot.common.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 /**
@@ -20,10 +20,12 @@ public class MyJedisPool {
     private int port;
 
     @Autowired
-    private JedisPoolConfig jedisPoolConfig;
+    @Qualifier("localJedisPoolConfig")
+    private redis.clients.jedis.JedisPoolConfig jedisPoolConfig;
 
     @Bean
     public JedisPool getJedisPool() {
         return new JedisPool(jedisPoolConfig, host, port);
     }
+
 }

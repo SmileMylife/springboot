@@ -68,4 +68,35 @@ public class TestCollections {
 
         System.out.println(empty);
     }
+
+    @Test
+    public void testCar() {
+        Car car = new Car("蓝色", "张佩");
+        Car car1 = new Car();
+
+        System.out.println(car1.getColor() + car1.drive);
+    }
+}
+
+class Car {
+    private static String color;
+
+    public String getColor() {
+        return Car.color;
+    }
+
+    public static String drive;
+
+    public Car() {
+        Car.color = color;
+    }
+
+    public Car(String color, String drive) {
+        this.color = color;
+        this.drive = drive;
+    }
+
+    public Car(String color) {
+        Car.color = color;
+    }
 }
