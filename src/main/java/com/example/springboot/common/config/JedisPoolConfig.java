@@ -1,5 +1,6 @@
 package com.example.springboot.common.config;
 
+import org.apache.commons.pool.impl.GenericObjectPool;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,8 +24,9 @@ public class JedisPoolConfig extends redis.clients.jedis.JedisPoolConfig {
     public redis.clients.jedis.JedisPoolConfig getJedisPoolConfig() {
         redis.clients.jedis.JedisPoolConfig jedisPoolConfig = new redis.clients.jedis.JedisPoolConfig();
         jedisPoolConfig.setMaxActive(maxTotal);
-        jedisPoolConfig.setMaxIdle(maxTotal);
-        jedisPoolConfig.setMaxWait(maxTotal);
+        jedisPoolConfig.setMaxIdle(maxIdle);
+        jedisPoolConfig.setMaxWait(_maxWait);
+        jedisPoolConfig.setWhenExhaustedAction((byte) 2);
         return jedisPoolConfig;
     }
 }

@@ -37,6 +37,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("本次请求url为：" + requestURL);
 
         boolean isLogin = false;
+        //前台页面经常性出现卡死情况，经定位为jedis未释放导致，连接池活跃连接数满了。要设置连接满之后的动作，需要设置连接池配置项的setWhenExhaustedAction
+        //这是资源耗尽的动作，当值为2时，则使用配置中传入的超时时间当做连接超时时间，否则如果不设置该参数，则默认永不超时。
         if (filterAllRequest || Constants.TRUE.equals(jedisPool.getResource().get("filter_all_request"))) {
             HttpSession session = request.getSession();
             if (session != null) {

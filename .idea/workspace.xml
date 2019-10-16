@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="64be87d7-c7ab-4e44-bbb4-37dddc4430ba" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/interview/TestForInterview.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboot/interview/TestForInterview.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/JedisPoolConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/JedisPoolConfig.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/common/interceptor/LoginInterceptor.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboot/common/interceptor/LoginInterceptor.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.ftl" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/springboot/TestCollections.java" afterPath="$PROJECT_DIR$/src/test/java/com/example/springboot/TestCollections.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,8 +46,8 @@
       <file leaf-file-name="TestCollections.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/example/springboot/TestCollections.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="44" column="38" lean-forward="false" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
+            <state relative-caret-position="512">
+              <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -56,185 +55,108 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <file leaf-file-name="LoginInterceptor.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/common/interceptor/LoginInterceptor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebMvcProperties.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/org/springframework/boot/spring-boot-autoconfigure/2.1.0.RELEASE/spring-boot-autoconfigure-2.1.0.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/web/servlet/WebMvcProperties.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="214" column="21" lean-forward="false" selection-start-line="214" selection-start-column="21" selection-end-line="214" selection-end-column="21" />
+            <state relative-caret-position="363">
+              <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
               <folding>
-                <element signature="e#5852#5853#0" expanded="true" />
-                <element signature="e#5897#5898#0" expanded="true" />
+                <element signature="e#749#772#1" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Duration.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/src.zip!/java/time/Duration.java">
+      <file leaf-file-name="GenericObjectPool.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/commons-pool/commons-pool/1.6/commons-pool-1.6.jar!/org/apache/commons/pool/impl/GenericObjectPool.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+            <state relative-caret-position="908">
+              <caret line="135" column="46" lean-forward="true" selection-start-line="135" selection-start-column="46" selection-end-line="135" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.ftl" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl">
+      <file leaf-file-name="MyJedisPool.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/MyJedisPool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="76" column="0" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SequencedHashMap.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar!/org/apache/commons/collections/SequencedHashMap.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1222">
-              <caret line="542" column="32" lean-forward="false" selection-start-line="542" selection-start-column="32" selection-end-line="542" selection-end-column="32" />
+            <state relative-caret-position="336">
+              <caret line="26" column="23" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
               <folding>
-                <marker date="1509545581000" expanded="true" signature="0:104" ph="/.../" />
-                <marker date="1509545581000" expanded="false" signature="154:658" ph="..." />
-                <marker date="1509545581000" expanded="true" signature="660:678" ph="/**...*/" />
-                <marker date="1509545581000" expanded="true" signature="1176:1332" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="1364:1479" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="1526:1652" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="1717:1855" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="1892:1939" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="2000:2083" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="2144:2305" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="2328:2339" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="2366:2372" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="2402:2413" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="2456:2462" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="2506:2517" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="2554:2560" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="2609:3123" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="3157:3304" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="3347:3358" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="3408:3414" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="3447:3458" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="3493:3499" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="3534:3545" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="3582:3588" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="3630:3641" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="3691:3697" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="3729:3740" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="3775:3781" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="3815:3826" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="3863:3869" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="3919:4341" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="4380:4492" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="4552:4805" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="4837:5067" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="5093:5243" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="5283:5527" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="5554:5565" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="5599:5605" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="5636:6083" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="6109:6891" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="6144:6884" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="6184:6203" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="6255:6269" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="6315:6444" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="6477:6496" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="6526:6540" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="6571:6590" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="6626:6640" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="6678:6697" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="6736:6750" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="6797:6816" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="6860:6874" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="6924:8452" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="6966:8445" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="7006:7025" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="7077:7091" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="7141:8003" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="8036:8055" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="8085:8099" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="8130:8149" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="8185:8199" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="8237:8256" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="8295:8309" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="8356:8375" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="8421:8435" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="8480:9944" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="8515:9937" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="8580:9069" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="9109:9128" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="9180:9194" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="9240:9508" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="9541:9560" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="9590:9604" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="9635:9654" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="9690:9704" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="9742:9761" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="9800:9814" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="9861:9880" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="9913:9927" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="10006:10201" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="10255:10774" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="10808:10819" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="10856:10862" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="10901:10912" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="10951:10957" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="10994:11305" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="11337:11348" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="11380:11386" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="11426:11437" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="11462:11468" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="11497:11720" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="11757:11768" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="11804:11810" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="11900:12112" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="12181:12424" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="12480:14273" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="12655:12845" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="12879:12894" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="12949:12959" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="12990:13753" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="13784:14267" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="14347:16459" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="14549:14620" ph="{...}" />
-                <marker date="1509545581000" expanded="false" signature="14652:14667" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="14683:14693" ph=" }" />
-                <marker date="1509545581000" expanded="false" signature="14727:14742" ph=" { " />
-                <marker date="1509545581000" expanded="false" signature="14760:14770" ph=" }" />
-                <marker date="1509545581000" expanded="true" signature="14817:14931" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="14963:15110" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="15154:16337" ph="{...}" />
-                <marker date="1509545581000" expanded="true" signature="16371:16386" ph=" { " />
-                <marker date="1509545581000" expanded="true" signature="16443:16453" ph=" }" />
+                <element signature="e#463#485#1" expanded="true" />
+                <element signature="e#524#546#1" expanded="true" />
+                <element signature="e#678#679#0" expanded="true" />
+                <element signature="e#743#744#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestForInterview.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/interview/TestForInterview.java">
+      <file leaf-file-name="JedisPool.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/redis/clients/jedis/2.1.0/jedis-2.1.0.jar!/redis/clients/jedis/JedisPool.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-592">
-              <caret line="18" column="20" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+            <state relative-caret-position="247">
+              <caret line="37" column="10" lean-forward="true" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2145#2146#0" expanded="true" />
-                <element signature="e#2171#2172#0" expanded="true" />
-                <element signature="e#2206#2207#0" expanded="true" />
-                <element signature="e#2237#2238#0" expanded="true" />
-                <element signature="e#2283#2284#0" expanded="true" />
-                <element signature="e#2324#2325#0" expanded="true" />
+                <element signature="e#501#502#0" expanded="true" />
+                <element signature="e#570#571#0" expanded="true" />
+                <element signature="e#607#608#0" expanded="true" />
+                <element signature="e#639#640#0" expanded="true" />
+                <element signature="e#867#868#0" expanded="true" />
+                <element signature="e#934#935#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Pool.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/redis/clients/jedis/2.1.0/jedis-2.1.0.jar!/redis/clients/util/Pool.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="17" column="39" lean-forward="true" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JedisPoolConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/JedisPoolConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="28" column="46" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="46" />
+              <folding>
+                <element signature="e#435#473#1" expanded="true" />
+                <element signature="e#524#560#1" expanded="true" />
+                <element signature="e#609#645#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JedisPoolConfig.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/redis/clients/jedis/2.1.0/jedis-2.1.0.jar!/redis/clients/jedis/JedisPoolConfig.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="53" column="16" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+              <folding>
+                <element signature="e#953#954#0" expanded="true" />
+                <element signature="e#988#989#0" expanded="true" />
+                <element signature="e#1032#1033#0" expanded="true" />
+                <element signature="e#1070#1071#0" expanded="true" />
+                <element signature="e#1229#1230#0" expanded="true" />
+                <element signature="e#1291#1292#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StringBuilder.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/src.zip!/java/lang/StringBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="101">
+              <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+              <folding>
+                <element signature="e#4211#4212#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -254,17 +176,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dbKey</find>
-      <find>biz_cn</find>
-      <find>threadPoolTaskExecutor</find>
-      <find>ThreadPoolTaskExecutor</find>
-      <find>paramsArr</find>
-      <find>version</find>
-      <find>WebMvcConfigurationSupport</find>
-      <find>cube</find>
-      <find>/login</find>
-      <find>login</find>
-      <find>loginpage</find>
       <find>iserror</find>
       <find>close</find>
       <find>controller</find>
@@ -284,6 +195,17 @@
       <find>注销</find>
       <find>wrap</find>
       <find>spring.mvc.async.request-timeout</find>
+      <find>queryAllProv</find>
+      <find>本次请求url为</find>
+      <find>_max_wait</find>
+      <find>DEFAULT_MAX_WAIT</find>
+      <find>GenericObjectPool</find>
+      <find>poolConfig</find>
+      <find>_maxwa</find>
+      <find>_max</find>
+      <find>maxwait</find>
+      <find>_maxwait</find>
+      <find>_maxWait</find>
     </findStrings>
     <replaceStrings>
       <replace>String</replace>
@@ -349,9 +271,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/JedisConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/MyJedisConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/MyJedisPoolConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/MyJedisPool.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/JedisPoolConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/common/interceptor/LoginInterceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/controller/SqlProductController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/login.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/SpringbootApplication.java" />
@@ -360,8 +279,11 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/interview/TestForInterview.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/example/springboot/TestCollections.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/MyJedisPool.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/JedisPoolConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/springboot/common/interceptor/LoginInterceptor.java" />
       </list>
     </option>
   </component>
@@ -598,11 +520,11 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth0" value="15" />
     <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="15" />
     <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth2" value="75" />
+    <property name="RequestMappingsPanelWidth2" value="15" />
     <property name="RequestMappingsPanelOrder2" value="2" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="false" />
@@ -1152,14 +1074,7 @@
       <workItem from="1570859570504" duration="1734000" />
       <workItem from="1571055955100" duration="1217000" />
       <workItem from="1571138169842" duration="5580000" />
-      <workItem from="1571189990804" duration="3556000" />
-    </task>
-    <task id="LOCAL-00014" summary="提交垃圾文件">
-      <created>1543825509839</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1543825509839</updated>
+      <workItem from="1571189990804" duration="7041000" />
     </task>
     <task id="LOCAL-00015" summary="单元测试提交">
       <created>1546141814294</created>
@@ -1497,7 +1412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571141396491</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="排序方法使用及前台页面更改">
+      <created>1571196510143</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1571196510145</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1533,7 +1455,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="569862000" />
+    <option name="totallyTimeSpent" value="573347000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1558,7 +1480,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962853" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3933589" sideWeight="0.48214287" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42784163" sideWeight="0.48214287" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822478" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1575,6 +1497,7 @@
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28645834" sideWeight="0.50763357" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1586,7 +1509,6 @@
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.49702382" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1604,7 +1526,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962853" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3933589" sideWeight="0.48214287" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5798212" sideWeight="0.48214287" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Setup Guide" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822478" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1620,7 +1542,7 @@
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.4955357" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40327382" sideWeight="0.4923664" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40327382" sideWeight="0.4923664" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886904" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -1674,7 +1596,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="时间格式替换" />
     <MESSAGE value="新增sql替换及转置工具" />
     <MESSAGE value="新增了测试类" />
     <MESSAGE value="测试服务器间的文件传输" />
@@ -1699,7 +1620,8 @@
     <MESSAGE value="登录和退出实现" />
     <MESSAGE value="解决多个线程池bean注入问题" />
     <MESSAGE value="比较器的使用" />
-    <option name="LAST_COMMIT_MESSAGE" value="比较器的使用" />
+    <MESSAGE value="排序方法使用及前台页面更改" />
+    <option name="LAST_COMMIT_MESSAGE" value="排序方法使用及前台页面更改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1762,7 +1684,7 @@
       <breakpoints-defaults>
         <breakpoint suspend="THREAD" type="java-line" />
       </breakpoints-defaults>
-      <option name="time" value="249" />
+      <option name="time" value="254" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1772,6 +1694,11 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>jedisPool.getResource();</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>rangeCheck(a.length, fromIndex, toIndex);</expression-string>
         <language-id>JAVA</language-id>
@@ -1857,20 +1784,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/controller/PageBreakController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="12" column="34" lean-forward="false" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/org/apache/tomcat/embed/tomcat-embed-core/9.0.12/tomcat-embed-core-9.0.12-sources.jar!/javax/servlet/http/HttpServletRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/redis/clients/jedis/2.1.0/jedis-2.1.0.jar!/redis/clients/jedis/Connection.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
@@ -1906,13 +1819,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/redis/clients/jedis/2.1.0/jedis-2.1.0.jar!/redis/clients/jedis/JedisPool.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/org/springframework/boot/spring-boot/2.1.0.RELEASE/spring-boot-2.1.0.RELEASE-sources.jar!/org/springframework/boot/context/properties/ConfigurationProperties.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -1941,27 +1847,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/redis/clients/jedis/2.1.0/jedis-2.1.0.jar!/redis/clients/jedis/JedisPoolConfig.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="42" column="23" lean-forward="false" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/commons-pool/commons-pool/1.6/commons-pool-1.6.jar!/org/apache/commons/pool/impl/GenericObjectPool.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13456">
-          <caret line="903" column="34" lean-forward="false" selection-start-line="903" selection-start-column="34" selection-end-line="903" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/MyJedisPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/org/springframework/spring-webmvc/5.1.2.RELEASE/spring-webmvc-5.1.2.RELEASE-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -1983,13 +1868,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/JedisPoolConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/org/springframework/spring-web/5.1.2.RELEASE/spring-web-5.1.2.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -2008,13 +1886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="7" column="17" lean-forward="true" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/controller/SqlProductController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="95" column="45" lean-forward="false" selection-start-line="95" selection-start-column="45" selection-end-line="95" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -2075,13 +1946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="26" column="14" lean-forward="true" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/common/interceptor/LoginInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -2196,13 +2060,13 @@
         <state relative-caret-position="-592">
           <caret line="18" column="20" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2145#2146#0" expanded="true" />
-            <element signature="e#2171#2172#0" expanded="true" />
-            <element signature="e#2206#2207#0" expanded="true" />
-            <element signature="e#2237#2238#0" expanded="true" />
-            <element signature="e#2283#2284#0" expanded="true" />
-            <element signature="e#2324#2325#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2145#2146#0" expanded="false" />
+            <element signature="e#2171#2172#0" expanded="false" />
+            <element signature="e#2206#2207#0" expanded="false" />
+            <element signature="e#2237#2238#0" expanded="false" />
+            <element signature="e#2283#2284#0" expanded="false" />
+            <element signature="e#2324#2325#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2328,23 +2192,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/example/springboot/TestCollections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="44" column="38" lean-forward="false" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/org/springframework/boot/spring-boot-autoconfigure/2.1.0.RELEASE/spring-boot-autoconfigure-2.1.0.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/web/servlet/WebMvcProperties.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
           <caret line="214" column="21" lean-forward="false" selection-start-line="214" selection-start-column="21" selection-end-line="214" selection-end-column="21" />
           <folding>
-            <element signature="e#5852#5853#0" expanded="true" />
-            <element signature="e#5897#5898#0" expanded="true" />
+            <element signature="e#5852#5853#0" expanded="false" />
+            <element signature="e#5897#5898#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2357,19 +2211,128 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="418">
+          <caret line="65" column="25" lean-forward="true" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="76" column="0" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+        <state relative-caret-position="630">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/src.zip!/java/lang/StringBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+          <folding>
+            <element signature="e#4211#4212#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/controller/SqlProductController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/example/springboot/TestCollections.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/MyJedisPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="26" column="23" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding>
+            <element signature="e#463#485#1" expanded="true" />
+            <element signature="e#524#546#1" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#743#744#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/redis/clients/jedis/2.1.0/jedis-2.1.0.jar!/redis/clients/jedis/JedisPool.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="37" column="10" lean-forward="true" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <folding>
+            <element signature="e#501#502#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#607#608#0" expanded="true" />
+            <element signature="e#639#640#0" expanded="true" />
+            <element signature="e#867#868#0" expanded="true" />
+            <element signature="e#934#935#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/redis/clients/jedis/2.1.0/jedis-2.1.0.jar!/redis/clients/util/Pool.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="17" column="39" lean-forward="true" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/redis/clients/jedis/2.1.0/jedis-2.1.0.jar!/redis/clients/jedis/JedisPoolConfig.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="53" column="16" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+          <folding>
+            <element signature="e#953#954#0" expanded="true" />
+            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1070#1071#0" expanded="true" />
+            <element signature="e#1229#1230#0" expanded="true" />
+            <element signature="e#1291#1292#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Desktop/javaDevlopmentSoftware/Myrepository/commons-pool/commons-pool/1.6/commons-pool-1.6.jar!/org/apache/commons/pool/impl/GenericObjectPool.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="908">
+          <caret line="135" column="46" lean-forward="true" selection-start-line="135" selection-start-column="46" selection-end-line="135" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/JedisPoolConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="28" column="46" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="46" />
+          <folding>
+            <element signature="e#435#473#1" expanded="true" />
+            <element signature="e#524#560#1" expanded="true" />
+            <element signature="e#609#645#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboot/common/interceptor/LoginInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+          <folding>
+            <element signature="e#749#772#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
