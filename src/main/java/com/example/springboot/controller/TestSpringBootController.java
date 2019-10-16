@@ -182,6 +182,7 @@ public class TestSpringBootController {
 
     /**
      * 查询员工信息，测试table组件使用
+     *
      * @param inputObject
      * @param outputObject
      * @return
@@ -231,7 +232,6 @@ public class TestSpringBootController {
         outputStream.close();
 
 
-
         //方法二
 
         /*File file = new File(this.getClass().getResource("/").getPath() + "/" + "files/" + fileName);
@@ -259,6 +259,7 @@ public class TestSpringBootController {
 
     /**
      * 测试springboot自定义异常页面
+     *
      * @throws Exception
      */
     @RequestMapping(value = "/testWhitePage", method = RequestMethod.GET)
@@ -268,6 +269,7 @@ public class TestSpringBootController {
 
     /**
      * 测试文件在服务器间的传输
+     *
      * @throws IOException
      */
     @RequestMapping("/tesPicDownload")
@@ -303,6 +305,7 @@ public class TestSpringBootController {
 
     /**
      * 测试异步方法抛异常是否会影响正常方法，答案是不会
+     *
      * @throws Exception
      */
     @RequestMapping(value = "testAsync", method = RequestMethod.POST)
@@ -335,6 +338,7 @@ public class TestSpringBootController {
     @Autowired
     @Qualifier("myTaskExecutor")
     private ThreadPoolTaskExecutor taskExecutor;
+
     @RequestMapping(value = "/testThread", method = RequestMethod.POST)
     @ResponseBody
     public void testThread() throws InterruptedException {
@@ -379,6 +383,7 @@ public class TestSpringBootController {
 
     @Autowired
     JedisPool jedisPool;
+
     @RequestMapping(value = "/testRedis", method = RequestMethod.POST)
     @ResponseBody
     public void testRedis() {

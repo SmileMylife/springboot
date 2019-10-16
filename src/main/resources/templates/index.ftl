@@ -7,6 +7,7 @@
         html {
             font: "Menlo, 微软雅黑";
             font-size: 16px;
+            background: url("../static/wangxiaochen.jpg");
         }
 
         .form_wrap {
@@ -47,7 +48,7 @@
             overflow: hidden;
         }
 
-        h3 {
+        h2 {
             text-align: center;
         }
 
@@ -221,9 +222,9 @@
 <body>
 <a href="/logout" id="logout">注销</a>
 <input type="hidden" id="isError" value=${isError} />
-<h3>脚本生成工具</h3>
+<h2>脚本生成工具</h2>
 <div class="form_wrap">
-    <div class="wrap">
+    <#--<div class="wrap">
         <div class="cube">
             <div class="out_front"><img src="../static/wangxiaochen.jpg" class="pic"></div>
             <div class="out_back"><img src="../static/wangxiaochen.jpg" class="pic"></div>
@@ -233,7 +234,7 @@
             <div class="out_bottom"><img src="../static/wangxiaochen.jpg" class="pic">
             </div>
         </div>
-    </div>
+    </div>-->
     <form id="productSql">
         <div>
             <div class="form_ele_wrap">
