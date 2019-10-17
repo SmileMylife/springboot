@@ -6,9 +6,11 @@ import com.example.springboot.common.annotations.InputObject;
 import com.example.springboot.common.bean.OutputObject;
 import com.example.springboot.service.ISqlProductService;
 import com.example.springboot.util.Constants;
+import com.example.springboot.util.QRCodeUtils;
 import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,7 +21,11 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * Created by ZhangPei on 2019/5/28.
@@ -102,7 +108,7 @@ public class SqlProductController {
     }
 
     /**
-     * 登录逻辑验证
+     * 登录逻辑验证，需要兼容二维码扫描登录
      * @param inputObject
      * @param outputObject
      * @param request
@@ -120,6 +126,11 @@ public class SqlProductController {
         return loginModelAndView;
     }
 
+    /**
+     * 注销
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ModelAndView distroySession(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -127,5 +138,22 @@ public class SqlProductController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
+    }
+
+
+    /**
+     * 刷新二维码
+     * @param inputObject
+     * @param outputObject
+     */
+    @RequestMapping(value = "/refreshQRcode", method = RequestMethod.GET)
+    public void refreshQRcode(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject, HttpServletResponse response) throws Exception {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        UUID uuid = UUID.randomUUID();
+        QRCodeUtils.encode("http://172.18.255.19:8080/loginSqlProduct?uuid=" + uuid.toString(), byteArrayOutputStream);
+        response.setContentType("image/png");
+        ServletOutputStream outputStream = response.getOutputStream();
+        outputStream.write(byteArrayOutputStream.toByteArray());
+        byteArrayOutputStream.close();
     }
 }
