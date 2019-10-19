@@ -70,6 +70,6 @@ public class SpringbootApplication extends WebMvcConfigurationSupport {
      */
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor).excludePathPatterns("/loginPage").excludePathPatterns("/loginSqlProduct").addPathPatterns("/*");     //请求登录页面不做拦截
+        registry.addInterceptor(loginInterceptor).excludePathPatterns("/loginPage").excludePathPatterns("/loginSqlProduct").excludePathPatterns("/refreshQRcode").excludePathPatterns("/error").addPathPatterns("/*");     //请求登录页面不做拦截
     }
 }

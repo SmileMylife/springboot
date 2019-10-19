@@ -284,7 +284,7 @@
                 <input class="form_input" type="text" name="connUsername" placeholder="请输入中文姓名"/>
             </div>
             <div class="form_ele_wrap">
-                <label for="connUsername">操作数量</label>
+                <label for="opCount">操作数量</label>
                 <input class="form_input" type="text" name="opCount" placeholder="请输入操作数量"/>
             </div>
             <div class="form_ele_wrap">

@@ -114,7 +114,7 @@ public class SqlProductController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/loginSqlProduct", method = RequestMethod.GET)
+    @RequestMapping(value = "/loginSqlProduct")
     public ModelAndView login(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject, HttpServletRequest request) {
         ModelAndView loginModelAndView = new ModelAndView();
         loginModelAndView.setViewName("index");

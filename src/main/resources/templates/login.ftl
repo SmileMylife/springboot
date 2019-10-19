@@ -10,12 +10,25 @@
             $("#refreshQRcode").click(function() {
                 $("#QRcode").attr("src", "/refreshQRcode?" + Math.random());
             });
+            /*$("#quikLogin").click(function() {
+                //快捷登录，ajax响应是文本，不能用这种
+                $.ajax("/loginSqlProduct", {
+                    type: "post",
+                    data: {username: "zhangpei", password: "123"},
+                    success: function(data, status) {
+                        console.log("请求成功响应：", data);
+                    },
+                    error: function() {
+                        alert("一键登录失败！");
+                    }
+                })
+            })*/
         })
     </script>
 </head>
 <body>
     <h3>登录页面</h3>
-    <a href="/loginSqlProduct">一键快捷登录</a>
+    <a href="/loginSqlProduct" id="quikLogin">一键快捷登录</a>
     <img src="/refreshQRcode" id="QRcode" />
     <button id="refreshQRcode">刷新二维码</button>
 </body>
