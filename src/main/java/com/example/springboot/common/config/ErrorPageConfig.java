@@ -15,8 +15,8 @@ public class ErrorPageConfig implements ErrorPageRegistrar {
     @Override
     public void registerErrorPages(ErrorPageRegistry registry) {
         ErrorPage[] errorPages = new ErrorPage[2];
-        errorPages[0] = new ErrorPage(HttpStatus.NOT_FOUND, "/static/404/404.html");
-        errorPages[1] = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
+        errorPages[0] = new ErrorPage(HttpStatus.NOT_FOUND, "/templates/error/404.html");
+        errorPages[1] = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/templates/error/error.ftl");
 
         registry.addErrorPages(errorPages);
     }

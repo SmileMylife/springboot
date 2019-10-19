@@ -23,7 +23,7 @@ public class ExceptionHandleController {
     public ModelAndView handleException(HttpServletRequest request, Exception e) {
         System.out.println("程序发生异常，异常原因：" + e.toString());
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/error/comError");
+        modelAndView.setViewName("/error/error");
         modelAndView.addObject("errorDesc", e.toString());
         return modelAndView;
     }

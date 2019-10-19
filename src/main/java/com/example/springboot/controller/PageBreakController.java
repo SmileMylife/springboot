@@ -5,12 +5,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 页面跳转控制器
  * Created by ZhangPei on 2019/5/28.
  */
 @Controller
-public class PageBreakController {
+public class PageBreakController extends BaseControllerServceImpl {
 
     /**
      * 去首页
@@ -19,14 +21,23 @@ public class PageBreakController {
      */
     //跳转至首页
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView toIndex(String isError) {
+    public ModelAndView toIndex(String isError, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
-        if ("true".equals(isError)) {
-            //如果是错误页面中跳转过来的则需要告知页面回填数据
-            modelAndView.addObject("isError", "true");
-        } else {
-            modelAndView.addObject("isError", "");
+        String sessionId = request.getSession().getId();
+        Object loginFlag = request.getSession().getAttribute(sessionId); //登录状态
+
+        modelAndView.setViewName("login");
+        if (loginFlag instanceof Boolean) {
+            boolean loginFlagResult = (boolean) loginFlag;
+            if (loginFlagResult) {
+                modelAndView.setViewName("index");
+                if ("true".equals(isError)) {
+                    //如果是错误页面中跳转过来的则需要告知页面回填数据
+                    modelAndView.addObject("isError", "true");
+                } else {
+                    modelAndView.addObject("isError", "");
+                }
+            }
         }
         return modelAndView;
     }
