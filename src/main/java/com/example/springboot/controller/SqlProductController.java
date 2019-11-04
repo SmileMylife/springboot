@@ -122,9 +122,7 @@ public class SqlProductController {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(60*3);     //60秒过期
         session.setAttribute(request.getSession().getId(), true);
-
-        throw new RuntimeException("ceshi");
-//        return loginModelAndView;
+        return loginModelAndView;
     }
 
     /**

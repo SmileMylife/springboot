@@ -1,12 +1,16 @@
 package com.example.springboot;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.example.springboot.util.SQlReplaceUtil;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -75,6 +79,66 @@ public class TestCollections {
         Car car1 = new Car();
 
         System.out.println(car1.getColor() + car1.drive);
+    }
+
+    @Test
+    public void testProductSql() throws IOException {
+//        String sql = "SELECT * FROM t_sr_task_info WHERE PROV_NM like '%?%' ORDER BY publish_route;";
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("/Users/smile_mylife/Desktop/省份简称.txt")));
+        String already = "北京,天津,河北,黑龙江,辽宁,吉林,陕西,宁夏,新疆,云南,四川,重庆,湖北,江苏,福建,广西,贵州,海南";
+        String str = "";
+        while ((str = bufferedReader.readLine()) != null) {
+            if (!already.contains(str)) {
+                System.out.print(str + ",");
+            }
+        }
+        bufferedReader.close();
+    }
+
+    @Test
+    public void testCpu() {
+        while (true) {
+            System.out.println("测试cput系统");
+        }
+    }
+
+    @Test
+    public void testSub() {
+        String s = "测试你是:a,a,a";
+        String result = s.substring(5);
+
+        System.out.println(result);
+
+    }
+
+    @Test
+    public void testSet() {
+        Map<String, Object> map1 = new HashMap<>();
+        map1.put("username", "zhangpei");
+        map1.put("password", "123");
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("username", "zhangpei");
+        map2.put("password", "123");
+
+        Set<Map<String, Object>> set = new HashSet<>();
+        set.add(map1);
+        set.add(map2);
+
+        System.out.println(map1.equals(map2));
+        System.out.println(set.toString());
+
+    }
+
+    @Test
+    public void testJson() {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("username", null);
+        map.put("password", "zhangpei");
+        String s = JSON.toJSONString(map, SerializerFeature.WriteMapNullValue);
+
+        Map result = JSON.parseObject(s, Map.class);
+        String username = MapUtils.getString(result, "username");
+        System.out.println(username);
     }
 }
 
