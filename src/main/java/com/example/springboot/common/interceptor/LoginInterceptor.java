@@ -2,6 +2,8 @@ package com.example.springboot.common.interceptor;
 
 import com.example.springboot.util.Constants;
 import com.example.springboot.util.JedisUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,8 @@ import java.io.IOException;
  */
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
+    private static Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
+
     @Value("${filter_all_request}")
     boolean filterAllRequest;
 
@@ -38,10 +42,16 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("本次请求url为：" + requestURL);
 
         boolean isLogin = false;
+        String filterRequestByRedis = "";
+        try {
+            filterRequestByRedis = JedisUtil.getValByKey("filter_all_request");
+        } catch (Exception e) {
+            logger.info("连接redis服务器异常！");
+        }
         //前台页面经常性出现卡死情况，经定位为jedis未释放导致，连接池活跃连接数满了。要设置连接满之后的动作，需要设置连接池配置项的setWhenExhaustedAction
         //这是资源耗尽的动作，当值为2时，则使用配置中传入的超时时间当做连接超时时间，否则如果不设置该参数，则默认永不超时。
 //        Jedis resource = jedisPool.getResource();
-        if (filterAllRequest || Constants.TRUE.equals(JedisUtil.getValByKey("filter_all_request"))) {
+        if (filterAllRequest || Constants.TRUE.equals(filterRequestByRedis)) {
 //            jedisPool.returnResource(resource);
             HttpSession session = request.getSession();
             if (session != null) {

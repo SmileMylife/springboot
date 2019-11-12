@@ -16,6 +16,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,12 +57,13 @@ public class SqlProductServiceImpl implements ISqlProductService {
         String isRollback = MapUtils.getString(params, "isRollback");
         String rollbackSql = MapUtils.getString(params, "rollbackSql");
         String isBackup = MapUtils.getString(params, "isBackup");
+        String provNmMulti = MapUtils.getString(params, "provNmMulti");
 
         if (Constants.YES.equals(isBackup) && Constants.YES.equals(isRollback)) {
             throw new Exception("update脚本不能同时既为备份脚本又为回滚脚本！");
         }
 
-        if (StringUtils.isBlank(provNm)
+        if (StringUtils.isBlank(provNmMulti)
                 || StringUtils.isBlank(connPhone)
                 || StringUtils.isBlank(connUsername)
                 || StringUtils.isBlank(opCount)
@@ -77,11 +79,22 @@ public class SqlProductServiceImpl implements ISqlProductService {
         }*/
 
         //查询数据库数据，生成文件
+        String[] split = provNmMulti.split(",");
         Map<String, Object> map = new HashMap();
+        List<HashMap<String, Object>> results = new ArrayList<>();
+
         if (!"全省".equals(provNm)) {
-            map.put("provNm", MapUtils.getString(params, "provNm"));
+            for (int i = 0; i < split.length; i++) {
+                if ("全省".equals(split[i])) {
+                    continue;
+                }
+                map.put("provNm", MapUtils.getString(params, "provNm"));
+                List<HashMap<String, Object>> provResult = iTestSpringBootDao.selectDbInfos(map);//查询数据库信息
+                results.addAll(provResult);
+            }
         }
-        List<HashMap<String, Object>> results = iTestSpringBootDao.selectDbInfos(map);  //查询数据库信息
+
+        results = iTestSpringBootDao.selectDbInfos(map);  //查询数据库信息
 
         //创建临时文件夹
         String dirPath = this.getClass().getResource("/sqlfiles").getPath() + "/" + connUsername + System.currentTimeMillis();
@@ -91,7 +104,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
         //将脚本内容输入至相应文件夹
         for (int i = 0; i < results.size(); i++) {
             HashMap<String, Object> result = results.get(i);
-            if ("ngwf接口机".equals(MapUtils.getString(result, "provNm"))) {
+            if ("ngwf接口机".equals(MapUtils.getString(result, "provNm")) && "全省".equals(provNm)) {
                 continue;
             }
 

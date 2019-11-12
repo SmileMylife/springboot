@@ -12,7 +12,7 @@
 
         .form_wrap {
             width: 400px;
-            margin: 0 auto;
+            margin: 0px 0px 0px 100px;
             padding: 20px;
             border: 1px solid black;
             border-radius: 5px;
@@ -42,6 +42,19 @@
             border: 1px solid black;
             border-radius: 3px;
         }
+        #add {
+            float: right;
+            border-radius: 3px;
+            border: none;
+            outline: none;
+            border: 1px solid black;
+        }
+
+        #add:hover {
+            cursor: pointer;
+            background-color: rgb(238, 240, 244);
+        }
+
 
         .form_ele_wrap {
             margin-top: 20px;
@@ -190,13 +203,25 @@
 
             //是否生成回滚脚本
             $("select[name='operation']").change(function() {
-                if($("select[name='operation']").val() == "UPDATE") {
+                if($("select[name='operation']").val() == "UPDATE"
+                        || $("select[name='operation']").val() == "DELETE") {
                     $("#isBackup").css("display", "block");
                 } else {
                     $("#isBackup").css("display", "none");
                 }
                 $("#isBackup").val("0");
             });
+
+            var intputVal = "";
+
+            //点击添加
+            $("#add").click(function(){
+                var inputVal = $("#provNmMulti").val();
+                if (inputVal.indexOf($("#provNm").val()) != -1 || $("#provNm").val() == "") {
+                    return;
+                }
+                $("#provNmMulti").val(inputVal + $("#provNm").val() + ",");
+            })
 
             /*//是否回滚改变时控制回滚脚本内容的显示
             $("select[name='isRollback']").change(function() {
@@ -265,8 +290,14 @@
 
             <div class="form_ele_wrap">
                 <label for="provNm">省份名称</label>
+                <button type="button" id="add">add</button>
                 <select name="provNm" id="provNm"></select>
             </div>
+
+            <div class="form_ele_wrap">
+                <input id="provNmMulti" type="text" name="provNmMulti" style="width: 300px;" readonly />
+            </div>
+
             <div class="form_ele_wrap">
                 <label for="username">姓名拼音</label>
                 <input class="form_input" type="text" name="username" placeholder="请输入姓名拼音"/>

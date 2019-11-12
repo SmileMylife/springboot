@@ -5,6 +5,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.example.springboot.util.SQlReplaceUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
@@ -139,6 +140,28 @@ public class TestCollections {
         Map result = JSON.parseObject(s, Map.class);
         String username = MapUtils.getString(result, "username");
         System.out.println(username);
+    }
+
+    @Test
+    public void testColl() {
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.add("1");
+        objects.add("2");
+       objects.add("3");
+        objects.add("4");
+        List<Object> objects1 = objects.subList(1, 4);
+        System.out.println(objects1);
+    }
+
+    @Test
+    public void testJoin() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("28");
+        list.add("21");
+
+        String join = StringUtils.join(list, ",");
+
+        System.out.println(join);
     }
 }
 

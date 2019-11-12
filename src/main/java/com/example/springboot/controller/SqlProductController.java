@@ -8,6 +8,7 @@ import com.example.springboot.service.ISqlProductService;
 import com.example.springboot.util.Constants;
 import com.example.springboot.util.QRCodeUtils;
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
