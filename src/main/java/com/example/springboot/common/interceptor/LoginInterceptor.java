@@ -92,6 +92,6 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-
+        response.setHeader("Cache-Control", "no-cache");    //所有页面均不缓存
     }
 }

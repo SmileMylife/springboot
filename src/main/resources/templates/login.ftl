@@ -28,7 +28,7 @@
 </head>
 <body>
     <h3>登录页面</h3>
-    <a href="/loginSqlProduct" id="quikLogin">一键快捷登录</a>
+    <a href="/loginSqlProduct?username=root&password=root" id="quikLogin">一键快捷登录</a>
     <img src="/refreshQRcode" id="QRcode" />
     <button id="refreshQRcode">刷新二维码</button>
 </body>

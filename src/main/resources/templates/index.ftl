@@ -11,12 +11,13 @@
         }
 
         .form_wrap {
-            width: 400px;
-            margin: 0px 0px 0px 100px;
+            width: 430px;
+            margin: 20px 0px 0px 90px;
             padding: 20px;
             border: 1px solid black;
             border-radius: 5px;
             background-color: rgb(238, 240, 244);
+            opacity: 0.7;
         }
 
         .button_wrap {
@@ -47,11 +48,13 @@
             border-radius: 3px;
             border: none;
             outline: none;
+            background-color: buttonface;
             border: 1px solid black;
         }
 
         #add:hover {
             cursor: pointer;
+            opacity: 0.9;
             background-color: rgb(238, 240, 244);
         }
 
@@ -63,6 +66,7 @@
 
         h2 {
             text-align: center;
+            margin-top: 0px;
         }
 
         textarea {
@@ -73,6 +77,7 @@
             display: block;
             margin: 20px auto;
             resize: none;
+            border: 1px solid black;
         }
 
         #submit {
@@ -159,6 +164,9 @@
 
                 for(var j = 0; j < data.length; j++) {
                     getStr += (data[j].name + "=" + data[j].value + "&");
+                    if (data[j].name == "provNmMulti" && $("#provNm").val() == "全省") {
+                        continue;
+                    }
                     if(data[j].value == null || data[j].value == undefined || data[j].value == "") {
                         alert("请完整填写表单!");
                         return;
@@ -175,7 +183,6 @@
 
             //加载完毕，如果是错误页面跳转过来，需要回填数据
             if($("#isError").val() === "true") {
-                debugger;
                 var currentPeople = localStorage.getItem("currentPeople");
                 if(currentPeople) {
                     //回填页面数据
@@ -247,7 +254,6 @@
 <body>
 <a href="/logout" id="logout">注销</a>
 <input type="hidden" id="isError" value=${isError} />
-<h2>脚本生成工具</h2>
 <div class="form_wrap">
     <#--<div class="wrap">
         <div class="cube">
@@ -260,6 +266,7 @@
             </div>
         </div>
     </div>-->
+    <h2>脚本生成工具</h2>
     <form id="productSql">
         <div>
             <div class="form_ele_wrap">
@@ -290,7 +297,7 @@
 
             <div class="form_ele_wrap">
                 <label for="provNm">省份名称</label>
-                <button type="button" id="add">add</button>
+                <button type="button" id="add" style="margin-left: 10px;">add</button>
                 <select name="provNm" id="provNm"></select>
             </div>
 
@@ -322,6 +329,9 @@
                 <label for="connPhone">联系电话</label>
                 <input class="form_input" type="text" name="connPhone" placeholder="请输入联系电话"/>
             </div>
+            <#--<div style="text-align: left; font-size: 10px; margin-top: 10px;">
+                <input type="checkbox" name="isZip"/>是否生成压缩脚本？
+            </div>-->
             <div class="button_wrap">
                 <input class="form_input" id="submit" type="button" value="提交" />
             </div>
@@ -330,7 +340,7 @@
 </div>
 <div class="sql_wrap">
     <h4 style="text-align: center">请输入sql语句</h4>
-    <textarea id="sql" name="sql"></textarea>
+    <textarea id="sql" name="sql" style="opacity: 0.5"></textarea>
 </div>
 
 

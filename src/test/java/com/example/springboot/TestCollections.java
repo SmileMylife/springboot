@@ -12,6 +12,8 @@ import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -162,6 +164,61 @@ public class TestCollections {
         String join = StringUtils.join(list, ",");
 
         System.out.println(join);
+    }
+
+    @Test
+    public void productSql() throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String s = "2019-01-01 00:00:00";
+        Date parse = simpleDateFormat.parse(s);
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(parse);
+
+        String tempYearMonth = "";
+
+        while (true) {
+            String format = simpleDateFormat.format(instance.getTime());
+            String yearMonth = format.substring(0, 10);
+            String tableName = format.replace("-", "").substring(0, 6);
+            if (!tableName.equals(tempYearMonth)) {
+                System.out.println("-- " + (instance.get(Calendar.MONTH) + 1) + "月份");
+                System.out.println();
+            }
+
+            tempYearMonth = format.replace("-", "").substring(0, 6);
+
+//            String sql = "DELETE FROM t_sr_mq_info_h_" + tableName + " WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59' AND dsps_sts_cd IN('1', '3', '4', '2') AND id > 0;";
+//            String sql = "INSERT INTO t_sr_mq_info_h_" + tableName + " SELECT * FROM t_sr_mq_info WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59" + "' AND dsps_sts_cd IN('1', '3', '4', '2');";
+
+
+            //回滚
+//            String sql = "INSERT INTO t_sr_mq_info SELECT * FROM zxdba_bak.zxdba_20191114_t_sr_mq_info_zp_gx WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59' AND dsps_sts_cd IN('1', '3', '4', '2');";
+            //备份
+            String sql = "INSERT INTO zxdba_bak.zxdba_20191114_t_sr_mq_info_zp_gx SELECT * FROM t_sr_mq_info WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59' AND dsps_sts_cd IN('1', '3', '4', '2');";
+
+            instance.add(Calendar.DAY_OF_MONTH, 1);
+
+            System.out.println(sql);
+            System.out.println();
+
+            if (instance.get(Calendar.MONTH) == 10) {
+                break;
+            }
+        }
+    }
+
+    @Test
+    public void testFor() {
+        for (int i = 0; i < 100; i++) {
+            try {
+                if (i == 50) {
+                    throw new Exception("ceshi");
+                }
+            } catch (Exception e) {
+                continue;
+            }
+            System.out.println("第" + i + "次循环");
+        }
     }
 }
 

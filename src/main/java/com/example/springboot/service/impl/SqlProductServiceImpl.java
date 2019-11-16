@@ -63,8 +63,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
             throw new Exception("update脚本不能同时既为备份脚本又为回滚脚本！");
         }
 
-        if (StringUtils.isBlank(provNmMulti)
-                || StringUtils.isBlank(connPhone)
+        if (StringUtils.isBlank(connPhone)
                 || StringUtils.isBlank(connUsername)
                 || StringUtils.isBlank(opCount)
                 || StringUtils.isBlank(time)
@@ -88,13 +87,13 @@ public class SqlProductServiceImpl implements ISqlProductService {
                 if ("全省".equals(split[i])) {
                     continue;
                 }
-                map.put("provNm", MapUtils.getString(params, "provNm"));
+                map.put("provNm", split[i]);
                 List<HashMap<String, Object>> provResult = iTestSpringBootDao.selectDbInfos(map);//查询数据库信息
                 results.addAll(provResult);
             }
+        } else {
+            results = iTestSpringBootDao.selectDbInfos(map);  //查询数据库信息
         }
-
-        results = iTestSpringBootDao.selectDbInfos(map);  //查询数据库信息
 
         //创建临时文件夹
         String dirPath = this.getClass().getResource("/sqlfiles").getPath() + "/" + connUsername + System.currentTimeMillis();

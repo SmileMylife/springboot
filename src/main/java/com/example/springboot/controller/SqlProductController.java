@@ -117,8 +117,16 @@ public class SqlProductController {
      */
     @RequestMapping(value = "/loginSqlProduct")
     public ModelAndView login(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject, HttpServletRequest request) {
+        String username = MapUtils.getString(inputObject.getParams(), "username");
+        String password = MapUtils.getString(inputObject.getParams(), "password");
+
         ModelAndView loginModelAndView = new ModelAndView();
-        loginModelAndView.setViewName("index");
+        if(StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
+            loginModelAndView.setViewName("login");
+            return loginModelAndView;
+        } else if ("root".equals(username)) {
+            loginModelAndView.setViewName("index");
+        }
         loginModelAndView.addObject("isError", "false");
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(60*3);     //60秒过期
