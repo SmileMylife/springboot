@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Base64;
 
 /**
  * 页面跳转控制器
@@ -58,6 +59,17 @@ public class PageBreakController extends BaseControllerServceImpl {
     public ModelAndView tologinPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
+    /**
+     * 前往图文识别页面
+     * @return
+     */
+    @RequestMapping(value = "/toOcr", method = RequestMethod.GET)
+    public ModelAndView toOcr() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("ocr");
         return modelAndView;
     }
 }

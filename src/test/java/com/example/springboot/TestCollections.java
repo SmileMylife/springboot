@@ -2,12 +2,15 @@ package com.example.springboot;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.baidu.aip.ocr.AipOcr;
 import com.example.springboot.util.SQlReplaceUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
@@ -149,7 +152,7 @@ public class TestCollections {
         ArrayList<Object> objects = new ArrayList<>();
         objects.add("1");
         objects.add("2");
-       objects.add("3");
+        objects.add("3");
         objects.add("4");
         List<Object> objects1 = objects.subList(1, 4);
         System.out.println(objects1);
@@ -169,7 +172,7 @@ public class TestCollections {
     @Test
     public void productSql() throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String s = "2019-01-01 00:00:00";
+        String s = "2019-11-01 00:00:00";
         Date parse = simpleDateFormat.parse(s);
         Calendar instance = Calendar.getInstance();
         instance.setTime(parse);
@@ -187,24 +190,38 @@ public class TestCollections {
 
             tempYearMonth = format.replace("-", "").substring(0, 6);
 
+            //数据回插
+//            String sql = "INSERT INTO t_sr_mq_info_new SELECT * FROM t_sr_mq_info WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59' AND dsps_sts_cd IN('1', '3', '4', '2') AND id > 0;";
+
 //            String sql = "DELETE FROM t_sr_mq_info_h_" + tableName + " WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59' AND dsps_sts_cd IN('1', '3', '4', '2') AND id > 0;";
-//            String sql = "INSERT INTO t_sr_mq_info_h_" + tableName + " SELECT * FROM t_sr_mq_info WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59" + "' AND dsps_sts_cd IN('1', '3', '4', '2');";
+            String sql = "INSERT INTO t_sr_mq_info_h_" + tableName + " SELECT * FROM t_sr_mq_info WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59" + "' AND dsps_sts_cd IN('1', '3', '4', '2');";
 
 
             //回滚
 //            String sql = "INSERT INTO t_sr_mq_info SELECT * FROM zxdba_bak.zxdba_20191114_t_sr_mq_info_zp_gx WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59' AND dsps_sts_cd IN('1', '3', '4', '2');";
             //备份
-            String sql = "INSERT INTO zxdba_bak.zxdba_20191114_t_sr_mq_info_zp_gx SELECT * FROM t_sr_mq_info WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59' AND dsps_sts_cd IN('1', '3', '4', '2');";
+//            String sql = "INSERT INTO zxdba_bak.zxdba_20191114_t_sr_mq_info_zp_gx SELECT * FROM t_sr_mq_info WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59' AND dsps_sts_cd IN('1', '3', '4', '2');";
+//            String sql = "DELETE FROM t_sr_mq_info WHERE sd_time >= '" + yearMonth + " 00:00:00' AND sd_time <= '" + yearMonth + " 23:59:59' AND dsps_sts_cd IN('1', '3', '4', '2') AND id > 0;";
 
             instance.add(Calendar.DAY_OF_MONTH, 1);
 
             System.out.println(sql);
             System.out.println();
 
-            if (instance.get(Calendar.MONTH) == 10) {
+            if (instance.get(Calendar.MONTH) == 11) {
                 break;
             }
         }
+    }
+
+    @Test
+    public void testCalendar() {
+        Calendar instance = Calendar.getInstance();
+        Date date = new Date();
+        instance.setTime(date);
+        instance.add(Calendar.MONTH, 2);
+        int i = instance.get(Calendar.MONTH);
+        System.out.println(i);
     }
 
     @Test
@@ -220,6 +237,36 @@ public class TestCollections {
             System.out.println("第" + i + "次循环");
         }
     }
+
+    //设置APPID/AK/SK
+    public static final String APP_ID = "17799609";
+    public static final String API_KEY = "WpE4wbXY7Hvko8SsWezevHG9";
+    public static final String SECRET_KEY = "ZetzKeuneFMmviIwRNqpPrfDiEusRjNR";
+
+    @Test
+    public void testImage() throws JSONException {
+        // 初始化一个AipOcr
+        AipOcr client = new AipOcr(APP_ID, API_KEY, SECRET_KEY);
+
+        // 可选：设置网络连接参数
+        client.setConnectionTimeoutInMillis(2000);
+        client.setSocketTimeoutInMillis(60000);
+
+        // 可选：设置代理服务器地址, http和socket二选一，或者均不设置
+//            client.setHttpProxy("proxy_host", proxy_port);  // 设置http代理
+//            client.setSocketProxy("proxy_host", proxy_port);  // 设置socket代理
+
+        // 可选：设置log4j日志输出格式，若不设置，则使用默认配置
+        // 也可以直接通过jvm启动参数设置此环境变量
+//            System.setProperty("aip.log4j.conf", "path/to/your/log4j.properties");
+
+        // 调用接口
+        String path = "/Users/smile_mylife/Desktop/test.png";
+        JSONObject res = client.basicGeneral(path, new HashMap<String, String>());
+        System.out.println(res.toString(2));
+
+    }
+
 }
 
 class Car {

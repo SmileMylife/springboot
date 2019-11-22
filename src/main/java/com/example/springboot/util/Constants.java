@@ -39,6 +39,10 @@ public class Constants {
 
     public static final String FALSE = "false";
 
+    public static final String RTN_CODE_SUCC = "0";
+
+    public static final String RTN_CODE_FAIL = "-9999";
+
 
 
 
