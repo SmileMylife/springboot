@@ -21,8 +21,8 @@ public class PageBreakController extends BaseControllerServceImpl {
      * @return
      */
     //跳转至首页
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView toIndex(String isError, HttpServletRequest request) {
+    @RequestMapping(value = "/toSqlProduct", method = RequestMethod.GET)
+    public ModelAndView toSqlProduct(String isError, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         String sessionId = request.getSession().getId();
         Object loginFlag = request.getSession().getAttribute(sessionId); //登录状态
@@ -31,7 +31,7 @@ public class PageBreakController extends BaseControllerServceImpl {
         if (loginFlag instanceof Boolean) {
             boolean loginFlagResult = (boolean) loginFlag;
             if (loginFlagResult) {
-                modelAndView.setViewName("index");
+                modelAndView.setViewName("sqlProduct");
                 if ("true".equals(isError)) {
                     //如果是错误页面中跳转过来的则需要告知页面回填数据
                     modelAndView.addObject("isError", "true");
@@ -40,6 +40,17 @@ public class PageBreakController extends BaseControllerServceImpl {
                 }
             }
         }
+        return modelAndView;
+    }
+
+    /**
+     * 去首页
+     * @return
+     */
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView toIndex() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
         return modelAndView;
     }
 

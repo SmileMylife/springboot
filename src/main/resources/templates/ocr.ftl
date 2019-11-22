@@ -74,6 +74,7 @@
             color: rgb(106, 106, 106);
             padding-left: 20px;
             padding-top: 20px;
+            box-sizing: border-box;
             overflow-y: auto;
         }
 
