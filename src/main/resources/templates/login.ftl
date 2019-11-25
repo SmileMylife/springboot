@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>脚本生成工具</title>
+    <title>登录页面</title>
     <link type="text/css" rel="stylesheet" href="../static/css/global.css" />
     <link type="text/css" rel="stylesheet" href="../static/css/login.css" />
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
@@ -32,6 +32,6 @@
     <h3>登录页面</h3>
     <a href="/loginSqlProduct?username=root&password=root" id="quikLogin">一键快捷登录</a>
     <img src="/refreshQRcode" id="QRcode" />
-    <button id="refreshQRcode">刷新二维码</button>
+    <a id="refreshQRcode" href="javascript:void(0)">刷新二维码</a>
 </body>
 </html>

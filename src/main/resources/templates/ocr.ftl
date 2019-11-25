@@ -14,6 +14,7 @@
             height: 100%;
             overflow: hidden;
             background: #ffe url("static/img/snow/snow.jpg");
+            background-size: cover;
         }
 
         h2 {
@@ -50,6 +51,7 @@
         }
 
         .show_result {
+            opacity: 0.8;
             width: 340px;
             height: 524px;
             outline: none;
@@ -76,6 +78,7 @@
             padding-top: 20px;
             box-sizing: border-box;
             overflow-y: auto;
+            word-wrap: break-word;
         }
 
         .ocr_wrap {
