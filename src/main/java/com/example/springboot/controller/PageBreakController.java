@@ -83,4 +83,15 @@ public class PageBreakController extends BaseControllerServceImpl {
         modelAndView.setViewName("ocr");
         return modelAndView;
     }
+
+    /**
+     * 前往文档查询页面
+     * @return
+     */
+    @RequestMapping(value = "/toQueryDoc", method = RequestMethod.GET)
+    public ModelAndView toQueryDoc() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("queryDoc");
+        return modelAndView;
+    }
 }
