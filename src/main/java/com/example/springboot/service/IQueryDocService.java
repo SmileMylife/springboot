@@ -8,4 +8,8 @@ import com.example.springboot.common.bean.OutputObject;
  */
 public interface IQueryDocService {
     public void queryDoc(InputObject inputObject, OutputObject outputObject);
+
+    public void uploadDoc(InputObject inputObject, OutputObject outputObject);
+
+    public void downLoadDoc(InputObject inputObject, OutputObject outputObject);
 }

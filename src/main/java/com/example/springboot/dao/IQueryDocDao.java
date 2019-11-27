@@ -1,6 +1,5 @@
 package com.example.springboot.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,4 +8,8 @@ import java.util.Map;
  */
 public interface IQueryDocDao {
     public List<Map<String, Object>> queryDoc(Map<String, Object> params);
+
+    public void uploadDoc(Map<String, Object> params);
+
+    public int queryDocCount(Map<String, Object> params);
 }

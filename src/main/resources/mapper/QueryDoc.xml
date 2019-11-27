@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.dao.IQueryDocDao">
+    <insert id="uploadDoc">
+        INSERT INTO t_sr_doc_info (id, doc_nm, doc_unique_identity, upload_by, doc_path)
+        VALUES
+        (null, #{docNm,jdbcType=VARCHAR}, #{docUniqueIdentity, jdbcType=VARCHAR}, #{uploadBy, jdbcType=VARCHAR}, #{docPath, jdbcType=VARCHAR})
+    </insert>
+    <select id="queryDoc" resultType="java.util.Map">
+        SELECT
+        id as id, doc_nm as docNm, doc_unique_identity as docUniqueIdentity, upload_by as uploadBy, doc_path as docPath
+        FROM t_sr_doc_info
+        <where>
+            <if test="docUniqueIdentity != null and docUniqueIdentity != ''">
+                doc_unique_identity = #{docUniqueIdentity, jdbcType=VARCHAR}
+            </if>
+        </where>
+        <if test="start != null and limit != null">
+            limit #{start, jdbcType=INTEGER}, #{limit, jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <select id="queryDocCount" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM t_sr_doc_info
+        <where>
+            <if test="docUniqueIdentity != null and docUniqueIdentity != ''">
+                doc_unique_identity = #{docUniqueIdentity, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>
