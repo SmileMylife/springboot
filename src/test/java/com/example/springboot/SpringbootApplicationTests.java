@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,7 +20,7 @@ public class SpringbootApplicationTests {
 
 	@Test
 	public void contextLoads() {
-        List<HashMap<String, Object>> hashMaps = iTestSpringBootService.testDaoOperation();
+        List<Map<String, Object>> hashMaps = iTestSpringBootService.testDaoOperation();
         System.out.println(hashMaps.toString());
     }
 

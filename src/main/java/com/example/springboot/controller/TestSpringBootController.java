@@ -56,8 +56,8 @@ public class TestSpringBootController {
 
     @RequestMapping(value = "/testDaoOperation", method = RequestMethod.GET)
     @ResponseBody
-    public List<HashMap<String, Object>> testDaoOperation() {
-        List<HashMap<String, Object>> map = iTestSpringBootService.testDaoOperation();
+    public List<Map<String, Object>> testDaoOperation() {
+        List<Map<String, Object>> map = iTestSpringBootService.testDaoOperation();
         return map;
     }
 

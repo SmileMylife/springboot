@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.HashMap;
+
 /**
  * Created by ZhangPei on 2019/11/22.
  */
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class DocQueryController {
     @RequestMapping(value = "/queryDocs", method = RequestMethod.POST)
     public void queryDocs(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject) {
-
+        
     }
 
     @RequestMapping(value = "/uploadDoc", method = RequestMethod.POST)

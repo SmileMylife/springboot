@@ -15,8 +15,26 @@
             margin: 0px;
         }
 
+        h2 {
+            text-align: center;
+        }
+
         table {
             text-align: center;
+        }
+
+        .thead-tr {
+            height: 50px;
+            background-color: rgb(250, 250, 250);
+        }
+
+        .tbody-tr {
+            height: 40px;
+        }
+
+        .tbody-tr:hover {
+            cursor: pointer;
+            background-color: #e6f7ff;
         }
     </style>
     <script type="text/babel">
@@ -156,14 +174,14 @@
                                 {/*表格数据显示部分*/}
                                 <table width={this.props.config.width} border="1px solid black" cellSpacing="0px">
                                     <tbody>
-                                    <tr>
+                                    <tr className="thead-tr">
                                         {this.props.config.item.map((cell, index) =>
                                                 <th key={index}>{cell.cellName}</th>
                                         )}
                                     </tr>
 
                                     {this.state.data ? this.state.data.map((row, index) =>
-                                            <tr key={index}>
+                                            <tr className="tbody-tr" key={index}>
                                                 {this.props.config.item.map((item, index) =>
                                                         <td key={index}>
                                                             {row[item.key]}
@@ -234,6 +252,7 @@
     </script>
 </head>
 <body>
-<div id="root"></div>
+    <h2>常用文档查询页面</h2>
+    <div id="root"></div>
 </body>
 </html>

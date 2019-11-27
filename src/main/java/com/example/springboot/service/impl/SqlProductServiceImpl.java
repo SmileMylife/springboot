@@ -36,7 +36,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
      * @throws Exception
      */
     public void queryAllProv(InputObject inputObject, OutputObject outputObject) throws Exception {
-        List<HashMap<String, Object>> maps = iTestSpringBootDao.selectDbInfos(inputObject.getParams());
+        List<Map<String, Object>> maps = iTestSpringBootDao.selectDbInfos(inputObject.getParams());
         outputObject.setBeans(maps);
     }
 
@@ -80,7 +80,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
         //查询数据库数据，生成文件
         String[] split = provNmMulti.split(",");
         Map<String, Object> map = new HashMap();
-        List<HashMap<String, Object>> results = new ArrayList<>();
+        List<Map<String, Object>> results = new ArrayList<>();
 
         if (!"全省".equals(provNm)) {
             for (int i = 0; i < split.length; i++) {
@@ -88,7 +88,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
                     continue;
                 }
                 map.put("provNm", split[i]);
-                List<HashMap<String, Object>> provResult = iTestSpringBootDao.selectDbInfos(map);//查询数据库信息
+                List<Map<String, Object>> provResult = iTestSpringBootDao.selectDbInfos(map);//查询数据库信息
                 results.addAll(provResult);
             }
         } else {
@@ -102,7 +102,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
 
         //将脚本内容输入至相应文件夹
         for (int i = 0; i < results.size(); i++) {
-            HashMap<String, Object> result = results.get(i);
+            Map<String, Object> result = results.get(i);
             if ("ngwf接口机".equals(MapUtils.getString(result, "provNm")) && "全省".equals(provNm)) {
                 continue;
             }

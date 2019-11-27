@@ -27,21 +27,21 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
      * 测试springboot使用mybatis
      * @return
      */
-    public List<HashMap<String, Object>> testDaoOperation() {
-        List<HashMap<String, Object>> list = iTestSpringBootDao.selectUsers();
+    public List<Map<String, Object>> testDaoOperation() {
+        List<Map<String, Object>> list = iTestSpringBootDao.selectUsers();
         return list;
     }
 
     @Override
     public void testParamsPackage(@com.example.springboot.common.annotations.InputObject InputObject inputObject, OutputObject outputObject) {
-        List<HashMap<String, Object>> maps = iTestSpringBootDao.selectUsers();
+        List<Map<String, Object>> maps = iTestSpringBootDao.selectUsers();
         outputObject.setBeans(maps);
     }
 
     @Override
     public void queryEmployees(InputObject inputObject, OutputObject outputObject) throws Exception {
         inputObject.getParams().put("tableName", "employees");
-        List<HashMap<String, Object>> list = iTestSpringBootDao.selectEmployees(inputObject.getParams());
+        List<Map<String, Object>> list = iTestSpringBootDao.selectEmployees(inputObject.getParams());
         int i = iTestSpringBootDao.selectEmplyeesCount(inputObject.getParams());
 
         outputObject.getBean().put("total", i);

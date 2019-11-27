@@ -26,7 +26,7 @@
             left: 50%;
             top: 50%;
             display: block;
-            transform: translate(-50%, -50%) scale(0.5);
+            transform: translate(-50%, -50%) scale(1);
         }
 
         textarea {

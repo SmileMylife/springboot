@@ -5,12 +5,13 @@ import com.example.springboot.common.bean.OutputObject;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZhangPei on 2018/11/15.
  */
 public interface ITestSpringBootService {
-    public List<HashMap<String, Object>> testDaoOperation();
+    public List<Map<String, Object>> testDaoOperation();
 
     public void testParamsPackage(InputObject inputObject, OutputObject outputObject) throws Exception;
 

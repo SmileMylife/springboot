@@ -3,6 +3,7 @@ package com.example.springboot.common.bean;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZhangPei on 2018/12/1.
@@ -11,7 +12,7 @@ public class OutputObject {
     private String rtnCode;
     private String rtnMsg;
     private HashMap<String, Object> bean = new HashMap<String, Object>();
-    private List<HashMap<String, Object>> beans = new ArrayList<HashMap<String, Object>>();
+    private List<Map<String, Object>> beans = new ArrayList<>();
     private Object object;
 
     public String getRtnCode() {
@@ -38,11 +39,11 @@ public class OutputObject {
         this.bean = bean;
     }
 
-    public List<HashMap<String, Object>> getBeans() {
+    public List<Map<String, Object>> getBeans() {
         return beans;
     }
 
-    public void setBeans(List<HashMap<String, Object>> beans) {
+    public void setBeans(List<Map<String, Object>> beans) {
         this.beans = beans;
     }
 
