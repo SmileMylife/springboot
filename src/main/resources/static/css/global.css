@@ -2,3 +2,4 @@ a:link {color: #1890ff !important} /*设置全局未点击链接的颜色*/
 a:visited {color: #1890ff !important} /*设置全局被点击后的链接颜色*/
 a:hover {color: #1890ff !important; opacity: 0.8} /*设置全局鼠标悬停在链接上未点击时的颜色*/
 a:active {color: #1890ff !important} /*设置全局鼠标在点击链接瞬间发生的动作*/
+html,body {height: revert !important;}

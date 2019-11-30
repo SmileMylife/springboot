@@ -1,10 +1,15 @@
 package com.example.springboot.controller;
 
+import com.example.springboot.common.bean.OutputObject;
+import com.example.springboot.common.bean.PageException;
+import com.example.springboot.common.bean.TxtException;
+import com.example.springboot.util.Constants;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by ZhangPei on 2018/12/11.
@@ -20,8 +25,8 @@ public class ExceptionHandleController {
      * 异常处理器中如果也出现了异常，则返回为空，页面什么也不展示
      * @return
      */
-    @ExceptionHandler(value = Exception.class)
-    public ModelAndView handleException(HttpServletRequest request, Exception e) {
+    @ExceptionHandler(value = PageException.class)
+    public ModelAndView handleException(Exception e) {
         System.out.println("程序发生异常，异常原因：" + e.toString());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/error/error");
@@ -31,5 +36,17 @@ public class ExceptionHandleController {
     }
 
     //TODO 测试能否针对特定的异常进行处理
+
+//    如果没有@responsebody字段，默认返回视图层
+    @ExceptionHandler(value = TxtException.class)
+    @ResponseBody
+    public OutputObject handleException(HttpServletResponse response, Exception e) {
+        response.setStatus(500);
+        response.setCharacterEncoding("utf-8");
+        OutputObject outputObject = new OutputObject();
+        outputObject.setRtnCode(Constants.RTN_CODE_FAIL);
+        outputObject.setRtnMsg("程序发生异常，异常原因：" + e.toString());
+        return outputObject;
+    }
 
 }

@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="../static/css/antd.css">
     <script src="../static/js/moment.min.js"></script>
     <script type="text/javascript" src="../static/js/antd.js"></script>
+    <link type="text/css" rel="stylesheet" href="../static/css/global.css" />
     <style type="text/css">
-        * {
-            padding: 0px;
-            margin: 0px;
+
+        input {
+            box-shadow: none !important;
         }
 
         h2 {
@@ -47,7 +48,7 @@
     <script type="text/babel" src="../static/js/queryDoc.jsx"></script>
 </head>
 <body>
-<h2>常用文档查询</h2>
-<div id="root"></div>
+    <h2>常用文档查询</h2>
+    <div id="root"></div>
 </body>
 </html>

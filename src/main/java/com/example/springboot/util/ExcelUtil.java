@@ -1,3 +1,4 @@
+/*
 package com.example.springboot.util;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -15,18 +16,22 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by ZhangPei on 2019/5/27.
- */
+ *//*
+
 public class ExcelUtil {
 
-    /**
+    */
+/**
      * 处理xls文件
      *
      * @param path
      * @return
      * @throws Exception
-     */
+     *//*
+
     public List<List<String>> readXls(String path) throws Exception {
         InputStream is = new FileInputStream(path);
         // HSSFWorkbook 标识整个excel
@@ -62,13 +67,15 @@ public class ExcelUtil {
         return result;
     }
 
-    /**
+    */
+/**
      * 处理xlsx文件
      *
      * @param path
      * @return
      * @throws Exception
-     */
+     *//*
+
     public static List<List<String>> readXlsx(String path) throws Exception {
         InputStream is = new FileInputStream(path);
         XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
@@ -102,12 +109,14 @@ public class ExcelUtil {
         return result;
     }
 
-    /**
+    */
+/**
      * 获取string字符串
      *
      * @param cell
      * @return
-     */
+     *//*
+
     public static String getStringVal(HSSFCell cell) {
         switch (cell.getCellType()) {
             case Cell.CELL_TYPE_BOOLEAN:
@@ -124,14 +133,17 @@ public class ExcelUtil {
         }
     }
 
-    /**
+    */
+/**
      * 读取数据库信息上传至数据库
      * @param args
      * @throws Exception
-     */
+     *//*
+
     public static void main(String[] args) throws Exception {
         String s = "/Users/smile_mylife/Desktop/test.xlsx";
         List<List<String>> lists = ExcelUtil.readXlsx(s);
 
     }
 }
+*/

@@ -15,6 +15,7 @@ import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -265,6 +266,47 @@ public class TestCollections {
         JSONObject res = client.basicGeneral(path, new HashMap<String, String>());
         System.out.println(res.toString(2));
 
+    }
+
+    @Test
+    public void testTxt() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("/Users/smile_mylife/Desktop/测试.txt")));
+
+        String str;
+        StringBuilder sb = new StringBuilder();
+        while ((str = bufferedReader.readLine()) != null) {
+            sb.append("'").append(str).append("'").append(",");
+        }
+
+        System.out.println(sb.toString());
+        bufferedReader.close();
+    }
+
+
+    @Test
+    public void testSql() throws IOException {
+        String sql = "INSERT INTO `t_sr_cfg_code` (`TENANT_ID`, `CODE_ID`, `CODE_TYPE_CD`, `CODE_NM`, `CODE_FULL_NM`, `ARGE_SEQNO`, `LEAF_NODE_FLAG`, `VALID_FLAG`, `RMK`, `ORG_BRNCH_ID`, `OP_STAFF_ID`, `CRT_TIME`, `MODF_TIME`, `BIZ_CODE`, `SUPR_BIZ_CODE`, `CODE_TYPE_NM`, `cmos_modify_time`) VALUES ('100000', '%s', '%s', '北京老系统工单修复', '北京老系统工单修复', '1', '1', '1', '北京老系统工单修复', '001016', 'YX1000', now(), now(), '%s', '0', '北京老系统工单修复', now());";
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("/Users/smile_mylife/Desktop/测试.txt")));
+        BufferedReader bufferedReader2 = new BufferedReader(new FileReader(new File("/Users/smile_mylife/Desktop/测试1.txt")));
+
+        String delSql = "DELETE FROM t_sr_cfg_code where code_id = '%s';";
+
+        BigInteger bigInteger = new BigInteger("1911271150330146001");
+        String str;
+        String str2;
+        while ((str = bufferedReader.readLine()) != null) {
+            /*str2 = bufferedReader2.readLine();
+            String format = String.format(sql, bigInteger.toString(), str, str2);*/
+            String format = String.format(delSql, bigInteger.toString());
+
+            System.out.println(format);
+            System.out.println();
+            bigInteger = bigInteger.add(new BigInteger("1"));
+        }
+
+        bufferedReader.close();
+        bufferedReader2.close();
     }
 
 }

@@ -70,15 +70,14 @@
         }
 
         .show_result_bottom {
-            height: 472px;
-            font-size: 14px;
+            font-size: 16px;
             line-height: 2;
             color: rgb(106, 106, 106);
-            padding-left: 20px;
-            padding-top: 20px;
             box-sizing: border-box;
             overflow-y: auto;
             word-wrap: break-word;
+            border: none;
+            outline: none;
         }
 
         .ocr_wrap {
@@ -150,7 +149,7 @@
 <#--可以考虑使用模板引擎做-->
     <div class="show_result">
         <div class="show_result_top">识别结果</div>
-        <div class="show_result_bottom" id="wordResult"></div>
+        <textarea class="show_result_bottom" id="wordResult"></textarea>
     </div>
 </div>
 </body>
@@ -194,7 +193,7 @@
                                     document.getElementById("scan").style.display = "none";
                                     return;
                                 }
-                                document.getElementById("wordResult").innerText = data.bean.word;
+                                document.getElementById("wordResult").value = data.bean.word;
                                 document.getElementById("scan").style.display = "none";
                             }
                         })

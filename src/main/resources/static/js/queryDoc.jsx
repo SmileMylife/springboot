@@ -41,22 +41,26 @@ class Table extends React.Component {
         perPageCount: 10,       //每页条数
         total: 0,
         data: [],
-        refresh: false
+        refresh: false,
+        breakPage: "",
+        isFind: false,
+        queryKeyWord: "",
+        isQuery: false
     };
 
     onChange = (info) => {
         console.log("测试info内容", info);
+        console.log(info.event);
         if (info.file.status !== 'uploading') {
             console.log(info.file, info.fileList);
         }
         if (info.file.status === 'done') {
             antd.message.success(info.file.name + " 上传成功！");
-            console.log("上传陈宫", this.state);
             this.setState(
                 Object.assign({}, this.state, {refresh: true})
             )
         } else if (info.file.status === 'error') {
-            antd.message.error(info.file.name + "上传失败！");
+            antd.message.error(info.file.name + " 上传失败，失败原因：" + info.file.response.rtnMsg);
         }
     };
 
@@ -73,9 +77,9 @@ class Table extends React.Component {
 
     //修改每页条数后在次数进行数据重新加载，该方法为发送请求的最佳位置
     componentDidUpdate(preProps, preState) {
-        if ((preState.currentPageNum != this.state.currentPageNum)
-            || (preState.perPageCount != this.state.perPageCount) || this.state.refresh) {
+        if (this.state.isQuery) {
             this.getTableData();
+            this.setState(Object.assign({}, this.state, {refresh: false, isQuery: false, breakPage: ""}))
         }
     }
 
@@ -86,8 +90,12 @@ class Table extends React.Component {
 
     //点击下一页
     nextPageNum = () => {
+        this.setState(
+            Object.assign({}, this.state, {breakPage: "", isQuery: true})
+        );
+        console.log("点击下一页：", this.state.total / this.state.perPageCount);
         if (Math.ceil((this.state.total / this.state.perPageCount)) === this.state.currentPageNum) {
-            return ;
+            return;
         }
         this.setState((prevState, props) => {
                 if (prevState.currentPageNum >= (Math.floor(prevState.data.total / prevState.perPageCount) + 1)) {
@@ -105,6 +113,9 @@ class Table extends React.Component {
 
     //点击上一页
     prePageNum = () => {
+        this.setState(
+            Object.assign({}, this.state, {breakPage: "", isQuery: true})
+        );
         if (Math.ceil((this.state.total / this.state.perPageCount)) === 0) {
             return;
         }
@@ -124,12 +135,11 @@ class Table extends React.Component {
     //修改每页条数
     changePerPageCount = (event) => {
         if (event.target) {
-            this.setState({
-                perPageCount: event.target.value
-            });
-
-            //重新请求后台数据
-            this.getTableData();
+            this.setState(Object.assign({}, this.state, {
+                perPageCount: event.target.value,
+                currentPageNum: 1,
+                isQuery: true
+            }));
         }
     };
 
@@ -137,18 +147,27 @@ class Table extends React.Component {
     breakPageNum = (event) => {
         if (event.target && event.target.value > 0) {
             if (event.target.value >= Math.ceil((this.state.total / this.state.perPageCount))) {
-                this.setState({
-                    currentPageNum: Math.ceil((this.state.total / this.state.perPageCount))
-                })
+                this.setState(Object.assign({}, this.state, {
+                    currentPageNum: Math.ceil((this.state.total / this.state.perPageCount)), isQuery: true
+                }))
             } else {
-                this.setState({
-                    currentPageNum: parseInt(event.target.value)
-                })
+                this.setState(Object.assign({}, this.state, {currentPageNum: parseInt(event.target.value), isQuery: true}))
             }
+        } else {
+            this.setState(Object.assign({}, this.state, {
+                breakPage: ""
+            }))
         }
+    };
 
-        //向后台请求数据
-        // this.getTableData();
+    changebreakPageNum = (event) => {
+        if (event.target) {
+            this.setState(
+                Object.assign({}, this.state, {
+                    breakPage: event.target.value,
+                })
+            )
+        }
     };
 
     //向后台请求数据
@@ -158,8 +177,15 @@ class Table extends React.Component {
             return;
         }
         let _this = this;
+
         var formData = new FormData();
-        formData.append("start", ((this.state.currentPageNum - 1) * this.state.perPageCount).toString());
+        if (this.state.queryWords) {
+            formData.append("keyWords", this.state.queryWords);   //如果是查询页面过来的
+            formData.append("start", "0");
+        } else {
+            formData.append("start", ((this.state.currentPageNum - 1) * this.state.perPageCount).toString());
+        }
+
         formData.append("limit", this.state.perPageCount.toString());
         fetch(this.props.config.url, {
             body: formData,
@@ -180,10 +206,23 @@ class Table extends React.Component {
         });
     };
 
+    searchDoc = (value) => {
+        this.setState(Object.assign({}, this.state, {
+            currentPageNum: 1,
+            isQuery: true,
+            queryWords: value
+        }));
+    };
+
     render() {
         return (
             <div>
                 <div style={{width: this.props.config.width, margin: "0 auto"}}>
+                    <antd.Input.Search
+                        placeholder="搜索"
+                        onSearch={this.searchDoc}
+                        enterButton
+                        style={{width: 300, marginBottom: "20px"}}/>
                     {/*表格数据显示部分*/}
                     <table width="100%" border="1px solid black" cellSpacing="0px">
                         <tbody>
@@ -204,7 +243,8 @@ class Table extends React.Component {
                                     </td>
                                 )}
                                 <td width="130px">
-                                    <a href={`/lookOnline?uuid=${row.docUniqueIdentity}`}>在线预览</a>&nbsp;&nbsp;&nbsp;
+                                    <a href={`/lookOnline?uuid=${row.docUniqueIdentity}`}
+                                       target="_blank">在线预览</a>&nbsp;&nbsp;&nbsp;
                                     <a href={`/downLoadDoc?uuid=${row.docUniqueIdentity}`}>下载</a>
                                 </td>
                             </tr>
@@ -226,13 +266,14 @@ class Table extends React.Component {
                             }}>跳转至 <input
                                 type="text"
                                 onBlur={this.breakPageNum}
+                                onChange={this.changebreakPageNum} o
                                 style={{
                                     width: "30px",
                                     height: "20px",
                                     outline: "none",
                                     border: "1px solid rgb(221,221,221)",
                                     textAlign: "center"
-                                }}/> 页</p>
+                                }} value={this.state.breakPage}/> 页</p>
                             <p style={{
                                 float: "right",
                                 lineHeight: "30px",

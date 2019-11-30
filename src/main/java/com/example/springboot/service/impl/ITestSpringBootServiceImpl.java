@@ -4,7 +4,6 @@ import com.example.springboot.common.bean.InputObject;
 import com.example.springboot.common.bean.OutputObject;
 import com.example.springboot.dao.ITestSpringBootDao;
 import com.example.springboot.service.ITestSpringBootService;
-import com.example.springboot.util.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
@@ -50,7 +49,7 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
 
     @Override
     public void insertDbInfo(InputObject inputObject, OutputObject outputObject) throws Exception {
-        String s = "/Users/smile_mylife/Desktop/test.xlsx";
+        /*String s = "/Users/smile_mylife/Desktop/test.xlsx";
         List<List<String>> lists = ExcelUtil.readXlsx(s);
         for (int i = 0; i < lists.size(); i++) {
             Map<String, Object> map = new HashMap();
@@ -68,7 +67,7 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
                 }
             }
             iTestSpringBootDao.insertDbInfo(map);
-        }
+        }*/
     }
 
 

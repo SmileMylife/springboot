@@ -45,6 +45,8 @@ public class Constants {
 
     public static final String UPLOAD_PATH = "/Users/smile_mylife/Desktop/上传内容/";
 
+    public static final String ALLOW_EXTEND = ".doc,.docx,.txt";
+
 
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder();

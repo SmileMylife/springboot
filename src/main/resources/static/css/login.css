@@ -1,0 +1,50 @@
+.login-form {
+    max-width: 300px;
+    margin: 50px auto;
+}
+.sql-product-form {
+    margin: 50px auto;
+}
+.login-form-forgot {
+    float: right;
+}
+.login-form-button {
+    width: 100%;
+}
+
+.login-form .ant-row {
+    margin-bottom: 15px;
+}
+
+/*布局组件样式*/
+.ant-layout {
+    height: 100%;
+}
+
+/*logo部位样式*/
+.logo {
+    width: 140px;
+    height: 42px;
+    margin: 12px 28px 16px 20px;
+    float: left;
+    background: url("../img/login/cmos_logo.png") rgba(255, 255, 255, 0.2);
+}
+
+.login-logo {
+    margin:0 0 30px 65px;
+}
+
+.react-resizable {
+    position: relative;
+    background-clip: padding-box;
+}
+
+.react-resizable-handle {
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    bottom: 0;
+    right: -5px;
+    cursor: col-resize;
+    z-index: 1;
+}
