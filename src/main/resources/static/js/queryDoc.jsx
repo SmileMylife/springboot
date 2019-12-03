@@ -41,7 +41,6 @@ class Table extends React.Component {
         perPageCount: 10,       //每页条数
         total: 0,
         data: [],
-        refresh: false,
         breakPage: "",
         isFind: false,
         queryKeyWord: "",
@@ -57,7 +56,7 @@ class Table extends React.Component {
         if (info.file.status === 'done') {
             antd.message.success(info.file.name + " 上传成功！");
             this.setState(
-                Object.assign({}, this.state, {refresh: true})
+                Object.assign({}, this.state, {isQuery: true})
             )
         } else if (info.file.status === 'error') {
             antd.message.error(info.file.name + " 上传失败，失败原因：" + info.file.response.rtnMsg);

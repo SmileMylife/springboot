@@ -71,7 +71,7 @@ class NormalLoginForm extends React.Component {
                     <antd.Button type="primary" htmlType="submit" className="login-form-button">
                         登录
                     </antd.Button>
-                    没有账号？<a href="">注册</a>
+                    没有账号？<a href="/toRegist">注册</a>
                     <a href="/loginSqlProduct?username=root&password=root" id="quikLogin"
                        style={{float: "right"}}>一键快捷登录</a>
                     <img src={this.state.refreshQRCode} id="QRcode"/>

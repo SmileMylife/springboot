@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Base64;
 
 /**
  * 页面跳转控制器
@@ -92,6 +91,17 @@ public class PageBreakController extends BaseControllerServceImpl {
     public ModelAndView toQueryDoc() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("queryDoc");
+        return modelAndView;
+    }
+
+    /**
+     * 前往文档查询页面
+     * @return
+     */
+    @RequestMapping(value = "/toRegist", method = RequestMethod.GET)
+    public ModelAndView toRegist() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("regist");
         return modelAndView;
     }
 }

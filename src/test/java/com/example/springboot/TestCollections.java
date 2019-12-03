@@ -8,13 +8,15 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -307,6 +309,12 @@ public class TestCollections {
 
         bufferedReader.close();
         bufferedReader2.close();
+    }
+
+    @Test
+    public void testCode() {
+        String s = null;
+        System.out.println(Integer.valueOf(s));
     }
 
 }
