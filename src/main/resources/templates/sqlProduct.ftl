@@ -33,6 +33,7 @@
                     <option value="INSERT">INSERT</option>
                     <option value="UPDATE">UPDATE</option>
                     <option value="DELETE">DELETE</option>
+                    <option value="DELETE">ALTER</option>
                 </select>
             </div>
 

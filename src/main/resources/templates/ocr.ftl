@@ -67,6 +67,7 @@
             border-top: 1px solid #e1e1e1;
             border-bottom: 1px solid #e1e1e1;
             line-height: 50px;
+            background-color: rgb(250, 250, 250);
         }
 
         .show_result_bottom {
@@ -78,6 +79,7 @@
             word-wrap: break-word;
             border: none;
             outline: none;
+            background-color: rgb(250, 250, 250);
         }
 
         .ocr_wrap {

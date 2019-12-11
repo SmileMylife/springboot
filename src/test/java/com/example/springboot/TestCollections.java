@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -316,6 +317,38 @@ public class TestCollections {
         String s = null;
         System.out.println(Integer.valueOf(s));
     }
+
+    @Test
+    public void testTryCatch() {
+        try {
+            throw new SQLException();
+        } catch (Exception e) {
+            System.out.println("出现了异常！");
+        } finally {
+            try {
+                throw new SQLException();
+            } catch (Exception e) {
+                System.out.println("再次出现了异常");
+            } finally {
+                System.out.println("最终会不会执行");
+            }
+        }
+    }
+
+    @Test
+    public void testMap() {
+        HashMap<Object, Object> map = new HashMap<>();
+        try {
+            int i = 10 / 0;
+        } catch (Exception e) {
+
+        } finally {
+            /*if (MapUtils.getInteger(map, "username") == 0) {
+                System.out.println("测试");
+            }*/
+        }
+    }
+
 
 }
 
