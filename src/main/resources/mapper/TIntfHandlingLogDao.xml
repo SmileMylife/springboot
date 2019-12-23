@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.springboot.dao.TIntfHandlingLogDao">
-  <resultMap id="BaseResultMap" type="com.example.springboot.common.bean.TIntfHandlingLog">
+  <resultMap id="BaseResultMap" type="TIntfHandlingLog">
     <id column="LG_ID" jdbcType="BIGINT" property="lgId" />
     <result column="TENANT_ID" jdbcType="VARCHAR" property="tenantId" />
     <result column="PROV_CODE" jdbcType="VARCHAR" property="provCode" />
@@ -40,7 +40,7 @@
     delete from t_intf_handling_log
     where LG_ID = #{lgId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="LG_ID" keyProperty="lgId" parameterType="com.example.springboot.common.bean.TIntfHandlingLog" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="LG_ID" keyProperty="lgId" parameterType="TIntfHandlingLog" useGeneratedKeys="true">
     insert into t_intf_handling_log (TENANT_ID, PROV_CODE, RLT_SYS_CODE, 
       OP_STS_CD, OP_TYPE_CD, WRKFM_SHOW_SWFTNO, 
       OUT_SYS_WRKFM_SHOW_SWFTNO, INTTR, TARGET, 
@@ -56,7 +56,7 @@
       #{modfTime,jdbcType=TIMESTAMP}, #{spareField1,jdbcType=VARCHAR}, #{spareField2,jdbcType=VARCHAR}, 
       #{spareField3,jdbcType=VARCHAR}, #{cmosModifyTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="LG_ID" keyProperty="lgId" parameterType="com.example.springboot.common.bean.TIntfHandlingLog" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="LG_ID" keyProperty="lgId" parameterType="TIntfHandlingLog" useGeneratedKeys="true">
     insert into t_intf_handling_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tenantId != null">
@@ -183,7 +183,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.common.bean.TIntfHandlingLog">
+  <update id="updateByPrimaryKeySelective" parameterType="TIntfHandlingLog">
     update t_intf_handling_log
     <set>
       <if test="tenantId != null">
@@ -249,7 +249,7 @@
     </set>
     where LG_ID = #{lgId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.springboot.common.bean.TIntfHandlingLog">
+  <update id="updateByPrimaryKey" parameterType="TIntfHandlingLog">
     update t_intf_handling_log
     set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
       PROV_CODE = #{provCode,jdbcType=VARCHAR},

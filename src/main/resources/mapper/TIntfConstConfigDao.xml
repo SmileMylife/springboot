@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.springboot.dao.TIntfConstConfigDao">
-  <resultMap id="BaseResultMap" type="generate.TIntfConstConfig">
+  <resultMap id="BaseResultMap" type="com.example.springboot.dao.TIntfConstConfigDao">
     <id column="CONFIG_ID" jdbcType="BIGINT" property="configId" />
     <result column="TENANT_ID" jdbcType="VARCHAR" property="tenantId" />
     <result column="PROV_CODE" jdbcType="VARCHAR" property="provCode" />
@@ -40,7 +40,7 @@
     delete from t_intf_const_config
     where CONFIG_ID = #{configId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="CONFIG_ID" keyProperty="configId" parameterType="generate.TIntfConstConfig" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="CONFIG_ID" keyProperty="configId" parameterType="TIntfConstConfig" useGeneratedKeys="true">
     insert into t_intf_const_config (TENANT_ID, PROV_CODE, CODE_TYPE_CD, 
       CODE_NM, CODE_FULL_NM, ARGE_SEQNO, 
       LEAF_NODE_FLAG, VALID_FLAG, RMK, 
@@ -56,7 +56,7 @@
       #{codeTypeNm,jdbcType=VARCHAR}, #{spareField1,jdbcType=VARCHAR}, #{spareField2,jdbcType=VARCHAR}, 
       #{spareField3,jdbcType=VARCHAR}, #{cmosModifyTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="CONFIG_ID" keyProperty="configId" parameterType="generate.TIntfConstConfig" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="CONFIG_ID" keyProperty="configId" parameterType="TIntfConstConfig" useGeneratedKeys="true">
     insert into t_intf_const_config
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tenantId != null">
@@ -183,7 +183,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="generate.TIntfConstConfig">
+  <update id="updateByPrimaryKeySelective" parameterType="TIntfConstConfig">
     update t_intf_const_config
     <set>
       <if test="tenantId != null">
@@ -249,7 +249,7 @@
     </set>
     where CONFIG_ID = #{configId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="generate.TIntfConstConfig">
+  <update id="updateByPrimaryKey" parameterType="TIntfConstConfig">
     update t_intf_const_config
     set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
       PROV_CODE = #{provCode,jdbcType=VARCHAR},

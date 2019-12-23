@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.springboot.dao.TIntfWorkerOrderMessageDao">
-  <resultMap id="BaseResultMap" type="com.example.springboot.common.bean.TIntfWorkerOrderMessage">
+  <resultMap id="BaseResultMap" type="TIntfWorkerOrderMessage">
     <id column="REC_ID" jdbcType="BIGINT" property="recId" />
     <result column="TENANT_ID" jdbcType="VARCHAR" property="tenantId" />
     <result column="PROV_CODE" jdbcType="VARCHAR" property="provCode" />
@@ -37,7 +37,7 @@
     delete from t_intf_worker_order_message
     where REC_ID = #{recId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="REC_ID" keyProperty="recId" parameterType="com.example.springboot.common.bean.TIntfWorkerOrderMessage" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="REC_ID" keyProperty="recId" parameterType="TIntfWorkerOrderMessage" useGeneratedKeys="true">
     insert into t_intf_worker_order_message (TENANT_ID, PROV_CODE, RLT_SYS_CODE, 
       OP_TYPE_CD, WRKFM_SHOW_SWFTNO, MSG_CNTT1, 
       MSG_CNTT2, MSG_CNTT3, OP_STAFF_ID, 
@@ -53,7 +53,7 @@
       #{spareField4,jdbcType=VARCHAR}, #{spareField5,jdbcType=VARCHAR}, #{cmosModifyTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="REC_ID" keyProperty="recId" parameterType="com.example.springboot.common.bean.TIntfWorkerOrderMessage" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="REC_ID" keyProperty="recId" parameterType="TIntfWorkerOrderMessage" useGeneratedKeys="true">
     insert into t_intf_worker_order_message
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tenantId != null">
@@ -168,7 +168,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.common.bean.TIntfWorkerOrderMessage">
+  <update id="updateByPrimaryKeySelective" parameterType="TIntfWorkerOrderMessage">
     update t_intf_worker_order_message
     <set>
       <if test="tenantId != null">
@@ -228,7 +228,7 @@
     </set>
     where REC_ID = #{recId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.springboot.common.bean.TIntfWorkerOrderMessage">
+  <update id="updateByPrimaryKey" parameterType="TIntfWorkerOrderMessage">
     update t_intf_worker_order_message
     set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
       PROV_CODE = #{provCode,jdbcType=VARCHAR},
