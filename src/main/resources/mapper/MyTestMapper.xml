@@ -14,7 +14,7 @@
     </resultMap>
 
     <sql id="employeesColumn">
-          emp_no, birth_date, first_name, last_name, gender, hire_date
+        emp_no, birth_date, first_name, last_name, gender, hire_date
     </sql>
 
     <!--查询用户表所有用户-->

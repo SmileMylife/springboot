@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.dao.TIntfHandlingLogDao">
+  <resultMap id="BaseResultMap" type="com.example.springboot.dao.TIntfHandlingLog">
+    <id column="LG_ID" jdbcType="BIGINT" property="lgId" />
+    <result column="TENANT_ID" jdbcType="VARCHAR" property="tenantId" />
+    <result column="PROV_CODE" jdbcType="VARCHAR" property="provCode" />
+    <result column="RLT_SYS_CODE" jdbcType="VARCHAR" property="rltSysCode" />
+    <result column="OP_STS_CD" jdbcType="VARCHAR" property="opStsCd" />
+    <result column="OP_TYPE_CD" jdbcType="VARCHAR" property="opTypeCd" />
+    <result column="WRKFM_SHOW_SWFTNO" jdbcType="VARCHAR" property="wrkfmShowSwftno" />
+    <result column="OUT_SYS_WRKFM_SHOW_SWFTNO" jdbcType="VARCHAR" property="outSysWrkfmShowSwftno" />
+    <result column="INTTR" jdbcType="VARCHAR" property="inttr" />
+    <result column="TARGET" jdbcType="VARCHAR" property="target" />
+    <result column="ASYNC_SYS_FLAG" jdbcType="TINYINT" property="asyncSysFlag" />
+    <result column="OP_CNT" jdbcType="TINYINT" property="opCnt" />
+    <result column="INTF_BACKTO_CNTT" jdbcType="VARCHAR" property="intfBacktoCntt" />
+    <result column="OP_STAFF_ID" jdbcType="VARCHAR" property="opStaffId" />
+    <result column="OP_STAFF_DEPT_ID" jdbcType="VARCHAR" property="opStaffDeptId" />
+    <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="MODF_TIME" jdbcType="TIMESTAMP" property="modfTime" />
+    <result column="SPARE_FIELD1" jdbcType="VARCHAR" property="spareField1" />
+    <result column="SPARE_FIELD2" jdbcType="VARCHAR" property="spareField2" />
+    <result column="SPARE_FIELD3" jdbcType="VARCHAR" property="spareField3" />
+    <result column="cmos_modify_time" jdbcType="TIMESTAMP" property="cmosModifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LG_ID, TENANT_ID, PROV_CODE, RLT_SYS_CODE, OP_STS_CD, OP_TYPE_CD, WRKFM_SHOW_SWFTNO, 
+    OUT_SYS_WRKFM_SHOW_SWFTNO, INTTR, TARGET, ASYNC_SYS_FLAG, OP_CNT, INTF_BACKTO_CNTT, 
+    OP_STAFF_ID, OP_STAFF_DEPT_ID, CRT_TIME, MODF_TIME, SPARE_FIELD1, SPARE_FIELD2, SPARE_FIELD3, 
+    cmos_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_intf_handling_log
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_intf_handling_log
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="LG_ID" keyProperty="lgId" parameterType="com.example.springboot.dao.TIntfHandlingLog" useGeneratedKeys="true">
+    insert into t_intf_handling_log (TENANT_ID, PROV_CODE, RLT_SYS_CODE, 
+      OP_STS_CD, OP_TYPE_CD, WRKFM_SHOW_SWFTNO, 
+      OUT_SYS_WRKFM_SHOW_SWFTNO, INTTR, TARGET, 
+      ASYNC_SYS_FLAG, OP_CNT, INTF_BACKTO_CNTT, 
+      OP_STAFF_ID, OP_STAFF_DEPT_ID, CRT_TIME, 
+      MODF_TIME, SPARE_FIELD1, SPARE_FIELD2, 
+      SPARE_FIELD3, cmos_modify_time)
+    values (#{tenantId,jdbcType=VARCHAR}, #{provCode,jdbcType=VARCHAR}, #{rltSysCode,jdbcType=VARCHAR}, 
+      #{opStsCd,jdbcType=VARCHAR}, #{opTypeCd,jdbcType=VARCHAR}, #{wrkfmShowSwftno,jdbcType=VARCHAR}, 
+      #{outSysWrkfmShowSwftno,jdbcType=VARCHAR}, #{inttr,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}, 
+      #{asyncSysFlag,jdbcType=TINYINT}, #{opCnt,jdbcType=TINYINT}, #{intfBacktoCntt,jdbcType=VARCHAR}, 
+      #{opStaffId,jdbcType=VARCHAR}, #{opStaffDeptId,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, 
+      #{modfTime,jdbcType=TIMESTAMP}, #{spareField1,jdbcType=VARCHAR}, #{spareField2,jdbcType=VARCHAR}, 
+      #{spareField3,jdbcType=VARCHAR}, #{cmosModifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="LG_ID" keyProperty="lgId" parameterType="com.example.springboot.dao.TIntfHandlingLog" useGeneratedKeys="true">
+    insert into t_intf_handling_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tenantId != null">
+        TENANT_ID,
+      </if>
+      <if test="provCode != null">
+        PROV_CODE,
+      </if>
+      <if test="rltSysCode != null">
+        RLT_SYS_CODE,
+      </if>
+      <if test="opStsCd != null">
+        OP_STS_CD,
+      </if>
+      <if test="opTypeCd != null">
+        OP_TYPE_CD,
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        WRKFM_SHOW_SWFTNO,
+      </if>
+      <if test="outSysWrkfmShowSwftno != null">
+        OUT_SYS_WRKFM_SHOW_SWFTNO,
+      </if>
+      <if test="inttr != null">
+        INTTR,
+      </if>
+      <if test="target != null">
+        TARGET,
+      </if>
+      <if test="asyncSysFlag != null">
+        ASYNC_SYS_FLAG,
+      </if>
+      <if test="opCnt != null">
+        OP_CNT,
+      </if>
+      <if test="intfBacktoCntt != null">
+        INTF_BACKTO_CNTT,
+      </if>
+      <if test="opStaffId != null">
+        OP_STAFF_ID,
+      </if>
+      <if test="opStaffDeptId != null">
+        OP_STAFF_DEPT_ID,
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME,
+      </if>
+      <if test="modfTime != null">
+        MODF_TIME,
+      </if>
+      <if test="spareField1 != null">
+        SPARE_FIELD1,
+      </if>
+      <if test="spareField2 != null">
+        SPARE_FIELD2,
+      </if>
+      <if test="spareField3 != null">
+        SPARE_FIELD3,
+      </if>
+      <if test="cmosModifyTime != null">
+        cmos_modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="provCode != null">
+        #{provCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rltSysCode != null">
+        #{rltSysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opStsCd != null">
+        #{opStsCd,jdbcType=VARCHAR},
+      </if>
+      <if test="opTypeCd != null">
+        #{opTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="outSysWrkfmShowSwftno != null">
+        #{outSysWrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="inttr != null">
+        #{inttr,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null">
+        #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="asyncSysFlag != null">
+        #{asyncSysFlag,jdbcType=TINYINT},
+      </if>
+      <if test="opCnt != null">
+        #{opCnt,jdbcType=TINYINT},
+      </if>
+      <if test="intfBacktoCntt != null">
+        #{intfBacktoCntt,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffId != null">
+        #{opStaffId,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffDeptId != null">
+        #{opStaffDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modfTime != null">
+        #{modfTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spareField1 != null">
+        #{spareField1,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField2 != null">
+        #{spareField2,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField3 != null">
+        #{spareField3,jdbcType=VARCHAR},
+      </if>
+      <if test="cmosModifyTime != null">
+        #{cmosModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.dao.TIntfHandlingLog">
+    update t_intf_handling_log
+    <set>
+      <if test="tenantId != null">
+        TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="provCode != null">
+        PROV_CODE = #{provCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rltSysCode != null">
+        RLT_SYS_CODE = #{rltSysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opStsCd != null">
+        OP_STS_CD = #{opStsCd,jdbcType=VARCHAR},
+      </if>
+      <if test="opTypeCd != null">
+        OP_TYPE_CD = #{opTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        WRKFM_SHOW_SWFTNO = #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="outSysWrkfmShowSwftno != null">
+        OUT_SYS_WRKFM_SHOW_SWFTNO = #{outSysWrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="inttr != null">
+        INTTR = #{inttr,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null">
+        TARGET = #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="asyncSysFlag != null">
+        ASYNC_SYS_FLAG = #{asyncSysFlag,jdbcType=TINYINT},
+      </if>
+      <if test="opCnt != null">
+        OP_CNT = #{opCnt,jdbcType=TINYINT},
+      </if>
+      <if test="intfBacktoCntt != null">
+        INTF_BACKTO_CNTT = #{intfBacktoCntt,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffId != null">
+        OP_STAFF_ID = #{opStaffId,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffDeptId != null">
+        OP_STAFF_DEPT_ID = #{opStaffDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modfTime != null">
+        MODF_TIME = #{modfTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spareField1 != null">
+        SPARE_FIELD1 = #{spareField1,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField2 != null">
+        SPARE_FIELD2 = #{spareField2,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField3 != null">
+        SPARE_FIELD3 = #{spareField3,jdbcType=VARCHAR},
+      </if>
+      <if test="cmosModifyTime != null">
+        cmos_modify_time = #{cmosModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.dao.TIntfHandlingLog">
+    update t_intf_handling_log
+    set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      PROV_CODE = #{provCode,jdbcType=VARCHAR},
+      RLT_SYS_CODE = #{rltSysCode,jdbcType=VARCHAR},
+      OP_STS_CD = #{opStsCd,jdbcType=VARCHAR},
+      OP_TYPE_CD = #{opTypeCd,jdbcType=VARCHAR},
+      WRKFM_SHOW_SWFTNO = #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      OUT_SYS_WRKFM_SHOW_SWFTNO = #{outSysWrkfmShowSwftno,jdbcType=VARCHAR},
+      INTTR = #{inttr,jdbcType=VARCHAR},
+      TARGET = #{target,jdbcType=VARCHAR},
+      ASYNC_SYS_FLAG = #{asyncSysFlag,jdbcType=TINYINT},
+      OP_CNT = #{opCnt,jdbcType=TINYINT},
+      INTF_BACKTO_CNTT = #{intfBacktoCntt,jdbcType=VARCHAR},
+      OP_STAFF_ID = #{opStaffId,jdbcType=VARCHAR},
+      OP_STAFF_DEPT_ID = #{opStaffDeptId,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      MODF_TIME = #{modfTime,jdbcType=TIMESTAMP},
+      SPARE_FIELD1 = #{spareField1,jdbcType=VARCHAR},
+      SPARE_FIELD2 = #{spareField2,jdbcType=VARCHAR},
+      SPARE_FIELD3 = #{spareField3,jdbcType=VARCHAR},
+      cmos_modify_time = #{cmosModifyTime,jdbcType=TIMESTAMP}
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.springboot.dao.TIntfHandlingLog">
+    <id column="LG_ID" jdbcType="BIGINT" property="lgId" />
+    <result column="TENANT_ID" jdbcType="VARCHAR" property="tenantId" />
+    <result column="PROV_CODE" jdbcType="VARCHAR" property="provCode" />
+    <result column="RLT_SYS_CODE" jdbcType="VARCHAR" property="rltSysCode" />
+    <result column="OP_STS_CD" jdbcType="VARCHAR" property="opStsCd" />
+    <result column="OP_TYPE_CD" jdbcType="VARCHAR" property="opTypeCd" />
+    <result column="WRKFM_SHOW_SWFTNO" jdbcType="VARCHAR" property="wrkfmShowSwftno" />
+    <result column="OUT_SYS_WRKFM_SHOW_SWFTNO" jdbcType="VARCHAR" property="outSysWrkfmShowSwftno" />
+    <result column="INTTR" jdbcType="VARCHAR" property="inttr" />
+    <result column="TARGET" jdbcType="VARCHAR" property="target" />
+    <result column="ASYNC_SYS_FLAG" jdbcType="TINYINT" property="asyncSysFlag" />
+    <result column="OP_CNT" jdbcType="TINYINT" property="opCnt" />
+    <result column="INTF_BACKTO_CNTT" jdbcType="VARCHAR" property="intfBacktoCntt" />
+    <result column="OP_STAFF_ID" jdbcType="VARCHAR" property="opStaffId" />
+    <result column="OP_STAFF_DEPT_ID" jdbcType="VARCHAR" property="opStaffDeptId" />
+    <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="MODF_TIME" jdbcType="TIMESTAMP" property="modfTime" />
+    <result column="SPARE_FIELD1" jdbcType="VARCHAR" property="spareField1" />
+    <result column="SPARE_FIELD2" jdbcType="VARCHAR" property="spareField2" />
+    <result column="SPARE_FIELD3" jdbcType="VARCHAR" property="spareField3" />
+    <result column="cmos_modify_time" jdbcType="TIMESTAMP" property="cmosModifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LG_ID, TENANT_ID, PROV_CODE, RLT_SYS_CODE, OP_STS_CD, OP_TYPE_CD, WRKFM_SHOW_SWFTNO, 
+    OUT_SYS_WRKFM_SHOW_SWFTNO, INTTR, TARGET, ASYNC_SYS_FLAG, OP_CNT, INTF_BACKTO_CNTT, 
+    OP_STAFF_ID, OP_STAFF_DEPT_ID, CRT_TIME, MODF_TIME, SPARE_FIELD1, SPARE_FIELD2, SPARE_FIELD3, 
+    cmos_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_intf_handling_log
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_intf_handling_log
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="LG_ID" keyProperty="lgId" parameterType="com.example.springboot.dao.TIntfHandlingLog" useGeneratedKeys="true">
+    insert into t_intf_handling_log (TENANT_ID, PROV_CODE, RLT_SYS_CODE, 
+      OP_STS_CD, OP_TYPE_CD, WRKFM_SHOW_SWFTNO, 
+      OUT_SYS_WRKFM_SHOW_SWFTNO, INTTR, TARGET, 
+      ASYNC_SYS_FLAG, OP_CNT, INTF_BACKTO_CNTT, 
+      OP_STAFF_ID, OP_STAFF_DEPT_ID, CRT_TIME, 
+      MODF_TIME, SPARE_FIELD1, SPARE_FIELD2, 
+      SPARE_FIELD3, cmos_modify_time)
+    values (#{tenantId,jdbcType=VARCHAR}, #{provCode,jdbcType=VARCHAR}, #{rltSysCode,jdbcType=VARCHAR}, 
+      #{opStsCd,jdbcType=VARCHAR}, #{opTypeCd,jdbcType=VARCHAR}, #{wrkfmShowSwftno,jdbcType=VARCHAR}, 
+      #{outSysWrkfmShowSwftno,jdbcType=VARCHAR}, #{inttr,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}, 
+      #{asyncSysFlag,jdbcType=TINYINT}, #{opCnt,jdbcType=TINYINT}, #{intfBacktoCntt,jdbcType=VARCHAR}, 
+      #{opStaffId,jdbcType=VARCHAR}, #{opStaffDeptId,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, 
+      #{modfTime,jdbcType=TIMESTAMP}, #{spareField1,jdbcType=VARCHAR}, #{spareField2,jdbcType=VARCHAR}, 
+      #{spareField3,jdbcType=VARCHAR}, #{cmosModifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="LG_ID" keyProperty="lgId" parameterType="com.example.springboot.dao.TIntfHandlingLog" useGeneratedKeys="true">
+    insert into t_intf_handling_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tenantId != null">
+        TENANT_ID,
+      </if>
+      <if test="provCode != null">
+        PROV_CODE,
+      </if>
+      <if test="rltSysCode != null">
+        RLT_SYS_CODE,
+      </if>
+      <if test="opStsCd != null">
+        OP_STS_CD,
+      </if>
+      <if test="opTypeCd != null">
+        OP_TYPE_CD,
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        WRKFM_SHOW_SWFTNO,
+      </if>
+      <if test="outSysWrkfmShowSwftno != null">
+        OUT_SYS_WRKFM_SHOW_SWFTNO,
+      </if>
+      <if test="inttr != null">
+        INTTR,
+      </if>
+      <if test="target != null">
+        TARGET,
+      </if>
+      <if test="asyncSysFlag != null">
+        ASYNC_SYS_FLAG,
+      </if>
+      <if test="opCnt != null">
+        OP_CNT,
+      </if>
+      <if test="intfBacktoCntt != null">
+        INTF_BACKTO_CNTT,
+      </if>
+      <if test="opStaffId != null">
+        OP_STAFF_ID,
+      </if>
+      <if test="opStaffDeptId != null">
+        OP_STAFF_DEPT_ID,
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME,
+      </if>
+      <if test="modfTime != null">
+        MODF_TIME,
+      </if>
+      <if test="spareField1 != null">
+        SPARE_FIELD1,
+      </if>
+      <if test="spareField2 != null">
+        SPARE_FIELD2,
+      </if>
+      <if test="spareField3 != null">
+        SPARE_FIELD3,
+      </if>
+      <if test="cmosModifyTime != null">
+        cmos_modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="provCode != null">
+        #{provCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rltSysCode != null">
+        #{rltSysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opStsCd != null">
+        #{opStsCd,jdbcType=VARCHAR},
+      </if>
+      <if test="opTypeCd != null">
+        #{opTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="outSysWrkfmShowSwftno != null">
+        #{outSysWrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="inttr != null">
+        #{inttr,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null">
+        #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="asyncSysFlag != null">
+        #{asyncSysFlag,jdbcType=TINYINT},
+      </if>
+      <if test="opCnt != null">
+        #{opCnt,jdbcType=TINYINT},
+      </if>
+      <if test="intfBacktoCntt != null">
+        #{intfBacktoCntt,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffId != null">
+        #{opStaffId,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffDeptId != null">
+        #{opStaffDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modfTime != null">
+        #{modfTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spareField1 != null">
+        #{spareField1,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField2 != null">
+        #{spareField2,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField3 != null">
+        #{spareField3,jdbcType=VARCHAR},
+      </if>
+      <if test="cmosModifyTime != null">
+        #{cmosModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.dao.TIntfHandlingLog">
+    update t_intf_handling_log
+    <set>
+      <if test="tenantId != null">
+        TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="provCode != null">
+        PROV_CODE = #{provCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rltSysCode != null">
+        RLT_SYS_CODE = #{rltSysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opStsCd != null">
+        OP_STS_CD = #{opStsCd,jdbcType=VARCHAR},
+      </if>
+      <if test="opTypeCd != null">
+        OP_TYPE_CD = #{opTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        WRKFM_SHOW_SWFTNO = #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="outSysWrkfmShowSwftno != null">
+        OUT_SYS_WRKFM_SHOW_SWFTNO = #{outSysWrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="inttr != null">
+        INTTR = #{inttr,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null">
+        TARGET = #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="asyncSysFlag != null">
+        ASYNC_SYS_FLAG = #{asyncSysFlag,jdbcType=TINYINT},
+      </if>
+      <if test="opCnt != null">
+        OP_CNT = #{opCnt,jdbcType=TINYINT},
+      </if>
+      <if test="intfBacktoCntt != null">
+        INTF_BACKTO_CNTT = #{intfBacktoCntt,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffId != null">
+        OP_STAFF_ID = #{opStaffId,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffDeptId != null">
+        OP_STAFF_DEPT_ID = #{opStaffDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modfTime != null">
+        MODF_TIME = #{modfTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spareField1 != null">
+        SPARE_FIELD1 = #{spareField1,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField2 != null">
+        SPARE_FIELD2 = #{spareField2,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField3 != null">
+        SPARE_FIELD3 = #{spareField3,jdbcType=VARCHAR},
+      </if>
+      <if test="cmosModifyTime != null">
+        cmos_modify_time = #{cmosModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.dao.TIntfHandlingLog">
+    update t_intf_handling_log
+    set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      PROV_CODE = #{provCode,jdbcType=VARCHAR},
+      RLT_SYS_CODE = #{rltSysCode,jdbcType=VARCHAR},
+      OP_STS_CD = #{opStsCd,jdbcType=VARCHAR},
+      OP_TYPE_CD = #{opTypeCd,jdbcType=VARCHAR},
+      WRKFM_SHOW_SWFTNO = #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      OUT_SYS_WRKFM_SHOW_SWFTNO = #{outSysWrkfmShowSwftno,jdbcType=VARCHAR},
+      INTTR = #{inttr,jdbcType=VARCHAR},
+      TARGET = #{target,jdbcType=VARCHAR},
+      ASYNC_SYS_FLAG = #{asyncSysFlag,jdbcType=TINYINT},
+      OP_CNT = #{opCnt,jdbcType=TINYINT},
+      INTF_BACKTO_CNTT = #{intfBacktoCntt,jdbcType=VARCHAR},
+      OP_STAFF_ID = #{opStaffId,jdbcType=VARCHAR},
+      OP_STAFF_DEPT_ID = #{opStaffDeptId,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      MODF_TIME = #{modfTime,jdbcType=TIMESTAMP},
+      SPARE_FIELD1 = #{spareField1,jdbcType=VARCHAR},
+      SPARE_FIELD2 = #{spareField2,jdbcType=VARCHAR},
+      SPARE_FIELD3 = #{spareField3,jdbcType=VARCHAR},
+      cmos_modify_time = #{cmosModifyTime,jdbcType=TIMESTAMP}
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.springboot.dao.TIntfHandlingLog">
+    <id column="LG_ID" jdbcType="BIGINT" property="lgId" />
+    <result column="TENANT_ID" jdbcType="VARCHAR" property="tenantId" />
+    <result column="PROV_CODE" jdbcType="VARCHAR" property="provCode" />
+    <result column="RLT_SYS_CODE" jdbcType="VARCHAR" property="rltSysCode" />
+    <result column="OP_STS_CD" jdbcType="VARCHAR" property="opStsCd" />
+    <result column="OP_TYPE_CD" jdbcType="VARCHAR" property="opTypeCd" />
+    <result column="WRKFM_SHOW_SWFTNO" jdbcType="VARCHAR" property="wrkfmShowSwftno" />
+    <result column="OUT_SYS_WRKFM_SHOW_SWFTNO" jdbcType="VARCHAR" property="outSysWrkfmShowSwftno" />
+    <result column="INTTR" jdbcType="VARCHAR" property="inttr" />
+    <result column="TARGET" jdbcType="VARCHAR" property="target" />
+    <result column="ASYNC_SYS_FLAG" jdbcType="TINYINT" property="asyncSysFlag" />
+    <result column="OP_CNT" jdbcType="TINYINT" property="opCnt" />
+    <result column="INTF_BACKTO_CNTT" jdbcType="VARCHAR" property="intfBacktoCntt" />
+    <result column="OP_STAFF_ID" jdbcType="VARCHAR" property="opStaffId" />
+    <result column="OP_STAFF_DEPT_ID" jdbcType="VARCHAR" property="opStaffDeptId" />
+    <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="MODF_TIME" jdbcType="TIMESTAMP" property="modfTime" />
+    <result column="SPARE_FIELD1" jdbcType="VARCHAR" property="spareField1" />
+    <result column="SPARE_FIELD2" jdbcType="VARCHAR" property="spareField2" />
+    <result column="SPARE_FIELD3" jdbcType="VARCHAR" property="spareField3" />
+    <result column="cmos_modify_time" jdbcType="TIMESTAMP" property="cmosModifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LG_ID, TENANT_ID, PROV_CODE, RLT_SYS_CODE, OP_STS_CD, OP_TYPE_CD, WRKFM_SHOW_SWFTNO, 
+    OUT_SYS_WRKFM_SHOW_SWFTNO, INTTR, TARGET, ASYNC_SYS_FLAG, OP_CNT, INTF_BACKTO_CNTT, 
+    OP_STAFF_ID, OP_STAFF_DEPT_ID, CRT_TIME, MODF_TIME, SPARE_FIELD1, SPARE_FIELD2, SPARE_FIELD3, 
+    cmos_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_intf_handling_log
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_intf_handling_log
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="LG_ID" keyProperty="lgId" parameterType="com.example.springboot.dao.TIntfHandlingLog" useGeneratedKeys="true">
+    insert into t_intf_handling_log (TENANT_ID, PROV_CODE, RLT_SYS_CODE, 
+      OP_STS_CD, OP_TYPE_CD, WRKFM_SHOW_SWFTNO, 
+      OUT_SYS_WRKFM_SHOW_SWFTNO, INTTR, TARGET, 
+      ASYNC_SYS_FLAG, OP_CNT, INTF_BACKTO_CNTT, 
+      OP_STAFF_ID, OP_STAFF_DEPT_ID, CRT_TIME, 
+      MODF_TIME, SPARE_FIELD1, SPARE_FIELD2, 
+      SPARE_FIELD3, cmos_modify_time)
+    values (#{tenantId,jdbcType=VARCHAR}, #{provCode,jdbcType=VARCHAR}, #{rltSysCode,jdbcType=VARCHAR}, 
+      #{opStsCd,jdbcType=VARCHAR}, #{opTypeCd,jdbcType=VARCHAR}, #{wrkfmShowSwftno,jdbcType=VARCHAR}, 
+      #{outSysWrkfmShowSwftno,jdbcType=VARCHAR}, #{inttr,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}, 
+      #{asyncSysFlag,jdbcType=TINYINT}, #{opCnt,jdbcType=TINYINT}, #{intfBacktoCntt,jdbcType=VARCHAR}, 
+      #{opStaffId,jdbcType=VARCHAR}, #{opStaffDeptId,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, 
+      #{modfTime,jdbcType=TIMESTAMP}, #{spareField1,jdbcType=VARCHAR}, #{spareField2,jdbcType=VARCHAR}, 
+      #{spareField3,jdbcType=VARCHAR}, #{cmosModifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="LG_ID" keyProperty="lgId" parameterType="com.example.springboot.dao.TIntfHandlingLog" useGeneratedKeys="true">
+    insert into t_intf_handling_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tenantId != null">
+        TENANT_ID,
+      </if>
+      <if test="provCode != null">
+        PROV_CODE,
+      </if>
+      <if test="rltSysCode != null">
+        RLT_SYS_CODE,
+      </if>
+      <if test="opStsCd != null">
+        OP_STS_CD,
+      </if>
+      <if test="opTypeCd != null">
+        OP_TYPE_CD,
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        WRKFM_SHOW_SWFTNO,
+      </if>
+      <if test="outSysWrkfmShowSwftno != null">
+        OUT_SYS_WRKFM_SHOW_SWFTNO,
+      </if>
+      <if test="inttr != null">
+        INTTR,
+      </if>
+      <if test="target != null">
+        TARGET,
+      </if>
+      <if test="asyncSysFlag != null">
+        ASYNC_SYS_FLAG,
+      </if>
+      <if test="opCnt != null">
+        OP_CNT,
+      </if>
+      <if test="intfBacktoCntt != null">
+        INTF_BACKTO_CNTT,
+      </if>
+      <if test="opStaffId != null">
+        OP_STAFF_ID,
+      </if>
+      <if test="opStaffDeptId != null">
+        OP_STAFF_DEPT_ID,
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME,
+      </if>
+      <if test="modfTime != null">
+        MODF_TIME,
+      </if>
+      <if test="spareField1 != null">
+        SPARE_FIELD1,
+      </if>
+      <if test="spareField2 != null">
+        SPARE_FIELD2,
+      </if>
+      <if test="spareField3 != null">
+        SPARE_FIELD3,
+      </if>
+      <if test="cmosModifyTime != null">
+        cmos_modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="provCode != null">
+        #{provCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rltSysCode != null">
+        #{rltSysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opStsCd != null">
+        #{opStsCd,jdbcType=VARCHAR},
+      </if>
+      <if test="opTypeCd != null">
+        #{opTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="outSysWrkfmShowSwftno != null">
+        #{outSysWrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="inttr != null">
+        #{inttr,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null">
+        #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="asyncSysFlag != null">
+        #{asyncSysFlag,jdbcType=TINYINT},
+      </if>
+      <if test="opCnt != null">
+        #{opCnt,jdbcType=TINYINT},
+      </if>
+      <if test="intfBacktoCntt != null">
+        #{intfBacktoCntt,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffId != null">
+        #{opStaffId,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffDeptId != null">
+        #{opStaffDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modfTime != null">
+        #{modfTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spareField1 != null">
+        #{spareField1,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField2 != null">
+        #{spareField2,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField3 != null">
+        #{spareField3,jdbcType=VARCHAR},
+      </if>
+      <if test="cmosModifyTime != null">
+        #{cmosModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.dao.TIntfHandlingLog">
+    update t_intf_handling_log
+    <set>
+      <if test="tenantId != null">
+        TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="provCode != null">
+        PROV_CODE = #{provCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rltSysCode != null">
+        RLT_SYS_CODE = #{rltSysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opStsCd != null">
+        OP_STS_CD = #{opStsCd,jdbcType=VARCHAR},
+      </if>
+      <if test="opTypeCd != null">
+        OP_TYPE_CD = #{opTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        WRKFM_SHOW_SWFTNO = #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="outSysWrkfmShowSwftno != null">
+        OUT_SYS_WRKFM_SHOW_SWFTNO = #{outSysWrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="inttr != null">
+        INTTR = #{inttr,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null">
+        TARGET = #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="asyncSysFlag != null">
+        ASYNC_SYS_FLAG = #{asyncSysFlag,jdbcType=TINYINT},
+      </if>
+      <if test="opCnt != null">
+        OP_CNT = #{opCnt,jdbcType=TINYINT},
+      </if>
+      <if test="intfBacktoCntt != null">
+        INTF_BACKTO_CNTT = #{intfBacktoCntt,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffId != null">
+        OP_STAFF_ID = #{opStaffId,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffDeptId != null">
+        OP_STAFF_DEPT_ID = #{opStaffDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modfTime != null">
+        MODF_TIME = #{modfTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spareField1 != null">
+        SPARE_FIELD1 = #{spareField1,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField2 != null">
+        SPARE_FIELD2 = #{spareField2,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField3 != null">
+        SPARE_FIELD3 = #{spareField3,jdbcType=VARCHAR},
+      </if>
+      <if test="cmosModifyTime != null">
+        cmos_modify_time = #{cmosModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.dao.TIntfHandlingLog">
+    update t_intf_handling_log
+    set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      PROV_CODE = #{provCode,jdbcType=VARCHAR},
+      RLT_SYS_CODE = #{rltSysCode,jdbcType=VARCHAR},
+      OP_STS_CD = #{opStsCd,jdbcType=VARCHAR},
+      OP_TYPE_CD = #{opTypeCd,jdbcType=VARCHAR},
+      WRKFM_SHOW_SWFTNO = #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      OUT_SYS_WRKFM_SHOW_SWFTNO = #{outSysWrkfmShowSwftno,jdbcType=VARCHAR},
+      INTTR = #{inttr,jdbcType=VARCHAR},
+      TARGET = #{target,jdbcType=VARCHAR},
+      ASYNC_SYS_FLAG = #{asyncSysFlag,jdbcType=TINYINT},
+      OP_CNT = #{opCnt,jdbcType=TINYINT},
+      INTF_BACKTO_CNTT = #{intfBacktoCntt,jdbcType=VARCHAR},
+      OP_STAFF_ID = #{opStaffId,jdbcType=VARCHAR},
+      OP_STAFF_DEPT_ID = #{opStaffDeptId,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      MODF_TIME = #{modfTime,jdbcType=TIMESTAMP},
+      SPARE_FIELD1 = #{spareField1,jdbcType=VARCHAR},
+      SPARE_FIELD2 = #{spareField2,jdbcType=VARCHAR},
+      SPARE_FIELD3 = #{spareField3,jdbcType=VARCHAR},
+      cmos_modify_time = #{cmosModifyTime,jdbcType=TIMESTAMP}
+    where LG_ID = #{lgId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -2,6 +2,7 @@ package com.example.springboot.controller;
 
 import com.example.springboot.common.bean.InputObject;
 import com.example.springboot.common.bean.OutputObject;
+import com.example.springboot.common.bean.TIntfConstConfig;
 import com.example.springboot.other.AsyncTaskService;
 import com.example.springboot.service.ITestSpringBootService;
 import com.example.springboot.thread.ThreadPoolTestServiceImpl;
@@ -9,7 +10,10 @@ import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -27,7 +31,10 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZhangPei on 2018/11/15.
@@ -329,7 +336,7 @@ public class TestSpringBootController {
 
 
     /**
-     * 经过测试线程池的最大线程数量不超过maxpoolsize，流程是一开始线城市会初始化corePoolSize个线程
+     * 经过测试线程池的最大线程数量不超过maxpoolsize，流程是一开始线程池会初始化corePoolSize个线程
      * 但是线程处于等待接收任务状态，当有任务执行时，会启动线程去执行，当任务数量大于corePoolSize的时候，任务会先进任务队列中，
      * 如果任务队列存满了，则会扩充线程池的数量直到最大数量，然后如果还有任务未执行，则会根据拒绝策略进行处理，所以线程中所能处理的最大任务数量应该是
      * 最大线程数和任务队列任务的总和
@@ -389,5 +396,12 @@ public class TestSpringBootController {
     public void testRedis() {
         jedisPool.getResource().set("springboot", "通过springboot添加");
         System.out.println(jedisPool.getResource().get("username"));      //通过springboot获取
+    }
+
+    @RequestMapping(value = "/testBean")
+    public void testBean() {
+        TIntfConstConfig tIntfConstConfig = new TIntfConstConfig();
+
+
     }
 }

@@ -6,28 +6,17 @@ import com.example.springboot.common.annotations.InputObject;
 import com.example.springboot.common.bean.OutputObject;
 import com.example.springboot.service.ISqlProductService;
 import com.example.springboot.util.Constants;
-import com.example.springboot.util.OCRUtil;
-import com.example.springboot.util.QRCodeUtils;
 import org.apache.commons.collections.MapUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by ZhangPei on 2019/5/28.
@@ -108,5 +97,10 @@ public class SqlProductController {
         }
 
         return sb.toString();
+    }
+
+    @RequestMapping(value = "/testRequest", method = RequestMethod.POST)
+    public String testRequest(@InputObject com.example.springboot.common.bean.InputObject inputObject, HttpServletRequest request) {
+        return "index";
     }
 }

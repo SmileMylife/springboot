@@ -1,7 +1,7 @@
 package com.example.springboot;
 
 import com.alibaba.druid.support.http.StatViewServlet;
-import com.example.springboot.common.interceptor.LoginInterceptor;
+import com.example.springboot.common.interceptor.ProjLoginInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -25,7 +25,7 @@ public class SpringbootApplication extends WebMvcConfigurationSupport {
     HandlerMethodArgumentResolver handlerMethodArgumentResolver;
 
     @Autowired
-    LoginInterceptor loginInterceptor;
+    ProjLoginInterceptor loginInterceptor;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringbootApplication.class, args);
