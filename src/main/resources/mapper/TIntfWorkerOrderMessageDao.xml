@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.dao.TIntfWorkerOrderMessageDao">
+  <resultMap id="BaseResultMap" type="com.example.springboot.common.bean.TIntfWorkerOrderMessage">
+    <id column="REC_ID" jdbcType="BIGINT" property="recId" />
+    <result column="TENANT_ID" jdbcType="VARCHAR" property="tenantId" />
+    <result column="PROV_CODE" jdbcType="VARCHAR" property="provCode" />
+    <result column="RLT_SYS_CODE" jdbcType="VARCHAR" property="rltSysCode" />
+    <result column="OP_TYPE_CD" jdbcType="VARCHAR" property="opTypeCd" />
+    <result column="WRKFM_SHOW_SWFTNO" jdbcType="VARCHAR" property="wrkfmShowSwftno" />
+    <result column="MSG_CNTT1" jdbcType="VARCHAR" property="msgCntt1" />
+    <result column="MSG_CNTT2" jdbcType="VARCHAR" property="msgCntt2" />
+    <result column="MSG_CNTT3" jdbcType="VARCHAR" property="msgCntt3" />
+    <result column="OP_STAFF_ID" jdbcType="VARCHAR" property="opStaffId" />
+    <result column="OP_STAFF_DEPT_ID" jdbcType="VARCHAR" property="opStaffDeptId" />
+    <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="MODF_TIME" jdbcType="TIMESTAMP" property="modfTime" />
+    <result column="SPARE_FIELD1" jdbcType="VARCHAR" property="spareField1" />
+    <result column="SPARE_FIELD2" jdbcType="VARCHAR" property="spareField2" />
+    <result column="SPARE_FIELD3" jdbcType="VARCHAR" property="spareField3" />
+    <result column="SPARE_FIELD4" jdbcType="VARCHAR" property="spareField4" />
+    <result column="SPARE_FIELD5" jdbcType="VARCHAR" property="spareField5" />
+    <result column="cmos_modify_time" jdbcType="TIMESTAMP" property="cmosModifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    REC_ID, TENANT_ID, PROV_CODE, RLT_SYS_CODE, OP_TYPE_CD, WRKFM_SHOW_SWFTNO, MSG_CNTT1, 
+    MSG_CNTT2, MSG_CNTT3, OP_STAFF_ID, OP_STAFF_DEPT_ID, CRT_TIME, MODF_TIME, SPARE_FIELD1, 
+    SPARE_FIELD2, SPARE_FIELD3, SPARE_FIELD4, SPARE_FIELD5, cmos_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_intf_worker_order_message
+    where REC_ID = #{recId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_intf_worker_order_message
+    where REC_ID = #{recId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="REC_ID" keyProperty="recId" parameterType="com.example.springboot.common.bean.TIntfWorkerOrderMessage" useGeneratedKeys="true">
+    insert into t_intf_worker_order_message (TENANT_ID, PROV_CODE, RLT_SYS_CODE, 
+      OP_TYPE_CD, WRKFM_SHOW_SWFTNO, MSG_CNTT1, 
+      MSG_CNTT2, MSG_CNTT3, OP_STAFF_ID, 
+      OP_STAFF_DEPT_ID, CRT_TIME, MODF_TIME, 
+      SPARE_FIELD1, SPARE_FIELD2, SPARE_FIELD3, 
+      SPARE_FIELD4, SPARE_FIELD5, cmos_modify_time
+      )
+    values (#{tenantId,jdbcType=VARCHAR}, #{provCode,jdbcType=VARCHAR}, #{rltSysCode,jdbcType=VARCHAR}, 
+      #{opTypeCd,jdbcType=VARCHAR}, #{wrkfmShowSwftno,jdbcType=VARCHAR}, #{msgCntt1,jdbcType=VARCHAR}, 
+      #{msgCntt2,jdbcType=VARCHAR}, #{msgCntt3,jdbcType=VARCHAR}, #{opStaffId,jdbcType=VARCHAR}, 
+      #{opStaffDeptId,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, #{modfTime,jdbcType=TIMESTAMP}, 
+      #{spareField1,jdbcType=VARCHAR}, #{spareField2,jdbcType=VARCHAR}, #{spareField3,jdbcType=VARCHAR}, 
+      #{spareField4,jdbcType=VARCHAR}, #{spareField5,jdbcType=VARCHAR}, #{cmosModifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="REC_ID" keyProperty="recId" parameterType="com.example.springboot.common.bean.TIntfWorkerOrderMessage" useGeneratedKeys="true">
+    insert into t_intf_worker_order_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tenantId != null">
+        TENANT_ID,
+      </if>
+      <if test="provCode != null">
+        PROV_CODE,
+      </if>
+      <if test="rltSysCode != null">
+        RLT_SYS_CODE,
+      </if>
+      <if test="opTypeCd != null">
+        OP_TYPE_CD,
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        WRKFM_SHOW_SWFTNO,
+      </if>
+      <if test="msgCntt1 != null">
+        MSG_CNTT1,
+      </if>
+      <if test="msgCntt2 != null">
+        MSG_CNTT2,
+      </if>
+      <if test="msgCntt3 != null">
+        MSG_CNTT3,
+      </if>
+      <if test="opStaffId != null">
+        OP_STAFF_ID,
+      </if>
+      <if test="opStaffDeptId != null">
+        OP_STAFF_DEPT_ID,
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME,
+      </if>
+      <if test="modfTime != null">
+        MODF_TIME,
+      </if>
+      <if test="spareField1 != null">
+        SPARE_FIELD1,
+      </if>
+      <if test="spareField2 != null">
+        SPARE_FIELD2,
+      </if>
+      <if test="spareField3 != null">
+        SPARE_FIELD3,
+      </if>
+      <if test="spareField4 != null">
+        SPARE_FIELD4,
+      </if>
+      <if test="spareField5 != null">
+        SPARE_FIELD5,
+      </if>
+      <if test="cmosModifyTime != null">
+        cmos_modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="provCode != null">
+        #{provCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rltSysCode != null">
+        #{rltSysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opTypeCd != null">
+        #{opTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCntt1 != null">
+        #{msgCntt1,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCntt2 != null">
+        #{msgCntt2,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCntt3 != null">
+        #{msgCntt3,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffId != null">
+        #{opStaffId,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffDeptId != null">
+        #{opStaffDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modfTime != null">
+        #{modfTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spareField1 != null">
+        #{spareField1,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField2 != null">
+        #{spareField2,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField3 != null">
+        #{spareField3,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField4 != null">
+        #{spareField4,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField5 != null">
+        #{spareField5,jdbcType=VARCHAR},
+      </if>
+      <if test="cmosModifyTime != null">
+        #{cmosModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.common.bean.TIntfWorkerOrderMessage">
+    update t_intf_worker_order_message
+    <set>
+      <if test="tenantId != null">
+        TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="provCode != null">
+        PROV_CODE = #{provCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rltSysCode != null">
+        RLT_SYS_CODE = #{rltSysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opTypeCd != null">
+        OP_TYPE_CD = #{opTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="wrkfmShowSwftno != null">
+        WRKFM_SHOW_SWFTNO = #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCntt1 != null">
+        MSG_CNTT1 = #{msgCntt1,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCntt2 != null">
+        MSG_CNTT2 = #{msgCntt2,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCntt3 != null">
+        MSG_CNTT3 = #{msgCntt3,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffId != null">
+        OP_STAFF_ID = #{opStaffId,jdbcType=VARCHAR},
+      </if>
+      <if test="opStaffDeptId != null">
+        OP_STAFF_DEPT_ID = #{opStaffDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modfTime != null">
+        MODF_TIME = #{modfTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spareField1 != null">
+        SPARE_FIELD1 = #{spareField1,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField2 != null">
+        SPARE_FIELD2 = #{spareField2,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField3 != null">
+        SPARE_FIELD3 = #{spareField3,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField4 != null">
+        SPARE_FIELD4 = #{spareField4,jdbcType=VARCHAR},
+      </if>
+      <if test="spareField5 != null">
+        SPARE_FIELD5 = #{spareField5,jdbcType=VARCHAR},
+      </if>
+      <if test="cmosModifyTime != null">
+        cmos_modify_time = #{cmosModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where REC_ID = #{recId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.common.bean.TIntfWorkerOrderMessage">
+    update t_intf_worker_order_message
+    set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      PROV_CODE = #{provCode,jdbcType=VARCHAR},
+      RLT_SYS_CODE = #{rltSysCode,jdbcType=VARCHAR},
+      OP_TYPE_CD = #{opTypeCd,jdbcType=VARCHAR},
+      WRKFM_SHOW_SWFTNO = #{wrkfmShowSwftno,jdbcType=VARCHAR},
+      MSG_CNTT1 = #{msgCntt1,jdbcType=VARCHAR},
+      MSG_CNTT2 = #{msgCntt2,jdbcType=VARCHAR},
+      MSG_CNTT3 = #{msgCntt3,jdbcType=VARCHAR},
+      OP_STAFF_ID = #{opStaffId,jdbcType=VARCHAR},
+      OP_STAFF_DEPT_ID = #{opStaffDeptId,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      MODF_TIME = #{modfTime,jdbcType=TIMESTAMP},
+      SPARE_FIELD1 = #{spareField1,jdbcType=VARCHAR},
+      SPARE_FIELD2 = #{spareField2,jdbcType=VARCHAR},
+      SPARE_FIELD3 = #{spareField3,jdbcType=VARCHAR},
+      SPARE_FIELD4 = #{spareField4,jdbcType=VARCHAR},
+      SPARE_FIELD5 = #{spareField5,jdbcType=VARCHAR},
+      cmos_modify_time = #{cmosModifyTime,jdbcType=TIMESTAMP}
+    where REC_ID = #{recId,jdbcType=BIGINT}
+  </update>
+</mapper>
