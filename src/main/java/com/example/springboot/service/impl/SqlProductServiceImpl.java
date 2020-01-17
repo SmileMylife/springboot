@@ -16,6 +16,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +54,7 @@ public class SqlProductServiceImpl implements ISqlProductService {
         String operation = MapUtils.getString(params, "operation");
         String username = MapUtils.getString(params, "username");      //英文名称
         String sql = MapUtils.getString(params, "sql");
+        sql = URLDecoder.decode(sql);
         String opCount = MapUtils.getString(params, "opCount");
         String isRollback = MapUtils.getString(params, "isRollback");
         String rollbackSql = MapUtils.getString(params, "rollbackSql");

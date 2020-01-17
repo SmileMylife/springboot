@@ -349,6 +349,111 @@ public class TestCollections {
         }
     }
 
+    @Test
+    public void testLong() {
+        double time = new Date().getTime();
+        double time1 = 1578303205843l;
+
+        System.out.println(time / time1 > 1.0);
+        double b = 10;
+        System.out.println(b);
+    }
+
+    @Test
+    public void testSubString() throws InterruptedException, ParseException {
+        /*String s = "[0871]";
+        String substring = s.substring(1, s.length() - 1);
+        System.out.println(substring);
+
+        double time = (double)new Date().getTime();
+        Thread.sleep(1111);
+        double time1 = (double)new Date().getTime();
+        System.out.println(String.valueOf(time1 - time / time));
+
+        BigDecimal b1 = new BigDecimal(Double.toString(10.3));
+        BigDecimal b2 = new BigDecimal(Double.toString(2.1));
+
+        double v = b1.divide(b2, 3, BigDecimal.ROUND_HALF_UP).doubleValue();
+        System.out.println(v);*/
+
+        /*double b = 10.0;
+        double a = 3.0;
+
+        System.out.println(b / a);
+
+        long time = new Date().getTime();
+        Thread.sleep(5000);
+        long time1 = new Date().getTime();
+
+        System.out.println((time1 - time) / (24 * 3600 * 1000));*/
+
+        /*long a = 10;
+        double v = a + 7 / 24.0;
+
+        System.out.println(v);*/
+
+        long time = new Date().getTime();
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date parse = simpleDateFormat.parse("2020-01-08 00:00:00");
+
+
+        long days = (time - parse.getTime()) / (24 * 3600 * 1000);
+
+        System.out.println(days);
+
+        long hour = ((time - parse.getTime()) % (24 * 3600 * 1000)) / (3600 * 1000);
+
+        System.out.println(hour);
+
+
+        String s = String.valueOf(days + hour / 24.0);
+        double v = Double.parseDouble(s);
+        System.out.println(v);
+
+
+    }
+
+    @Test
+    public void testRetainAll() {
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.add("1");
+        objects.add("2");
+        objects.add("3");
+
+        ArrayList<Object> objects1 = new ArrayList<>();
+        objects1.add("1");
+        objects1.add("2");
+
+        boolean b = objects.retainAll(objects1);
+
+        System.out.println(objects.size());
+
+        System.out.println("2019-10-10 00:00:00".substring(0, 10).replace("-", ""));
+
+    }
+
+    @Test
+    public void testControl(){
+        boolean contains = Arrays.asList("".split(",")).contains("-69");
+
+        System.out.println(contains);
+    }
+
+    @Test
+    public void testBool() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("isFlag", false);
+        System.out.println(MapUtils.getBoolean(map, "isFlag"));
+    }
+
+    @Test
+    public void testDebug() {
+        int a = 100;
+        int b = 1000;
+        int c = 800;
+    }
+
 
 }
 

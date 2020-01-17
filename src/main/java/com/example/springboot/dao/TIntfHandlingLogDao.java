@@ -1,9 +1,7 @@
 package com.example.springboot.dao;
 
 import com.example.springboot.common.bean.TIntfHandlingLog;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
 public interface TIntfHandlingLogDao {
     int deleteByPrimaryKey(Long lgId);
 

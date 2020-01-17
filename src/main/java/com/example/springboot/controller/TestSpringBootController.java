@@ -402,6 +402,5 @@ public class TestSpringBootController {
     public void testBean() {
         TIntfConstConfig tIntfConstConfig = new TIntfConstConfig();
 
-
     }
 }
