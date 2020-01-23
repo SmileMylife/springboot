@@ -226,6 +226,8 @@ public class TestCollections {
         instance.add(Calendar.MONTH, 2);
         int i = instance.get(Calendar.MONTH);
         System.out.println(i);
+
+        System.out.println(0 % 1000);
     }
 
     @Test
