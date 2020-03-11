@@ -116,12 +116,12 @@
             <optional>true</optional>
         </dependency>
 
-        <!--系统监控-->
-        <dependency>
+        <!--系统监控加上会报错-->
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
             <optional>true</optional>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.apache.axis</groupId>

@@ -36,7 +36,7 @@ public class DynamicDataSourceServiceImpl extends AbstractRoutingDataSource {
      */
     private Map<Object, Object> queryAllDatasources() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ngwf", "root", "root");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/proj_conf", "root", "root");
         String sql = "SELECT * FROM T_SR_DATASOURCE";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         ResultSet resultSet = preparedStatement.executeQuery();

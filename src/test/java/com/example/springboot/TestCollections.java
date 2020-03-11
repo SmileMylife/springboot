@@ -362,6 +362,11 @@ public class TestCollections {
     }
 
     @Test
+    public void testWhat() {
+
+    }
+
+    @Test
     public void testSubString() throws InterruptedException, ParseException {
         /*String s = "[0871]";
         String substring = s.substring(1, s.length() - 1);
@@ -454,6 +459,19 @@ public class TestCollections {
         int a = 100;
         int b = 1000;
         int c = 800;
+    }
+    @Test
+    public void testDate() {
+        Date date = new Date();
+        Date date2 = new Date(date.getTime());
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateStr = simpleDateFormat.format(date);
+
+        String dateStr2 = simpleDateFormat.format(date2);
+
+        System.out.println(dateStr);
+        System.out.println(dateStr2);
     }
 
 

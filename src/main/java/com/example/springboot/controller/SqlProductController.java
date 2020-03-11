@@ -29,7 +29,7 @@ public class SqlProductController {
     @RequestMapping(value = "/queryAllProv", method = RequestMethod.POST)
     @ResponseBody
     public OutputObject queryAllProv(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
-        inputObject.getParams().put("dbKey", "ngwf");
+        inputObject.getParams().put("dbKey", "proj_conf");
         iSqlProductService.queryAllProv(inputObject, outputObject);
         return outputObject;
     }
@@ -42,7 +42,7 @@ public class SqlProductController {
 //    @RequestMapping(value = "/productSqlFile", method = RequestMethod.GET)
     @RequestMapping(value = "/productSqlFile", method = RequestMethod.POST)
     public void productSqlFile(HttpServletResponse response, @InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
-        inputObject.getParams().put("dbKey", "ngwf");
+        inputObject.getParams().put("dbKey", "proj_conf");
         FileInputStream is = null;
         iSqlProductService.productSqlFile(inputObject, outputObject);
         Object obj = outputObject.getObject();
@@ -69,7 +69,7 @@ public class SqlProductController {
     @RequestMapping(value = "/showDownloadList", method = RequestMethod.POST)
     @ResponseBody
     public OutputObject showDownloadList(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
-        inputObject.getParams().put("dbKey", "ngwf");
+        inputObject.getParams().put("dbKey", "proj_conf");
         iSqlProductService.showDownloadList(inputObject, outputObject);
         return outputObject;
     }
