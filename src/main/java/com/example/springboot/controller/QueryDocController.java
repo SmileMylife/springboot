@@ -46,7 +46,7 @@ public class QueryDocController {
     @RequestMapping(value = "/queryDocs", method = RequestMethod.POST)
     @ResponseBody
     public OutputObject queryDocs(@InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject) {
-        inputObject.getParams().put("dbKey", "ngwf");
+        inputObject.getParams().put("dbKey", "proj_busi");
         iQueryDocService.queryDoc(inputObject, outputObject);
         return outputObject;
     }
@@ -56,7 +56,7 @@ public class QueryDocController {
     public void uploadDoc(@RequestParam("file") MultipartFile multipartFile,
                           @InputObject com.example.springboot.common.bean.InputObject inputObject, OutputObject outputObject) throws Exception {
         HashMap<String, Object> params = inputObject.getParams();
-        params.put("dbKey", "ngwf");
+        params.put("dbKey", "proj_busi");
         if (StringUtils.isBlank(MapUtils.getString(params, "fileNm"))) {
             throw new TxtException("上传文件名为空！");
         }
@@ -88,7 +88,7 @@ public class QueryDocController {
     public void downLoadDoc(@InputObject com.example.springboot.common.bean.InputObject inputObject,
                             OutputObject outputObject, HttpServletResponse httpServletResponse) throws IOException {
         HashMap<String, Object> params = inputObject.getParams();
-        params.put("dbKey", "ngwf");
+        params.put("dbKey", "proj_busi");
         iQueryDocService.downLoadDoc(inputObject, outputObject);
 
         if (CollectionUtils.isNotEmpty(outputObject.getBeans())) {
@@ -115,7 +115,7 @@ public class QueryDocController {
     public void lookOnline(@InputObject com.example.springboot.common.bean.InputObject inputObject,
                            OutputObject outputObject, HttpServletResponse httpServletResponse) throws Exception {
         HashMap<String, Object> params = inputObject.getParams();
-        params.put("dbKey", "ngwf");
+        params.put("dbKey", "proj_busi");
         iQueryDocService.downLoadDoc(inputObject, outputObject);
 
         if (CollectionUtils.isNotEmpty(outputObject.getBeans())) {
