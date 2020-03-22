@@ -71,6 +71,7 @@
         }
 
         .show_result_bottom {
+            height: 420px;
             font-size: 16px;
             line-height: 2;
             color: rgb(106, 106, 106);

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.dao.TSrMessageInfoDao">
+  <resultMap id="BaseResultMap" type="com.example.springboot.common.bean.TSrMessageInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="request_url" jdbcType="VARCHAR" property="requestUrl" />
+    <result column="request_method" jdbcType="VARCHAR" property="requestMethod" />
+    <result column="content_type" jdbcType="VARCHAR" property="contentType" />
+    <result column="request_message" jdbcType="VARCHAR" property="requestMessage" />
+    <result column="upload_by" jdbcType="VARCHAR" property="uploadBy" />
+    <result column="crt_time" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="inter_name" jdbcType="VARCHAR" property="interName" />
+  </resultMap>
+
+  <resultMap id="BaseResultMapType" type="java.util.Map">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="request_url" jdbcType="VARCHAR" property="requestUrl" />
+    <result column="request_method" jdbcType="VARCHAR" property="requestMethod" />
+    <result column="content_type" jdbcType="VARCHAR" property="contentType" />
+    <result column="request_message" jdbcType="VARCHAR" property="requestMessage" />
+    <result column="upload_by" jdbcType="VARCHAR" property="uploadBy" />
+    <result column="crt_time" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="inter_name" jdbcType="VARCHAR" property="interName" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, request_url, inter_name, request_method, content_type, request_message, upload_by, crt_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap" resultType="com.example.springboot.common.bean.TSrMessageInfo">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sr_message_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultType="java.util.Map" resultMap="BaseResultMapType" parameterType="java.util.Map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM t_sr_message_info
+    <where>
+      <if test="keyWords != null and keyWords != ''">
+        inter_name like concat('%', #{keyWords, jdbcType=VARCHAR}, '%')
+      </if>
+    </where>
+    <if test="start != null and limit != null">
+      limit #{start, jdbcType=VARCHAR}, #{limit, jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="selectCount" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM t_sr_message_info
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_sr_message_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.springboot.common.bean.TSrMessageInfo" useGeneratedKeys="true">
+    insert into t_sr_message_info (request_url, inter_name, request_method, content_type,
+      request_message, upload_by, crt_time
+      )
+    values (#{requestUrl,jdbcType=VARCHAR}, #{interName,jdbcType=VARCHAR}, #{requestMethod,jdbcType=VARCHAR}, #{contentType,jdbcType=VARCHAR},
+      #{requestMessage,jdbcType=VARCHAR}, #{uploadBy,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.springboot.common.bean.TSrMessageInfo" useGeneratedKeys="true">
+    insert into t_sr_message_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="requestUrl != null">
+        request_url,
+      </if>
+
+      <if test="interName != null">
+        inter_name,
+      </if>
+
+      <if test="requestMethod != null">
+        request_method,
+      </if>
+      <if test="contentType != null">
+        content_type,
+      </if>
+      <if test="requestMessage != null">
+        request_message,
+      </if>
+      <if test="uploadBy != null">
+        upload_by,
+      </if>
+      <if test="crtTime != null">
+        crt_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="requestUrl != null">
+        #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="interName != null">
+        #{interName,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMethod != null">
+        #{requestMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="contentType != null">
+        #{contentType,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMessage != null">
+        #{requestMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBy != null">
+        #{uploadBy,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertList" parameterType="java.util.List">
+
+    INSERT INTO t_sr_message_info(request_url, inter_name, request_method, content_type, request_message) VALUES
+    <foreach collection="list" separator="," item="message">
+        (#{message.requestUrl, jdbcType= VARCHAR}, #{message.interName, jdbcType= VARCHAR}, #{message.requestMethod, jdbcType= VARCHAR}, #{message.contentType, jdbcType= VARCHAR}, #{message.requestMessage, jdbcType= VARCHAR})
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.common.bean.TSrMessageInfo">
+    update t_sr_message_info
+    <set>
+      <if test="requestUrl != null">
+        request_url = #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="interName != null">
+        inter_name = #{interName,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMethod != null">
+        request_method = #{requestMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="contentType != null">
+        content_type = #{contentType,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMessage != null">
+        request_message = #{requestMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBy != null">
+        upload_by = #{uploadBy,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        crt_time = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.common.bean.TSrMessageInfo">
+    update t_sr_message_info
+    set request_url = #{requestUrl,jdbcType=VARCHAR},
+      inter_name = #{interName,jdbcType=VARCHAR},
+      request_method = #{requestMethod,jdbcType=VARCHAR},
+      content_type = #{contentType,jdbcType=VARCHAR},
+      request_message = #{requestMessage,jdbcType=VARCHAR},
+      upload_by = #{uploadBy,jdbcType=VARCHAR},
+      crt_time = #{crtTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

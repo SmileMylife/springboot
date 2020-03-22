@@ -47,6 +47,8 @@ public class Constants {
 
     public static final String ALLOW_EXTEND = ".doc,.docx,.txt";
 
+    public static final String ALLOW_JSON_FILE = ".json";
+
 
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder();

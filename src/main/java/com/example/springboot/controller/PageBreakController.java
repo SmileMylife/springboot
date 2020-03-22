@@ -95,7 +95,18 @@ public class PageBreakController extends BaseControllerServceImpl {
     }
 
     /**
-     * 前往文档查询页面
+     * 前往报文查询页面
+     * @return
+     */
+    @RequestMapping(value = "/toQueryMessage", method = RequestMethod.GET)
+    public ModelAndView toQueryMessage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("queryMessage");
+        return modelAndView;
+    }
+
+    /**
+     * 前往注册页面
      * @return
      */
     @RequestMapping(value = "/toRegist", method = RequestMethod.GET)

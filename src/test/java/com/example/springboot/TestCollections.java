@@ -474,6 +474,21 @@ public class TestCollections {
         System.out.println(dateStr2);
     }
 
+    @Test
+    public void testList() {
+        String s = null;
+        System.out.print("123" + s);
+
+        ArrayList list = new ArrayList<>();
+        list.add("123");
+        list.add("123");
+        list.add("123");
+        list.add("123");
+        list.subList(0, 2);
+
+        System.out.print(list);
+    }
+
 
 }
 
