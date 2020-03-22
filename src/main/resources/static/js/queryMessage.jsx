@@ -231,7 +231,7 @@ class Table extends React.Component {
                         onSearch={this.searchDoc}
                         enterButton
                         style={{width: 300, marginBottom: "20px"}}/>
-                    <span style={{color: "red", marginLeft: "10px"}}>上传文档为.json格式结尾，且符合postman导出报文格式</span>
+                    <span style={{color: "red", marginLeft: "10px"}}>上传报文为.json格式结尾，且符合postman导出报文格式。报文注意报文格式，如果为form-data格式，使用时需要把每个字段拆开使用。</span>
                     {/*表格数据显示部分*/}
                     <div className="scroll_x_style">
                         <table width="100%" border="1px solid black" cellSpacing="0px">
