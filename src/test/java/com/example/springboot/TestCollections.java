@@ -488,6 +488,10 @@ public class TestCollections {
 
         System.out.print(list);
     }
+    @Test
+    public void testSubStr() {
+        String s = "110103569a030400";
+    }
 
 
 }

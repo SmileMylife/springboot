@@ -55,7 +55,7 @@
     <script type="text/babel" src="../static/js/queryMessage.jsx"></script>
 </head>
 <body>
-    <h2>常用文档查询</h2>
+    <h2>常用报文查询</h2>
     <div id="root"></div>
 </body>
 </html>
