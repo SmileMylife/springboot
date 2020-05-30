@@ -44,7 +44,7 @@ public class LoginLogoutController {
         }
         loginModelAndView.addObject("isError", "false");
         HttpSession session = request.getSession();
-        session.setMaxInactiveInterval(60 * 30);     //60秒过期
+        session.setMaxInactiveInterval(60 * 60 * 24);     //60秒过期
         session.setAttribute(request.getSession().getId(), true);
         return loginModelAndView;
     }

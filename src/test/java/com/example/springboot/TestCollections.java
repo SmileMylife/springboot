@@ -1,6 +1,7 @@
 package com.example.springboot;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.baidu.aip.ocr.AipOcr;
 import com.example.springboot.util.SQlReplaceUtil;
@@ -11,12 +12,10 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigInteger;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -359,6 +358,8 @@ public class TestCollections {
         System.out.println(time / time1 > 1.0);
         double b = 10;
         System.out.println(b);
+
+        File file = new File("/User/smile_mylife/Desktop/虚拟组织机构ID.xlsx");
     }
 
     @Test
@@ -441,7 +442,7 @@ public class TestCollections {
     }
 
     @Test
-    public void testControl(){
+    public void testControl() {
         boolean contains = Arrays.asList("".split(",")).contains("-69");
 
         System.out.println(contains);
@@ -460,6 +461,7 @@ public class TestCollections {
         int b = 1000;
         int c = 800;
     }
+
     @Test
     public void testDate() {
         Date date = new Date();
@@ -488,10 +490,250 @@ public class TestCollections {
 
         System.out.print(list);
     }
+
     @Test
     public void testSubStr() {
         String s = "110103569a030400";
     }
+
+    @Test
+    public void closeInputStream() throws FileNotFoundException {
+
+        FileInputStream fileInputStream = new FileInputStream(new File("/Users/smile_mylife/Desktop/报文.json"));
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("/Users/smile_mylife/Desktop/heihei.json"));
+        try {
+            byte[] bytes = new byte[1024];
+            int length = 0;
+            while ((length = fileInputStream.read()) != -1) {
+                fileOutputStream.write(length);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                fileInputStream.close();
+                fileOutputStream.close();
+            } catch (Exception e) {
+                throw new RuntimeException("流关闭失败！");
+            }
+        }
+    }
+
+    @Test
+    public void testTryWithResource() {
+        try(FileInputStream fileInputStream = new FileInputStream(new File("/Users/smile_mylife/Desktop/报文.json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File("/Users/smile_mylife/Desktop/heihei.json"));) {
+            int length = 0;
+            while ((length =fileInputStream.read()) != -1) {
+                fileOutputStream.write(length);
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
+    public void testRemove() {
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.removeAll(new ArrayList<>());
+    }
+
+    @Test
+    public void testJsonStr() {
+        ArrayList<Map<String, Object>> list = new ArrayList<>();
+        Map<String, Object> map = new HashMap<>();
+        map.put("username", "zhangpei");
+        list.add(map);
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("file", JSON.toJSONString(list));
+
+        Map<String, Object> contentMap = new HashMap<>();
+        String s = JSON.toJSONString(params);
+        contentMap.put("params", s);
+        System.out.print(JSON.toJSONString(contentMap));
+
+        Map map1 = JSON.parseObject(JSON.toJSONString(contentMap), Map.class);
+
+        String paramsStr = MapUtils.getString(map1, "params");
+
+        Map map2 = JSON.parseObject(paramsStr, Map.class);
+
+        String file = MapUtils.getString(map2, "file");
+
+        JSONArray jsonArray = JSON.parseArray(file);
+
+        System.out.print(jsonArray);
+
+    }
+
+    @Test
+    public void testTIimeConsumer() {
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            for (int j = 0; j < 10000; j++) {
+                ArrayList<Object> objects = new ArrayList<>();
+                objects.add("zhangpei");
+                objects.add("zhangpei");
+                objects.add("zhangpei");
+                objects.add("zhangpei");
+                objects.add("zhangpei");
+            }
+        }
+        long end = System.currentTimeMillis();
+
+        System.out.print(end - start);
+    }
+
+    @Test
+    public void testSubList() {
+        int start = 0;
+        int limit = 4;
+
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.add("123");
+        objects.add("456");
+        objects.add("789");
+        objects.add("101");
+        List<Object> objects1 = null;
+        List<Object> objects2 = objects.subList(3, 4);
+
+        System.out.println(objects2);
+        if (start >= 0 && start < objects.size() && limit > 0 && objects.size() > 0) {
+            if (start + limit > objects.size()) {
+                objects1 = objects.subList(start, objects.size());
+            } else {
+                objects1 = objects.subList(start, start + limit);
+            }
+        } else {
+            System.out.print("分页数据有误");
+        }
+
+        System.out.println(objects1);
+    }
+
+    @Test
+    public void testMd5() {
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.addAll(null);
+        boolean empty = CollectionUtils.isNotEmpty(objects);
+        System.out.print(empty);
+    }
+
+    @Test
+    public void testMid() {
+        JSONArray jsonArray = new JSONArray();
+        com.alibaba.fastjson.JSONObject jsonObject = new com.alibaba.fastjson.JSONObject();
+        jsonObject.put("username", "zhangpei");
+        jsonArray.add(jsonObject);
+        String s = jsonArray.toString();
+
+        System.out.print(s);
+    }
+
+    @Test
+    public void testJsonSt() {
+        HashMap<Object, Object> map = new HashMap<>();
+        String[] arr = {"1", "2", "3"};
+        map.put("jsonArr", arr);
+
+        String json = JSON.toJSONString(map);
+        System.out.println(json);
+
+        com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(json);
+        Object jsonArr = jsonObject.get("jsonArr");
+        if (jsonArr instanceof JSONArray) {
+            System.out.println(jsonArr);
+        }
+
+        String[] strs = {"1", "2", "3"};
+
+        System.out.println(JSON.toJSONString(strs));
+
+    }
+
+    @Test
+    public void testInteger() {
+        Integer integer = new Integer(777777);
+
+        int i = 777777;
+
+        boolean equals = integer.equals(i);
+
+        System.out.print(i == integer);
+        System.out.print(integer.equals(i));
+    }
+    @Test
+    public void testMapInt() {
+        MapUtils.getIntValue(new HashMap(), "fctVal");
+    }
+
+    @Test
+    public void testEquals() {
+        //equals方法默认比较两个对象的地址值，源码为 this == obj，string和integer重写了equals方法，所以可以用来比较两个值。
+        Car car = new Car("red", "laosiji");
+        Car car1 = new Car("red", "laosiji");
+        Car car2 = new Car("red", "hehe");
+
+        System.out.print(car1.equals(car2));
+        System.out.print(car.equals(car1));
+
+        String s1 = new String();
+        String s2 = new String();
+
+        System.out.println(s1.equals(s2));
+
+
+        String a = "通话";
+        String b = "重地";
+        System.out.println(String.format("str1: %d | str2: %d", a.hashCode(), b.hashCode()));
+
+        long round = Math.round(-1.5);
+        System.out.println(round);
+
+        HashSet<Object> objects = new HashSet<>();
+        HashSet<Object> objects1 = new HashSet<>();
+
+        objects.equals(objects1);
+
+    }
+    @Test
+    public void testJsonParse() {
+        String s = null;
+        System.out.println(s.toString());
+        HashMap<Object, Object> map = new HashMap<>();
+        HashMap<Object, Object> map1 = new HashMap<>();
+        map1.put("username", "password");
+        map.put("map", map1);
+
+
+        System.out.println(JSON.toJSONString(map));
+    }
+
+    @Test
+    public void testCompare() {
+
+        String s1 = "2019-08-07 00:00:00";
+        String s2 = "2019-09-09 00:00:00";
+        int i = s1.compareTo(s2);
+
+        System.out.println(i);
+
+        HashMap<Object, Object> map = new HashMap<>();
+//        ArrayList<Map<String, Object>> objects = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray();
+
+        HashMap<String, Object> map1 = new HashMap<>();
+        map1.put("password", "hehehe");
+        jsonArray.add(map1);
+        map.put("children", jsonArray);
+        map.put("username", "zhangpei");
+
+        Object obj = map;
+
+        System.out.println(JSON.toJSONString(obj));
+    }
+
 
 
 }
@@ -516,5 +758,16 @@ class Car {
 
     public Car(String color) {
         Car.color = color;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Car) {
+            Car obj1 = (Car) obj;
+            if (this.getColor().equals(obj1.getColor())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
