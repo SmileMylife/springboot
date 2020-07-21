@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>这是测试1页面</h1>
+    <iframe src="./ceshi2.html" id="iframe">
+
+    </iframe>
+    <button id="btn" onclick="">点击一下</button>
+    <button id="btn1" onclick="">再点击一下</button>
+</body>
+<script type="text/javascript">
+    let message = {"username": "zhangpei", "password": "123456", "data": [{"ceshi": "ceshi"}, {"ceshi1": "ceshi1"}]};
+    document.getElementById("btn").onclick = function () {
+        document.getElementById("iframe").contentWindow.postMessage(JSON.stringify(message), "http://localhost:63342/springboot/templates/ceshi2.html");
+    }
+    document.getElementById("btn1").onclick = function () {
+        document.getElementById("iframe").contentWindow.postMessage(message, "http://localhost:63342/springboot/templates/ceshi2.html");
+    }
+</script>
+</html>

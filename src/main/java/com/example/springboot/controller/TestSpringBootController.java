@@ -403,4 +403,32 @@ public class TestSpringBootController {
         TIntfConstConfig tIntfConstConfig = new TIntfConstConfig();
 
     }
+
+    /**
+     * 测试被spring管理的线程池核心线程设置为0，会不会执行任务，
+     */
+    @RequestMapping(value = "/testThreadPool", method = RequestMethod.GET)
+    @ResponseBody
+    public void testThreadPoolCorePoolZero() throws InterruptedException {
+        int corePoolSize = taskExecutor.getCorePoolSize();
+        System.out.println("线程池核心线程数量：" + corePoolSize);
+        taskExecutor.execute(new Thread(new ThreadPoolTestServiceImpl()));
+        System.out.println("测试核心线程为0会不会执行");
+
+        Thread.sleep(12000);
+
+        System.out.println("休眠12秒后看线程池有没有被shutdown");
+        taskExecutor.execute(new Thread(new ThreadPoolTestServiceImpl()));
+
+    }
+
+    /**
+     * 如果把spring管理的线程池shutdown了，会不会再继续执行任务
+     */
+    @RequestMapping(value = "/testShotDownThreadPool", method = RequestMethod.GET)
+    @ResponseBody
+    public void testThreadPoolBySpringShutdown() {
+        int corePoolSize = taskExecutor.getCorePoolSize();
+        System.out.println("线程池被关闭之后的核心线程数：" + corePoolSize);
+    }
 }

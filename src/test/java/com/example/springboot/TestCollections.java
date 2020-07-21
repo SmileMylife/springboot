@@ -7,6 +7,7 @@ import com.baidu.aip.ocr.AipOcr;
 import com.example.springboot.util.SQlReplaceUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
 import org.json.JSONException;
@@ -352,6 +353,8 @@ public class TestCollections {
 
     @Test
     public void testLong() {
+        int a = 13 / 2;
+        System.out.println(a);
         double time = new Date().getTime();
         double time1 = 1578303205843l;
 
@@ -474,6 +477,12 @@ public class TestCollections {
 
         System.out.println(dateStr);
         System.out.println(dateStr2);
+
+        Date dateTime = new Date();
+        long time = dateTime.getTime();
+        String timeStr = String.valueOf(time);
+        Date date1 = new Date(Long.parseLong(timeStr));
+        System.out.println(date1);
     }
 
     @Test
@@ -621,6 +630,33 @@ public class TestCollections {
     }
 
     @Test
+    public void testIndex() {
+        List<String> list = new ArrayList<>();
+        list.add("123");
+        list.add("456");
+        list.add("789");
+        list.add("012");
+        list.add("尼玛");
+
+        List<String> temp = new ArrayList();
+        for (int i = 1; i <= list.size(); i++) {
+            temp.add(list.get(i - 1));
+            if (i % 2 == 0) {
+                System.out.println("这是一组数据" + temp);
+                temp = new ArrayList();
+            }
+        }
+        if (CollectionUtils.isNotEmpty(temp)) {
+            System.out.println("剩余的集合：" + temp);
+        }
+
+        String str = "4";
+        double v = Double.parseDouble(str);
+        System.out.println(v);
+
+    }
+
+    @Test
     public void testMid() {
         JSONArray jsonArray = new JSONArray();
         com.alibaba.fastjson.JSONObject jsonObject = new com.alibaba.fastjson.JSONObject();
@@ -651,6 +687,22 @@ public class TestCollections {
         System.out.println(JSON.toJSONString(strs));
 
     }
+    @Test
+    public void testDateStr() {
+        Calendar instance = Calendar.getInstance();
+        int year = instance.get(Calendar.YEAR);
+        int month = instance.get(Calendar.MONTH) + 1;
+        if (month - 1 <= 0) {
+            year = year - 1;
+            month = 12;
+        } else {
+            month = month - 1;
+        }
+
+        String monthStr = String.valueOf(month).length() == 1 ? "0" + String.valueOf(month) : String.valueOf(month);
+
+        System.out.println(year + "-" + monthStr + "-01 " + "00:00:00");
+    }
 
     @Test
     public void testInteger() {
@@ -659,6 +711,14 @@ public class TestCollections {
         int i = 777777;
 
         boolean equals = integer.equals(i);
+
+        byte[] arr = new byte[2];
+        Base64.Encoder encoder = Base64.getEncoder();
+        String s = new String(encoder.encode(arr));
+        System.out.println(s);
+
+
+        System.out.println(Arrays.toString(arr));
 
         System.out.print(i == integer);
         System.out.print(integer.equals(i));
@@ -699,19 +759,75 @@ public class TestCollections {
     }
     @Test
     public void testJsonParse() {
-        String s = null;
-        System.out.println(s.toString());
         HashMap<Object, Object> map = new HashMap<>();
         HashMap<Object, Object> map1 = new HashMap<>();
         map1.put("username", "password");
         map.put("map", map1);
-
-
         System.out.println(JSON.toJSONString(map));
+
+        String str = "2020-08-09 00:00:00.0";
+        String substring = str.substring(0, str.indexOf(".0"));
+        System.out.println(substring);
+    }
+
+    @Test
+    public void testCompareParse() {
+        Map<String, Object> map1 = new HashMap<>();
+        map1.put("nodeId", "03");
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("nodeId", "02");
+        Map<String, Object> map3 = new HashMap<>();
+        map3.put("nodeId", "04");
+        Map<String, Object> map4 = new HashMap<>();
+        map4.put("nodeId", "01");
+
+        ArrayList<Map<String, Object>> list = new ArrayList<>();
+        list.add(map1);
+        list.add(map2);
+        list.add(map3);
+        list.add(map4);
+
+        System.out.println(Integer.parseInt("02"));
+
+        Collections.sort(list, new Comparator<Map<String, Object>>() {
+            @Override
+            public int compare(Map<String, Object> map1, Map<String, Object> map2) {
+                return Integer.parseInt(MapUtils.getString(map1, "nodeId")) - Integer.parseInt(MapUtils.getString(map2, "nodeId"));
+            }
+        });
+
+        Collections.reverse(list);
+        System.out.println(list);
+    }
+
+    @Test
+    public  void testSort() {
+        List<Map<String, Object>> list = new ArrayList<>();
+        Map<String, Object> map1 = new HashMap<>();
+        map1.put("student1", 60);
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("student2", 70);
+        Map<String, Object> map3 = new HashMap<>();
+        map3.put("student3", 40);
+        list.add(map1);
+        list.add(map2);
+        list.add(map3);
+        Collections.sort(list, new Comparator<Map<String, Object>>() {
+            @Override
+            public int compare(Map<String, Object> map1, Map<String, Object> map2) {
+                int value0 = (int)map1.values().toArray()[0];
+                int value1 = (int)map2.values().toArray()[0];
+                return value1 - value0;
+            }
+        });
+
+        System.out.println(list);
     }
 
     @Test
     public void testCompare() {
+
+        System.out.println(false || true && false || true);
 
         String s1 = "2019-08-07 00:00:00";
         String s2 = "2019-09-09 00:00:00";
@@ -732,6 +848,76 @@ public class TestCollections {
         Object obj = map;
 
         System.out.println(JSON.toJSONString(obj));
+    }
+
+    @Test
+    public void testParseDouble() {
+        /*String[] s = "".split(",");
+        System.out.println(Arrays.toString(s));
+
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(4);
+        list.add(2);
+        list.add(3);
+
+        list.sort(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer integer, Integer t1) {
+                return t1 - integer;
+            }
+        });
+        System.out.println(list);*/
+
+        /*HashMap<String, Object> map = new HashMap<>();
+        map.put("username", null);
+        System.out.println(JSON.toJSONString(map));*/
+
+//        String s = "2020-01-24 00:00:00.0";
+//        System.out.println(s.substring(0, s.indexOf(".0")));
+        String s = "000300300";
+        String result = s.length() > 9 ? s.substring(0, 9) : s;
+
+        System.out.println(result);
+    }
+
+    @Test
+    public void testAddAll() {
+        ArrayList<Map<String, Object>> llist1 = new ArrayList<>();
+        ArrayList<Map<String, Object>> llist2 = new ArrayList<>();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("username", "zhangpei");
+        llist1.add(map);
+
+        llist2.addAll(llist1);
+
+        map.put("password", "123");
+        System.out.println(llist2);
+    }
+
+    @Test
+    public void testUnicode() throws UnsupportedEncodingException {
+        String s = "ç\u0094¨æ\u0088·æ\u008E\u0088æ\u009D\u0083è®¤è¯\u0081æ²¡æ\u009C\u0089é\u0080\u009Aè¿\u0087!å®¢æ\u0088·ç«¯è¯·æ±\u0082å\u008F\u0082æ\u0095°tokenä¿¡æ\u0081¯æ\u0097 æ\u0095\u0088";
+
+        String s1 = new String(s.getBytes("ISO-8859-1"), "UTF-8");
+        System.out.println(s1);
+    }
+
+    @Test
+    public void testIterator() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("尼玛");
+        }
+
+        Iterator<String> iterator = list.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            String next = iterator.next();
+            if (i == 5) {
+                iterator.remove();
+            }
+            i++;
+        }
     }
 
 
