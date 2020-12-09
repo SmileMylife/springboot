@@ -21,6 +21,8 @@ public interface ITestSpringBootService {
 
     public void testTransaction(InputObject inputObject, OutputObject outputObject) throws Exception;
 
+    public void testTransaction2(InputObject inputObject, OutputObject outputObject);
+
     public void testTheadpoolDi();
 
     void testDatabase(InputObject inputObject, OutputObject outputObject);

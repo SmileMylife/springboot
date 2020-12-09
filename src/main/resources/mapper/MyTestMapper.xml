@@ -25,6 +25,9 @@
     <insert id="insertUser" parameterType="map">
         INSERT INTO USER
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
             <if test="username != null">
                 USERNAME,
             </if>
@@ -33,6 +36,9 @@
             </if>
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
             <if test="username != null">
                 #{username},
             </if>

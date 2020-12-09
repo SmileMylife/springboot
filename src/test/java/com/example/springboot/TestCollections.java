@@ -4,7 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.baidu.aip.ocr.AipOcr;
+import com.example.springboot.common.bean.InputObject;
 import com.example.springboot.util.SQlReplaceUtil;
+import com.example.springboot.util.SpringUtil;
+import fr.opensagres.xdocreport.document.preprocessor.sax.BufferedElement;
+import lombok.SneakyThrows;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -14,14 +18,28 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.HandlerInterceptor;
 import redis.clients.jedis.Jedis;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.math.BigInteger;
+import java.net.InetAddress;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by ZhangPei on 2019/9/4.
@@ -73,6 +91,34 @@ public class TestCollections {
     }
 
     @Test
+    public void testIntegerChaiXiang() {
+        //测试自动拆箱装箱
+        Integer integer1 = 128;
+        Integer integer2 = 128;
+
+        System.out.println(integer1 == integer2);
+        float a = 1e-6f;
+
+        List<String> strings = Arrays.asList(new String[]{"1"});
+        strings.add("ceshi");
+    }
+
+    @Test
+    public void javaEnum() {
+        double ceil = Math.ceil(11.2);
+        System.out.println((int)ceil);
+    }
+
+    public void testENUM(Season season) {
+        switch (season) {
+            case SPRING:   System.out.println("使用switch");
+            break;
+            default:
+            break;
+        }
+    }
+
+    @Test
     public void testArraylist() {
         List<String> list = new ArrayList<>();
         String s = null;
@@ -89,6 +135,26 @@ public class TestCollections {
         Car car1 = new Car();
 
         System.out.println(car1.getColor() + car1.drive);
+    }
+
+    @Test
+    public void testSwitch() {
+        InputObject inputObject = new InputObject();
+        int i = 0;
+        switch (i) {
+            case 1:
+                Map<String, Object> params = inputObject.getParams();
+                System.out.println("张佩");
+            break;
+            case 0:
+                HashMap<Object, Object> params1 = new HashMap<>();
+                params1.put("username", "zhangpei");
+                String username = MapUtils.getString(params1, "username");
+                System.out.println(username);
+            break;
+            default:
+                break;
+        }
     }
 
     @Test
@@ -114,10 +180,11 @@ public class TestCollections {
 
     @Test
     public void testSub() {
-        String s = "测试你是:a,a,a";
-        String result = s.substring(5);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("ceshi", "false");
+        boolean ceshi = MapUtils.getBooleanValue(map, "ceshi");
 
-        System.out.println(result);
+        System.out.println(ceshi);
 
     }
 
@@ -251,6 +318,9 @@ public class TestCollections {
 
     @Test
     public void testImage() throws JSONException {
+        double a = 37.2 % 10;
+        System.out.println(a);
+
         // 初始化一个AipOcr
         AipOcr client = new AipOcr(APP_ID, API_KEY, SECRET_KEY);
 
@@ -339,6 +409,9 @@ public class TestCollections {
 
     @Test
     public void testMap() {
+        int []ints  = new int[10];
+        System.out.println(ints[2]);
+
         HashMap<Object, Object> map = new HashMap<>();
         try {
             int i = 10 / 0;
@@ -459,10 +532,29 @@ public class TestCollections {
     }
 
     @Test
-    public void testDebug() {
-        int a = 100;
-        int b = 1000;
-        int c = 800;
+    public void testPoint() {
+
+    }
+
+    /**
+     * 获取指定年月的第一天
+     * @param year
+     * @param month
+     * @return
+     */
+    public static String getFirstDayOfMonth1(int year, int month) {
+        Calendar cal = Calendar.getInstance();
+        //设置年份
+        cal.set(Calendar.YEAR, year);
+        //设置月份
+        cal.set(Calendar.MONTH, month-1);
+        //获取某月最小天数
+        int firstDay = cal.getMinimum(Calendar.DATE);
+        //设置日历中月份的最小天数
+        cal.set(Calendar.DAY_OF_MONTH,firstDay);
+        //格式化日期
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(cal.getTime());
     }
 
     @Test
@@ -487,22 +579,20 @@ public class TestCollections {
 
     @Test
     public void testList() {
-        String s = null;
-        System.out.print("123" + s);
+        String s = "";
+        String s1 = "1;2;3";
 
-        ArrayList list = new ArrayList<>();
-        list.add("123");
-        list.add("123");
-        list.add("123");
-        list.add("123");
-        list.subList(0, 2);
+        if (StringUtils.isNotBlank(s1)) {
+            s += ";" + s1;
+        }
 
-        System.out.print(list);
+        System.out.println(s);
     }
 
     @Test
     public void testSubStr() {
-        String s = "110103569a030400";
+        String substring = StringUtils.substring("", 0, 2000);
+        System.out.println(substring);
     }
 
     @Test
@@ -851,6 +941,16 @@ public class TestCollections {
     }
 
     @Test
+    public void testThread() {
+        ArrayList<String> objects = new ArrayList<>();
+        objects.add("1");
+        objects.add("2");
+        objects.add("3");
+        List<String> strings = objects.subList(0, 3);
+        System.out.println(strings);
+    }
+
+    @Test
     public void testParseDouble() {
         /*String[] s = "".split(",");
         System.out.println(Arrays.toString(s));
@@ -896,10 +996,21 @@ public class TestCollections {
 
     @Test
     public void testUnicode() throws UnsupportedEncodingException {
-        String s = "ç\u0094¨æ\u0088·æ\u008E\u0088æ\u009D\u0083è®¤è¯\u0081æ²¡æ\u009C\u0089é\u0080\u009Aè¿\u0087!å®¢æ\u0088·ç«¯è¯·æ±\u0082å\u008F\u0082æ\u0095°tokenä¿¡æ\u0081¯æ\u0097 æ\u0095\u0088";
+        Object obj = new String[]{"1", "2"};
+        System.out.println(obj instanceof String[]);
+    }
 
-        String s1 = new String(s.getBytes("ISO-8859-1"), "UTF-8");
-        System.out.println(s1);
+    @Test
+    public void testDateStrTrans() throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date parse = simpleDateFormat.parse("20200811131212");
+        Map<String, Object> map = new HashMap<>();
+        Boolean ceshi = MapUtils.getBoolean(map, "ceshi");
+        if (ceshi) {
+            System.out.println("123");
+        }
+
+        System.out.println(parse);
     }
 
     @Test
@@ -920,7 +1031,202 @@ public class TestCollections {
         }
     }
 
+    @Test
+    public void testHashMap() {
+        HttpServlet httpServlet = new HttpServlet() {
+            @Override
+            protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                super.doGet(req, resp);
+            }
+        };
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put(null, "test");
+        map.put(null, "test2");
+        System.out.println(map);
+    }
 
+    @Test
+    public void testIteratorList() {
+        List<String> lists = new ArrayList<>();
+        lists.add("123");
+        Iterator<String> iterator = lists.iterator();
+
+        while (iterator.hasNext()) {
+//            iterator.next();
+            System.out.println("循环");
+        }
+    }
+
+    @Test
+    public void testSubStrTest() {
+        String s = "zhangpei";
+        String s1 = s.length() > 8 ? s.substring(0, 8) : s;
+        System.out.println(s1);
+    }
+
+    @Test
+    public void testSetStr() {
+        String s = "ab";
+        String substring = s.substring(2);
+
+        System.out.println(substring);
+    }
+
+    @Test
+    public void testFileSql() throws IOException {
+        FileReader fileReaderWrkfmId = new FileReader(new File("/Users/smile_mylife/Desktop/工单主键.txt"));
+        BufferedReader bufferedReaderWrkfmId = new BufferedReader(fileReaderWrkfmId);
+        List<String> wrkfmIds = new ArrayList<>();
+        String str;
+        while ((str = bufferedReaderWrkfmId.readLine()) != null) {
+            wrkfmIds.add(str);
+        }
+        bufferedReaderWrkfmId.close();
+
+        FileReader fileReaderCsvc = new FileReader(new File("/Users/smile_mylife/Desktop/全网流水.txt"));
+        BufferedReader bufferedReaderCsvc = new BufferedReader(fileReaderCsvc);
+        List<String> csvcs = new ArrayList<>();
+        String csvc;
+        while ((csvc = bufferedReaderCsvc.readLine()) != null) {
+            csvcs.add(csvc);
+        }
+        bufferedReaderCsvc.close();
+
+
+        HashMap<String, Object> wrkfmIdMap = new HashMap<>();  //工单主键对应关系
+        for (int i = 0; i < wrkfmIds.size(); i++) {
+            wrkfmIdMap.put(csvcs.get(i), wrkfmIds.get(i));
+        }
+
+
+
+
+
+
+        FileReader fileReaderWrkfmId1 = new FileReader(new File("/Users/smile_mylife/Desktop/工单主键.txt"));
+        BufferedReader bufferedReaderWrkfmId1 = new BufferedReader(fileReaderWrkfmId1);
+        List<String> wrkfmIds1 = new ArrayList<>();
+        String str1;
+        while ((str1 = bufferedReaderWrkfmId1.readLine()) != null) {
+            wrkfmIds1.add(str1);
+        }
+        bufferedReaderWrkfmId1.close();
+
+        FileReader fileReaderCsvc1 = new FileReader(new File("/Users/smile_mylife/Desktop/全网流水.txt"));
+        BufferedReader bufferedReaderCsvc1 = new BufferedReader(fileReaderCsvc1);
+        List<String> csvcs1 = new ArrayList<>();
+        String csvc1;
+        while ((csvc1 = bufferedReaderCsvc1.readLine()) != null) {
+            csvcs1.add(csvc1);
+        }
+        bufferedReaderCsvc1.close();
+
+
+        HashMap<String, Object> wrkfmIdMap1 = new HashMap<>();  //工单主键对应关系
+        for (int i = 0; i < wrkfmIds1.size(); i++) {
+            wrkfmIdMap1.put(csvcs1.get(i), wrkfmIds1.get(i));
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i <wrkfmIds.size(); i++) {
+            String sql = "update t_sr_problem_proces set biz_cntt = '' where wrkfm_id = '%s';";
+            sql = String.format(sql, wrkfmIds.get(i));
+            System.out.println();
+            System.out.println(sql);
+            sb.append("'").append(wrkfmIds.get(i)).append("'").append(",");
+        }
+
+        System.out.println(sb.toString());
+
+        System.out.println("工单总量" + wrkfmIds.size());
+    }
+
+    @Test
+    public void testCao() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("nodeId", "start");
+
+        HashMap<String, Object> map2 = new HashMap<>();
+        map2.put("nodeId", "review");
+
+        ArrayList<Map<String, Object>> objects = new ArrayList<>();
+        objects.add(map2);
+        objects.add(map);
+
+        ArrayList<Map<String, Object>> returnList = new ArrayList<>();
+
+        returnList = objects;
+
+        for (Map<String, Object> temp :objects) {
+            if ("start".equals(temp.get("nodeId"))) {
+                returnList.set(0, map);
+            } else if ("review".equals(temp.get("nodeId"))) {
+                returnList.set(1, map);
+            }
+        }
+
+        Map<String, Object> stringObjectMap = objects.get(objects.size() - 1);
+
+        System.out.println(returnList);
+
+    }
+
+
+    @Test
+    public void testLn() throws UnsupportedEncodingException {
+        String s = "#鍚屾\uE11E瑕佺礌#鍙楃悊鍙风爜:13840214121涓氬姟鍚嶇О:瀹㈡埛鏇惧弽鏄犳笭閬�:10086闂\uE1C0\uE57D鎻忚堪:瀹㈡埛13840214121鍙嶆槧锛氭湰鏈哄彿鐮佸湪8鏈�31鏃ヤ笂鍗堟煡璇㈡瑺璐�690澶氬厓锛屽湪涓嬪崍瀹㈡埛鍏呭�间簡700鍏冿紝浣嗗\uE179鎴锋湁婊炵撼閲戯紝鍦�9鏈�1鏃ヨ\uE766閿�鎴凤紝鍛婄煡浠嶉渶瑕佷氦绾�100澶氬厓璐圭敤瀹㈡埛涓嶆弧锛屾姇璇夊悗鏈\uE044緱鍒拌В鍐筹紝璇锋牳瀹炲\uE629鐞嗐�傚\uE179鎴疯\uE6E6姹�:瑕佹眰鏍稿疄澶勭悊鑱旂郴鐢佃瘽:13238866027#鍚屾\uE11E瑕佺礌#\n";
+        byte[] bytes = s.getBytes("GBK");
+//        byte[] bytes = s.getBytes("ISO-8859-1");
+        String s1 = new String(bytes, "UTF-8");
+        System.out.println(s1);
+    }
+
+    @Test
+    public void testJdk8() {
+        List<String> list = new ArrayList<>();
+        list.add("zhangpei");
+        list.add("zhangxu");
+        list.add("zhangxu");
+        list.add("zhangxu");
+        list.add("zhangxu");
+        list.add("zhangxu");
+
+        List<String> zhangxu = list.stream().filter(elem -> elem.equals("zhangxu")).collect(Collectors.toList());
+        System.out.println(zhangxu);
+
+
+    }
+
+    @Test
+    public void testListIterator() throws IOException {
+        byte[] bytes = Files.readAllBytes(Paths.get("/Users/smile_mylife/Desktop/1012.txt"));
+        System.out.println(new String(bytes, StandardCharsets.UTF_8));
+    }
+
+    @Test
+    public void TestArraylist() {
+        String s = new String();
+        s.length();
+    }
+
+    @Test
+    public void testNewNap() {
+        boolean equals = "false".equals(true);
+        System.out.println(equals);
+        System.gc();
+    }
+    @Test
+    public void testParse() {
+
+    }
+    @Test
+    public void testPackage() {
+        Integer integer1 = -129;
+        Integer integer2 = -129;
+
+        System.out.println(integer1 == integer2);
+
+    }
 
 }
 

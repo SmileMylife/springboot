@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Created by ZhangPei on 2018/11/15.
@@ -78,6 +79,29 @@ public class ITestSpringBootServiceImpl implements ITestSpringBootService {
         inputObject.getParams().put("password", "456");
         System.out.println("热部署生效了");
         iTestSpringBootDao.insertUser(inputObject.getParams());
+        try {
+            testTransaction2(inputObject, outputObject);
+        } catch (Exception e) {
+            System.out.println("发生了错误" + e.getMessage());
+        }
+    }
+
+    /**
+     * @param inputObject
+     * @param outputObject
+     */
+    public void testTransaction2(InputObject inputObject, OutputObject outputObject) {
+        inputObject.getParams().put("username", "zhangpei");
+        inputObject.getParams().put("password", "xixixxi");
+        inputObject.getParams().put("id", "1");
+        iTestSpringBootDao.insertUser(inputObject.getParams());
+
+        int i = 1;
+        int b = 2;
+
+        if (i != 1 || b != 2) {
+
+        }
     }
 
     @Autowired
