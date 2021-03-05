@@ -5,8 +5,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.baidu.aip.ocr.AipOcr;
 import com.example.springboot.common.bean.InputObject;
+import com.example.springboot.common.bean.OutputObject;
 import com.example.springboot.util.SQlReplaceUtil;
 import com.example.springboot.util.SpringUtil;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import fr.opensagres.xdocreport.document.preprocessor.sax.BufferedElement;
 import lombok.SneakyThrows;
 import org.apache.commons.collections.CollectionUtils;
@@ -26,9 +28,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.lang.reflect.Field;
 import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -109,15 +113,6 @@ public class TestCollections {
         System.out.println((int)ceil);
     }
 
-    public void testENUM(Season season) {
-        switch (season) {
-            case SPRING:   System.out.println("使用switch");
-            break;
-            default:
-            break;
-        }
-    }
-
     @Test
     public void testArraylist() {
         List<String> list = new ArrayList<>();
@@ -169,6 +164,16 @@ public class TestCollections {
             }
         }
         bufferedReader.close();
+    }
+
+    @Test
+    public void testObjectRequireNonNull() throws NoSuchFieldException {
+        String s = "zhangpei";
+        InputObject inputObject = new InputObject();
+        Class<? extends String> aClass = s.getClass();
+        Field provCode = aClass.getField("provCode");
+        String s1 = provCode.toString();
+
     }
 
     @Test
@@ -1168,6 +1173,31 @@ public class TestCollections {
         Map<String, Object> stringObjectMap = objects.get(objects.size() - 1);
 
         System.out.println(returnList);
+
+    }
+
+    @Test
+    public void testCompate() {
+        String crtTime = "2020-10-21 00:00:00";
+        String crtTime2 = "2020-10-21 00:00:00";
+
+        System.out.println(crtTime.compareTo(crtTime2));
+    }
+
+    @Test
+    public void testCompareTo() {
+        String s = "2020-12-10 00:00:00";
+        String s1 = "2020-12-10 00:00:01";
+        int i = s1.compareTo(s);
+        System.out.println(i);
+        Map<String, Object> map = new HashMap<>();
+        map.put("ceshi", "18:00:00");
+        Integer ceshi = MapUtils.getInteger(map, "ceshi");
+        System.out.println(ceshi);
+
+        List<List> lists = JSON.parseObject("['review']", List.class);
+        System.out.println(lists);
+
 
     }
 

@@ -17,10 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
@@ -430,5 +427,10 @@ public class TestSpringBootController {
     public void testThreadPoolBySpringShutdown() {
         int corePoolSize = taskExecutor.getCorePoolSize();
         System.out.println("线程池被关闭之后的核心线程数：" + corePoolSize);
+    }
+
+    @RequestMapping(value = "/testString", method = RequestMethod.POST)
+    public void testSpring(String username, String password) {
+        System.out.println("测试尼玛");
     }
 }
