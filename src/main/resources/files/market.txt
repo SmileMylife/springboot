@@ -1,0 +1,77 @@
+phoneNet
+AcceptanceNumber
+ANHomeCity
+ANDistrictAndCounty
+FaultProvince
+FaultHomeCity
+FaultDistrictAndCounty
+FaultAddress
+Longitude
+Latitude
+IsRuralSign     1
+OneClickDiagnosisResults
+FaultType
+IsChange
+FaultTime   1
+PhoneFaultPhenomenon
+PhoneStation
+VillageECI
+HistoryStation
+PhoneInternet
+IsFaultPlace
+IsHouse
+TerminalType
+Is5G
+CarryType
+CustomerClass
+
+voiceQuality
+AcceptanceNumber
+ANHomeCity
+ANDistrictAndCounty
+FaultProvince
+FaultHomeCity
+FaultDistrictAndCounty
+FaultAddress
+Longitude
+Latitude
+IsRuralSign     1
+OneClickDiagnosisResults
+FaultType
+IsVOLTE
+IsChange
+FaultTime   1
+PhoneFaultStation
+VillageECI
+HistoryStation
+PhoneInternet
+IsFaultPlace
+IsHouse
+TerminalType
+Is5G
+CarryType
+CustomerBrand
+
+activityPub
+ProblemType
+IsHandleBusiness
+ActivityName
+ActivityCode
+HandleNo
+ChannelType
+VerificationMethod
+OrderorUnsubscribeTime      1
+ForceTime       1
+FinishTime      1
+
+payQuestion
+FYProblemType
+IsHandleBusiness
+ActivityName
+ActivityCode
+HandleNo
+ChannelType
+VerificationMethod
+OrderorUnsubscribeTime      1
+ForceTime       1
+FinishTime      1

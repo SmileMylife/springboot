@@ -15,7 +15,49 @@ public class PersonTest {
         this.name = name;
     }
 
+    public void setAge(@NonNull String age) {
+        this.age = age;
+    }
+
+    public void setName(@Nullable String name) {
+        this.name = name;
+    }
+
+    @NonNull
+    public String getAge() {
+        return age;
+    }
+
+    @Nullable
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj instanceof PersonTest) {
+            PersonTest person = (PersonTest) obj;
+            if (person.getAge().equals(this.getAge()) && person.getName().equals(this.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
-        PersonTest personTest = new PersonTest(null, "zhangpei");
+        String s = "{username: zhangpei}";
     }
 }

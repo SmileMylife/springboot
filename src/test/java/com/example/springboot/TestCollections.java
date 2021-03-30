@@ -1147,6 +1147,13 @@ public class TestCollections {
     }
 
     @Test
+    public void testStrInterview() {
+        String s = "abc";
+        String abc = new String("abc");
+        System.out.println(s == abc);
+    }
+
+    @Test
     public void testCao() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("nodeId", "start");
@@ -1174,6 +1181,25 @@ public class TestCollections {
 
         System.out.println(returnList);
 
+    }
+
+    @Test
+    public void testSpeed() {
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++) {
+            String format = String.format("%s%s", "测试", "ceshi");
+        }
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
+
+        long startCopy = System.currentTimeMillis();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 100000; i++) {
+            sb.append("测试").append("ceshi");
+        }
+        String s = sb.toString();
+        long endCopy = System.currentTimeMillis();
+        System.out.println(endCopy - startCopy);
     }
 
     @Test
@@ -1213,7 +1239,7 @@ public class TestCollections {
 
     @Test
     public void testJdk8() {
-        List<String> list = new ArrayList<>();
+        /*List<String> list = new ArrayList<>();
         list.add("zhangpei");
         list.add("zhangxu");
         list.add("zhangxu");
@@ -1222,8 +1248,15 @@ public class TestCollections {
         list.add("zhangxu");
 
         List<String> zhangxu = list.stream().filter(elem -> elem.equals("zhangxu")).collect(Collectors.toList());
-        System.out.println(zhangxu);
+        System.out.println(zhangxu);*/
 
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("test", "null");
+        System.out.println(map.toString());
+        Object test = map.get("test");
+
+        System.out.println(test == null);
+        System.out.println(test.equals("null"));
 
     }
 
@@ -1247,7 +1280,9 @@ public class TestCollections {
     }
     @Test
     public void testParse() {
-
+        StringBuilder sb = new StringBuilder();
+        StringBuilder ceshi = sb.append("ceshi");
+        System.out.println(sb == ceshi);
     }
     @Test
     public void testPackage() {
