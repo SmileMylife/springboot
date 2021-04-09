@@ -37,8 +37,8 @@ public class FileReadUtil {
     }};
 
     public static void main(String[] args) throws IOException {
-//        readFileIntoToCode();
-        productCsvcBody("CSSL");
+        readFileIntoToCode();
+//        productCsvcBody("CSSL");
     }
 
     public static void readFileIntoToCode() throws IOException {
@@ -46,6 +46,10 @@ public class FileReadUtil {
         List<String> allLines = Files.readAllLines(Paths.get(resourceAsFile.getPath()));
         for (int i = 0; i < allLines.size(); i++) {
             String field = allLines.get(i);
+            if (StringUtils.isBlank(field)) {
+                System.out.println();
+                continue;
+            }
             String[] split = field.split("\\s+");
             System.out.println("inMap.put(\""+ split[0] + "\"" + ", );\t\t//" + split[1]);
         }

@@ -1,77 +1,39 @@
-phoneNet
-AcceptanceNumber
-ANHomeCity
-ANDistrictAndCounty
-FaultProvince
-FaultHomeCity
-FaultDistrictAndCounty
-FaultAddress
-Longitude
-Latitude
-IsRuralSign     1
-OneClickDiagnosisResults
-FaultType
-IsChange
-FaultTime   1
-PhoneFaultPhenomenon
-PhoneStation
-VillageECI
-HistoryStation
-PhoneInternet
-IsFaultPlace
-IsHouse
-TerminalType
-Is5G
-CarryType
-CustomerClass
+FixManner	解决方式
+ReplyContent	回复情况
+UpperLinkEvaluation	上环节评价
+SolutionDegree	解决程度
+RepeatedComplaintsReason	重复投诉原因
+IsRefundIndictSeq	是否退费工单
 
-voiceQuality
-AcceptanceNumber
-ANHomeCity
-ANDistrictAndCounty
-FaultProvince
-FaultHomeCity
-FaultDistrictAndCounty
-FaultAddress
-Longitude
-Latitude
-IsRuralSign     1
-OneClickDiagnosisResults
-FaultType
-IsVOLTE
-IsChange
-FaultTime   1
-PhoneFaultStation
-VillageECI
-HistoryStation
-PhoneInternet
-IsFaultPlace
-IsHouse
-TerminalType
-Is5G
-CarryType
-CustomerBrand
+FixManner	解决方式
+ReplyContent	回复情况
+UpperLinkEvaluation	上环节评价
+SolutionDegree	解决程度
+RepeatedComplaintsReason	重复投诉原因
+IsRefundIndictSeq	是否退费工单
 
-activityPub
-ProblemType
-IsHandleBusiness
-ActivityName
-ActivityCode
-HandleNo
-ChannelType
-VerificationMethod
-OrderorUnsubscribeTime      1
-ForceTime       1
-FinishTime      1
+IsRefundIndictSeq	是否退费工单
+RefundMonth	退费月份
+RefundMoney	退费金额
+RefundTime	退费操作时间
+RefundType	退费业务类型
+ExtraCompensate	额外补偿
+Business	业务操作
+DutyDepartment	责任部门
+ReplyManner	反馈方式
+RepeatedComplaintsReason	重复投诉原因
+SolutionDegree	解决程度
+UpperLinkEvaluation	上环节评价
 
-payQuestion
-FYProblemType
-IsHandleBusiness
-ActivityName
-ActivityCode
-HandleNo
-ChannelType
-VerificationMethod
-OrderorUnsubscribeTime      1
-ForceTime       1
-FinishTime      1
+IsRefundIndictSeq	是否退费工单
+RefundMonth	退费月份
+RefundMoney	退费金额
+RefundTime	退费操作时间
+RefundType	退费业务类型
+ExtraCompensate	额外补偿
+Business	业务操作
+DutyDepartment	责任部门
+ReplyManner	反馈方式
+RepeatedComplaintsReason	重复投诉原因
+SolutionDegree	解决程度
+UpperLinkEvaluation	上环节评价

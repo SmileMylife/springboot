@@ -11,6 +11,7 @@ import com.example.springboot.util.SpringUtil;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import fr.opensagres.xdocreport.document.preprocessor.sax.BufferedElement;
 import lombok.SneakyThrows;
+import org.apache.commons.codec.digest.Md5Crypt;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -37,6 +38,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -717,11 +720,8 @@ public class TestCollections {
     }
 
     @Test
-    public void testMd5() {
-        ArrayList<Object> objects = new ArrayList<>();
-        objects.addAll(null);
-        boolean empty = CollectionUtils.isNotEmpty(objects);
-        System.out.print(empty);
+    public void testMd5() throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
     }
 
     @Test
@@ -1291,6 +1291,10 @@ public class TestCollections {
 
         System.out.println(integer1 == integer2);
 
+    }
+    @Test
+    public void testSplit() {
+        System.out.println(System.lineSeparator());
     }
 
 }
